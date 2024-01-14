@@ -24,8 +24,8 @@
         <div>Section : {{ i + 1 }}</div>
         <div>
           {{
-            section.get("SectionTitle").value == null ||
-            section.get("SectionTitle").value == undefined
+            section.get("SectionTitle")?.value == null ||
+            section.get("SectionTitle")?.value == undefined
               ? "Section Name"
               : section.get("SectionTitle").value
           }}
@@ -34,7 +34,7 @@
         <i class="fa-solid fa-pen" (click)="Show(divToggle)"></i>
         <i
           class="fa-solid fa-trash"
-          (click)="DeletedSection(section.get('id').value)"
+          (click)="DeletedSection(section.get('id')?.value, i)"
         ></i>
       </div>
       <div
@@ -80,9 +80,9 @@
             class="mybtn p-1"
             (click)="
               SaveSection(
-                section.get('id').value,
-                section.get('SectionTitle').value,
-                section.get('SectionDescription').value
+                section.get('id')?.value,
+                section.get('SectionTitle')?.value,
+                section.get('SectionDescription')?.value
               )
             "
           >
@@ -109,18 +109,18 @@
                 <div>
                   <mat-panel-description>
                     {{
-                      lecture.get("Lecturetitle").value == null ||
-                      lecture.get("Lecturetitle").value == null
+                      lecture.get("Lecturetitle")?.value == null ||
+                      lecture.get("Lecturetitle")?.value == null
                         ? "Lecture Name"
-                        : lecture.get("Lecturetitle").value
+                        : lecture.get("Lecturetitle")?.value
                     }}
                     :
                     <span class="text-primary">
                       {{
-                        lecture.get("menutes").value == null ||
-                        lecture.get("menutes").value == null
+                        lecture.get("menutes")?.value == null ||
+                        lecture.get("menutes")?.value == null
                           ? "0"
-                          : lecture.get("menutes").value
+                          : lecture.get("menutes")?.value
                       }}
                       minutes
                     </span>
@@ -151,7 +151,7 @@
                   <button
                     mat-raised-button
                     color="accent"
-                    (click)="DeleteLecture(lecture.get('id').value)"
+                    (click)="DeleteLecture(lecture.get('id')?.value, i, j)"
                   >
                     Delete
                   </button>
@@ -163,7 +163,7 @@
         <div class="mt-2 d-flex justify-content-start mb-2">
           <button
             mat-raised-button
-            (click)="AddLecture(i, section.get('id').value)"
+            (click)="AddLecture(section.get('id')?.value)"
           >
             + Curriculum item
           </button>

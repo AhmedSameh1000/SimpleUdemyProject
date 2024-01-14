@@ -7,5 +7,7 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<bool> CreateLecture(int sectionId);
 
         Task<bool> UpdateLecture(LectureForUpdateDTO lectureForUpdateDTO);
+
+        Task<bool> DeleteLecture(int lectureId);
     }
 }

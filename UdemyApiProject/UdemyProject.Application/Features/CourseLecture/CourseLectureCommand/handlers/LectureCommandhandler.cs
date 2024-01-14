@@ -14,7 +14,9 @@ namespace UdemyProject.Application.Features.CourseLecture.CourseLectureCommand.h
 {
     internal class LectureCommandhandler : ResponseHandlerModel,
         IRequestHandler<CreateLectureModelCommand, ResponseModel<bool>>,
-        IRequestHandler<UpdateLectureModelCommand, ResponseModel<bool>>
+        IRequestHandler<UpdateLectureModelCommand, ResponseModel<bool>>,
+        IRequestHandler<DeleteLectureModelCommand, ResponseModel<bool>>
+
     {
         private readonly ICourseLectureService _CourseLectureService;
 
@@ -41,6 +43,16 @@ namespace UdemyProject.Application.Features.CourseLecture.CourseLectureCommand.h
                 return BadRequest<bool>();
             }
             return Success(Response);
+        }
+
+        public async Task<ResponseModel<bool>> Handle(DeleteLectureModelCommand request, CancellationToken cancellationToken)
+        {
+            var IsDeleted = await _CourseLectureService.DeleteLecture(request.LectureId);
+            if (!IsDeleted)
+            {
+                return BadRequest<bool>();
+            }
+            return Success(IsDeleted);
         }
     }
 }

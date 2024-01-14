@@ -1,18 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
 import { CourseLectureService } from 'src/app/Services/course-lecture.service';
 import { CourseSectionService } from 'src/app/Services/course-section.service';
 import { CurriculmService } from 'src/app/Services/curriculm.service';
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-curriculm',
   templateUrl: './curriculm.component.html',
@@ -71,6 +64,7 @@ export class CurriculmComponent implements OnInit, OnDestroy {
   SetSections(Sectionsdata: any) {
     const Sections = this.CurriculmForm.get('Sections') as FormArray;
 
+    Sections.clear();
     console.log(Sectionsdata);
     Sectionsdata.forEach((sectionData: any) => {
       const group = new FormGroup({
@@ -99,11 +93,48 @@ export class CurriculmComponent implements OnInit, OnDestroy {
       Sections.push(group);
     });
   }
-  DeletedSection(id: any) {
-    console.log(id);
+  DeletedSection(id: any, Index: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.SectionService.DeleteSection(id).subscribe({
+          next: (res) => {
+            var Sections = this.CurriculmForm.get('Sections') as FormArray;
+            Sections.removeAt(Index);
+          },
+        });
+      }
+    });
   }
-  DeleteLecture(id: any) {
-    console.log(id);
+  DeleteLecture(id: any, sectionIndex, index: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.LectureService.DeleteLecture(id).subscribe({
+          next: (res) => {
+            var Sections = this.CurriculmForm.get('Sections') as FormArray;
+            var Lectures = Sections.at(sectionIndex).get(
+              'Lectures'
+            ) as FormArray;
+            Lectures.removeAt(index);
+          },
+        });
+      }
+    });
   }
   CreateCurriculmForm() {
     this.CurriculmForm = new FormGroup({
@@ -122,32 +153,15 @@ export class CurriculmComponent implements OnInit, OnDestroy {
   AddSection() {
     this.SectionService.CreateSection(this.CourseId).subscribe({
       next: (res) => {
-        var Sections = this.CurriculmForm.get('Sections') as FormArray;
-        var Group = new FormGroup({
-          SectionTitle: new FormControl(),
-          SectionDescription: new FormControl(),
-          Lectures: new FormArray([]),
-        });
-        Sections.push(Group);
+        this.LoadSections();
       },
     });
   }
 
-  AddLecture(sectionIndex: number, SectionId: any) {
+  AddLecture(SectionId: any) {
     this.LectureService.CreateLecture(SectionId).subscribe({
       next: (res) => {
-        var Sections = this.CurriculmForm.get('Sections') as FormArray;
-        var Lectures = Sections.at(sectionIndex).get('Lectures') as FormArray;
-
-        var Lecture = new FormGroup({
-          id: new FormControl(),
-          Lecturetitle: new FormControl(),
-          LectureDescription: new FormControl(),
-          videoSectionUrl: new FormControl(),
-          menutes: new FormControl(),
-        });
-
-        Lectures.push(Lecture);
+        this.LoadSections();
       },
     });
   }

@@ -30,6 +30,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpDelete("DeletedSection")]
+        public async Task<IActionResult> DeleteSection(int SectionId)
+        {
+            var Response = await _Mediator.Send(new DeleteSectionModelCommand(SectionId));
+            return NewResult(Response);
+        }
+
         [HttpPut("UpdateSection")]
         public async Task<IActionResult> UpdateSection(SectionForUpdateDTO section)
         {

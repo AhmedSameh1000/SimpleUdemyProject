@@ -22,6 +22,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpDelete("DeleteLecture")]
+        public async Task<IActionResult> DeleteLecture(int LectureId)
+        {
+            var Response = await _Mediator.Send(new DeleteLectureModelCommand(LectureId));
+            return NewResult(Response);
+        }
+
         [HttpPut("UpdateLecture")]
         public async Task<IActionResult> UpdateLecture([FromForm] LectureForUpdateDTO lectureForUpdateDTO)
         {

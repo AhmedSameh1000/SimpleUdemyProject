@@ -19,4 +19,9 @@ export class CourseLectureService {
       Lecture
     );
   }
+  DeleteLecture(LectureId) {
+    return this.HttpClient.delete(
+      `http://localhost:5227/api/CourseLecture/DeleteLecture?LectureId=${LectureId}`
+    );
+  }
 }

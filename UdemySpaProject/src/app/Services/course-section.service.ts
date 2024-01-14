@@ -12,6 +12,11 @@ export class CourseSectionService {
       {}
     );
   }
+  DeleteSection(SectionId: any) {
+    return this.HttpClient.delete(
+      `http://localhost:5227/api/CourseSection/DeletedSection?SectionId=${SectionId}`
+    );
+  }
 
   UpdateSection(Section: any) {
     return this.HttpClient.put(

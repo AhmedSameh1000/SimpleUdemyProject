@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.LectureDTOs;
 using UdemyProject.Contracts.RepositoryContracts;
@@ -103,6 +99,26 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
 
             FileUrl = fileName + extension;
             return FileUrl;
+        }
+
+        public async Task<bool> DeleteLecture(int lectureId)
+        {
+            var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureId);
+
+            if (Lecture == null)
+                return false;
+            if (Lecture.VideoLectureUrl != null)
+            {
+                var CurrentVideo = Path.Combine(_Host.WebRootPath, "CoursesVideos", Lecture.VideoLectureUrl);
+
+                if (Path.Exists(CurrentVideo))
+                {
+                    DeleteFileInWWWRoot("CoursesVideos", Lecture.VideoLectureUrl);
+                }
+            }
+
+            _CourseLectureRepository.Remove(Lecture);
+            return await _CourseLectureRepository.SaveChanges();
         }
     }
 }

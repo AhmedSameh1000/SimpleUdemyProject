@@ -14,7 +14,8 @@ namespace UdemyProject.Application.Features.CourseSection.CourseSectionCommand.H
 {
     internal class CourseSectionCommandHandler : ResponseHandlerModel,
         IRequestHandler<CourseSectionForCreateModelCommand, ResponseModel<bool>>,
-        IRequestHandler<SectionForUpdateModelCommand, ResponseModel<bool>>
+        IRequestHandler<SectionForUpdateModelCommand, ResponseModel<bool>>,
+        IRequestHandler<DeleteSectionModelCommand, ResponseModel<bool>>
     {
         private readonly ICourseSectionService _CourseSectionService;
 
@@ -41,6 +42,16 @@ namespace UdemyProject.Application.Features.CourseSection.CourseSectionCommand.H
             }
 
             return Success(isUpdated);
+        }
+
+        public async Task<ResponseModel<bool>> Handle(DeleteSectionModelCommand request, CancellationToken cancellationToken)
+        {
+            var IsDeleted = await _CourseSectionService.DeleteSection(request.SectionId);
+
+            if (!IsDeleted)
+                return BadRequest<bool>();
+
+            return Success(IsDeleted);
         }
     }
 }

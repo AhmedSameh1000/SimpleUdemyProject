@@ -9,5 +9,7 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<bool> UpdateSection(SectionForUpdateDTO forUpdateDTO);
 
         Task<List<SectionForReturnDTO>> GetSections(int CourseId);
+
+        Task<bool> DeleteSection(int SectionId);
     }
 }

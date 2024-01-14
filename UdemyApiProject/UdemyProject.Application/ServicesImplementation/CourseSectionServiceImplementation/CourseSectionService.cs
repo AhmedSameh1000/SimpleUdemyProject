@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +17,17 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
     {
         private readonly ICourseSectionRepository _CourseSectionRepository;
         private readonly ICourseRepository _CourseRepository;
+        private readonly IWebHostEnvironment _Host;
 
         public CourseSectionService(
             ICourseSectionRepository courseSectionRepository,
-            ICourseRepository courseRepository
+            ICourseRepository courseRepository,
+            IWebHostEnvironment Host
             )
         {
             _CourseSectionRepository = courseSectionRepository;
             _CourseRepository = courseRepository;
+            _Host = Host;
         }
 
         public async Task<bool> CreateSection(int CourseId)
@@ -38,6 +42,25 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
             };
 
             await _CourseSectionRepository.Add(Section);
+            return await _CourseSectionRepository.SaveChanges();
+        }
+
+        public async Task<bool> DeleteSection(int SectionId)
+        {
+            var Section = await _CourseSectionRepository.GetFirstOrDefault(c => c.Id == SectionId, new[] { "Lecture" });
+
+            if (Section is null) return false;
+
+            Section.Lecture.ForEach((l) =>
+            {
+                if (l.VideoLectureUrl != null)
+                {
+                    DeleteFileInWWWRoot("CoursesVideos", l.VideoLectureUrl);
+                }
+            });
+            Section.Lecture = null;
+
+            _CourseSectionRepository.Remove(Section);
             return await _CourseSectionRepository.SaveChanges();
         }
 
@@ -85,6 +108,16 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
 
             _CourseSectionRepository.Update(Section);
             return await _CourseSectionRepository.SaveChanges();
+        }
+
+        public void DeleteFileInWWWRoot(string Folderpath, string fileNamewithExtension)
+        {
+            var path = Path.Combine(_Host.WebRootPath, Folderpath, Path.GetFileName(fileNamewithExtension));
+            var IsExist = Path.Exists(path);
+            if (IsExist)
+            {
+                File.Delete(path);
+            }
         }
     }
 }
