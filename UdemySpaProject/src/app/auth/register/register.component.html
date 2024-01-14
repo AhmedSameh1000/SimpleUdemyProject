@@ -1,0 +1,53 @@
+<form class="example-form" [formGroup]="RegisterForm">
+  <mat-form-field class="example-full-width">
+    <mat-icon matPrefix>person</mat-icon>
+    <input matInput placeholder="FullName...." formControlName="FullName" />
+    <mat-error
+      *ngIf="
+        RegisterForm.get('FullName')?.errors?.['required'] &&
+        RegisterForm.get('FullName')?.touched
+      "
+    >
+      *FullName is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-icon matPrefix>email</mat-icon>
+    <input matInput placeholder="Email...." formControlName="Email" />
+    <mat-error
+      *ngIf="
+        RegisterForm.get('Email')?.errors?.['required'] &&
+        RegisterForm.get('Email')?.touched
+      "
+    >
+      *Email is required
+    </mat-error>
+    <mat-error
+      *ngIf="
+        RegisterForm.get('Email')?.errors?.['email'] 
+       
+      "
+    >
+      *Enter Valid Email
+    </mat-error>
+  </mat-form-field>
+  <div class="text-start ms-2 text-danger mb-2">
+    {{ Email_is_already_registered }}
+  </div>
+  <mat-form-field class="example-full-width">
+    <mat-icon matPrefix>lock</mat-icon>
+    <input
+      matInput
+      type="password"
+      placeholder="Password..."
+      formControlName="Password"
+    />
+    <mat-error *ngIf="RegisterForm.get('Password')?.errors?.['required']">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="Register()">
+    Register
+  </button>
+</form>

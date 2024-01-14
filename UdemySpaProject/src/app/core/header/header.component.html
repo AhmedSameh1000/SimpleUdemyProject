@@ -1,0 +1,106 @@
+<mat-toolbar
+  style="background-color: #fff"
+  class="w-100 d-flex justify-content-between align-items-center"
+>
+  <div class="w-100 d-flex justify-content-between align-items-center">
+    <div class="w-50 d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <div>
+          <button mat-button [matMenuTriggerFor]="Categories">
+            Categories
+          </button>
+          <mat-menu #Categories="matMenu">
+            <button mat-menu-item>Category1</button>
+            <button mat-menu-item>Category1</button>
+            <button mat-menu-item>Category1</button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="search-bar" style="width: 300% !important">
+        <input type="text" placeholder="Search..." />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <div class="w-50 d-flex justify-content-end align-items-center">
+      <div
+        class="font me-2 pointer"
+        *ngIf="AuthService.isLoggedIn()"
+        routerLink="instructor/landing"
+      >
+        Teach On Udemy
+      </div>
+      <div class="ms-2 font me-3 pointer" *ngIf="AuthService.isLoggedIn()">
+        My Learning
+      </div>
+      <div *ngIf="AuthService.isLoggedIn()">
+        <i class="fa fa-cart-shopping fs-3 ms-1 pointer"></i>
+      </div>
+      <div *ngIf="!AuthService.isLoggedIn()">
+        <button mat-raised-button class="ms-4" routerLink="auth/login">
+          Log in
+        </button>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          class="ms-2 bg-black text-white"
+          routerLink="auth/register"
+          *ngIf="!AuthService.isLoggedIn()"
+        >
+          Sign up
+        </button>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          class="ms-2 bg-black text-white"
+          routerLink="auth/register"
+          *ngIf="AuthService.isLoggedIn()"
+          (click)="AuthService.logout()"
+        >
+          log out
+        </button>
+      </div>
+      <div class="ms-2">
+        <i class="fa-solid fa-globe pointer"></i>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="false" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item>
+        <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+      </mat-list-item>
+
+      <mat-list-item routerLink="">
+        <button mat-button><mat-icon>home</mat-icon> Home</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button><mat-icon>settings</mat-icon>Settings</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button><mat-icon>help</mat-icon>form</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button><mat-icon>analytics</mat-icon>Analytics</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div style="text-align: center; height: 90vh">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

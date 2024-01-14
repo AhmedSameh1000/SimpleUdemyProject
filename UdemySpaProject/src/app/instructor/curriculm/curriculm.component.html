@@ -1,0 +1,179 @@
+<form [formGroup]="CurriculmForm">
+  <h1 class="text-start fw-bold ms-1 mt-3">Curriculum</h1>
+  <hr />
+  <p class="text-start mt-3">
+    Start putting together your course by creating sections, lectures and
+    practice (quizzes, coding exercises and assignments). Start putting together
+    your course by creating sections, lectures and practice activities (quizzes,
+    coding exercises and assignments). Use your course outline to structure your
+    content and label your sections and lectures clearly. If you’re intending to
+    offer your course for free, the total length of video content must be less
+    than 2 hours.
+  </p>
+  <div formArrayName="Sections" class="">
+    <div
+      class="myborder mb-3"
+      style="background-color: #eaebec"
+      *ngFor="
+        let section of CurriculmForm.get('Sections')['controls'];
+        let i = index
+      "
+      [formGroupName]="i"
+    >
+      <div class="d-flex justify-content-start gap-2 p-2 align-items-center">
+        <div>Section : {{ i + 1 }}</div>
+        <div>
+          {{
+            section.get("SectionTitle").value == null ||
+            section.get("SectionTitle").value == undefined
+              ? "Section Name"
+              : section.get("SectionTitle").value
+          }}
+        </div>
+
+        <i class="fa-solid fa-pen" (click)="Show(divToggle)"></i>
+        <i
+          class="fa-solid fa-trash"
+          (click)="DeletedSection(section.get('id').value)"
+        ></i>
+      </div>
+      <div
+        style="width: 97%"
+        class="pt-1 container m-auto d-none bg-light"
+        #divToggle
+      >
+        <div class="d-flex justify-content-start align-items-center w-100">
+          <div class="fw-bold" style="width: 20%">Section {{ i + 1 }} :</div>
+          <div style="width: 75%">
+            <input
+              class="w-100 p-1"
+              type="text"
+              placeholder="Enter Title"
+              formControlName="SectionTitle"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="text-nowrap fw-bold text-center" style="font-size: 10px">
+            What will students be able to do at the end of this section?
+          </div>
+          <div style="width: 75%">
+            <input
+              formControlName="SectionDescription"
+              style="margin-left: 27%"
+              class="w-100 p-1"
+              type="text"
+              placeholder="Enter Learning Objective"
+            />
+          </div>
+        </div>
+        <div class="mt-3 d-flex justify-content-end gap-3 p-2">
+          <button
+            type="button"
+            style="border: none; background-color: transparent"
+            (click)="Show(divToggle)"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="mybtn p-1"
+            (click)="
+              SaveSection(
+                section.get('id').value,
+                section.get('SectionTitle').value,
+                section.get('SectionDescription').value
+              )
+            "
+          >
+            Save Section
+          </button>
+        </div>
+      </div>
+
+      <div formArrayName="Lectures" class="container">
+        <div
+          class="d-flex flex-column gap-3 mt-2 mb-2"
+          *ngFor="
+            let lecture of section.get('Lectures')['controls'];
+            let j = index
+          "
+          [formGroupName]="j"
+        >
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="d-flex justify-content-start">
+                <div>
+                  <mat-panel-title> Lecture {{ j + 1 }}: </mat-panel-title>
+                </div>
+                <div>
+                  <mat-panel-description>
+                    {{
+                      lecture.get("Lecturetitle").value == null ||
+                      lecture.get("Lecturetitle").value == null
+                        ? "Lecture Name"
+                        : lecture.get("Lecturetitle").value
+                    }}
+                    :
+                    <span class="text-primary">
+                      {{
+                        lecture.get("menutes").value == null ||
+                        lecture.get("menutes").value == null
+                          ? "0"
+                          : lecture.get("menutes").value
+                      }}
+                      minutes
+                    </span>
+                  </mat-panel-description>
+                </div>
+              </mat-expansion-panel-header>
+              <div class="d-flex flex-column">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Title</mat-label>
+                  <input
+                    matInput
+                    placeholder="Enter Title"
+                    formControlName="Lecturetitle"
+                  />
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Enter Description</mat-label>
+                  <textarea
+                    formControlName="LectureDescription"
+                    matInput
+                    placeholder="Add a description , include whate students witll be able to do after completing the lecture."
+                  ></textarea>
+                </mat-form-field>
+                <input type="file" class="form-control" />
+
+                <div class="d-flex mt-3 justify-content-end gap-2">
+                  <button mat-raised-button>Save Lecture</button>
+                  <button
+                    mat-raised-button
+                    color="accent"
+                    (click)="DeleteLecture(lecture.get('id').value)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <div class="mt-2 d-flex justify-content-start mb-2">
+          <button
+            mat-raised-button
+            (click)="AddLecture(i, section.get('id').value)"
+          >
+            + Curriculum item
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ms-2 mb-2 d-flex justify-content-start">
+    <button class="ms-1" mat-raised-button (click)="AddSection()">
+      + Section
+    </button>
+  </div>
+</form>

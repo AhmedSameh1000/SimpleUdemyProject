@@ -1,0 +1,38 @@
+<form class="example-form" [formGroup]="LoginForm">
+  <mat-form-field class="example-full-width">
+    <mat-icon matPrefix>email</mat-icon>
+    <input matInput placeholder="Email...." formControlName="Email" />
+    <mat-error
+      *ngIf="
+        LoginForm.get('Email')?.errors?.['required'] &&
+        LoginForm.get('Email')?.touched
+      "
+    >
+      *Email is required
+    </mat-error>
+    <mat-error *ngIf="LoginForm.get('Email')?.errors?.['email']">
+      *Enter valid Email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-icon matPrefix>lock</mat-icon>
+    <input
+      matInput
+      type="password"
+      placeholder="Password..."
+      formControlName="Password"
+    />
+    <mat-error *ngIf="LoginForm.get('Password')?.errors?.['required']">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+  <div
+    class="text-danger text-start ms-2 mb-2"
+    *ngIf="EmailorPasswordIsIncorrect != ''"
+  >
+    {{ EmailorPasswordIsIncorrect }}
+  </div>
+
+  <button mat-raised-button color="primary" (click)="Login()">log in</button>
+</form>

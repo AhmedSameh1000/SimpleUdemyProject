@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png",
+      "PackagePath": "staticwebassets\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
+      "PackagePath": "staticwebassets\\FFPEG\\ffmpeg.exe"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
+      "PackagePath": "staticwebassets\\FFPEG\\ffprobe.exe"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4",
+      "PackagePath": "staticwebassets\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.UdemyProject.Api.props",
+      "PackagePath": "build\\UdemyProject.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.UdemyProject.Api.props",
+      "PackagePath": "buildMultiTargeting\\UdemyProject.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.UdemyProject.Api.props",
+      "PackagePath": "buildTransitive\\UdemyProject.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,11 @@
+.example-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.example-full-width {
+  width: 100%;
+}

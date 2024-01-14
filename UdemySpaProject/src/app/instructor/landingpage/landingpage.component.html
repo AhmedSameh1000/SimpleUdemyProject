@@ -1,0 +1,158 @@
+<form class="p-3" [formGroup]="landingForm" enctype="multipart/form-data">
+  <h1 class="text-start fw-bold ms-1 mt-3">Course landing page</h1>
+  <hr />
+  <p class="text-start mt-3">
+    Your course landing page is crucial to your success on Udemy. If it’s done
+    right, it can also help you gain visibility in search engines like Google.
+    As you complete this section, think about creating a compelling Course
+    Landing Page that demonstrates why someone would want to enroll in your
+    course. Learn more about creating your course landing page and course title
+    standards.
+  </p>
+
+  <div class="text-start">
+    <p class="fw-bold text-start">Course title</p>
+    <input
+      formControlName="Title"
+      class="mb-3 w-75 p-2"
+      placeholder="Insert your course title"
+    />
+    <p class="text-start">
+      Your title should be a mix of attention-grabbing, informative, and
+      optimized for search e
+    </p>
+  </div>
+  <div class="text-start">
+    <p class="fw-bold text-start">Course subtitle</p>
+    <input
+      formControlName="Subtitle"
+      class="mb-3 w-75 p-2"
+      placeholder="Insert your course subtitle"
+    />
+    <p class="text-start">
+      Use 1 or 2 related keywords, and mention 3-4 of the most important areas
+      that you've covered during your course.
+    </p>
+
+    <div class="text-start">
+      <p class="fw-bold text-start">Course description</p>
+      <textarea
+        formControlName="Decribtion"
+        class="mb-3 w-75 p-2"
+        placeholder="Insert your course description"
+      ></textarea>
+      <p class="text-start">Description should have minimum 200 words.</p>
+    </div>
+
+    <div class="text-start">
+      <p class="fw-bold text-start">Basic info</p>
+
+      <div class="d-flex justify-content-start gap-5">
+        <mat-form-field>
+          <mat-label>Languge</mat-label>
+          <mat-select formControlName="Languge">
+            <mat-option [value]="Languge.id" *ngFor="let Languge of languges">{{
+              Languge.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="Category">
+            <mat-option
+              [value]="Category.id"
+              *ngFor="let Category of Categoris"
+              >{{ Category.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="text-start">
+      <div>
+        <p class="fw-bold text-start">Course image</p>
+        <div class="row justify-content-around gap-2">
+          <div
+            style="background-color: #c1d4de; height: 250px"
+            class="p-0 col-12 col-lg-5 d-flex justify-content-center align-items-center"
+          >
+            <img
+              #img
+              [ngStyle]="{
+                height: CourseImage == null ? '95%' : '100%',
+                width: CourseImage == null ? '97%' : '100%'
+              }"
+              [src]="
+                CourseImage == null
+                  ? '../../../assets/defaultCourseImage/placeholder.jpg'
+                  : CourseImage
+              "
+            />
+          </div>
+          <div class="col-12 col-lg-6 d-flex justify-content-start flex-column">
+            <div class="mb-3">
+              Upload your course image here. It must meet our course image
+              quality standards to be accepted. Important guidelines: 750x422
+              pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
+            </div>
+            <div>
+              <input
+                type="file"
+                class="form-control"
+                (change)="SelectImage($event, img)"
+                id="image"
+                name="Image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-start">
+      <div>
+        <p class="fw-bold text-start mt-2">Promotional video</p>
+        <div class="row justify-content-around gap-2">
+          <div
+            [ngClass]="{ 'h-100': videoUrl != null }"
+            style="background-color: #c1d4de; height: 250px"
+            class="h-100 p-0 col-12 col-lg-5 d-flex justify-content-center align-items-center"
+          >
+            <img
+              [ngClass]="{ 'd-none': videoUrl != null }"
+              style="height: 95%; width: 97%"
+              src="../../../assets/defaultCourseImage/placeholder.jpg"
+              alt=""
+              #imagevideo
+            />
+            <video
+              [ngClass]="{ 'd-none': videoUrl == null }"
+              width="100%"
+              height="100%"
+              [src]="videoUrl"
+              controls
+              #vid
+            ></video>
+          </div>
+          <div class="col-12 col-lg-6 d-flex justify-content-start flex-column">
+            <div class="mb-3">
+              Your promo video is a quick and compelling way for students to
+              preview what they’ll learn in your course. Students considering
+              your course are more likely to enroll if your promo video is
+              well-made. Learn how to make your promo video awesome!
+            </div>
+            <div>
+              <input
+                type="file"
+                class="form-control"
+                (change)="SelectVideo($event, vid, imagevideo)"
+                id="PromotionVideo"
+                name="PromotionVideo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

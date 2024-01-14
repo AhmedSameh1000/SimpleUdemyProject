@@ -1,0 +1,26 @@
+<h1 class="text-start fw-bold ms-1 mt-3">Course messages</h1>
+<hr />
+<p class="text-start clamp">
+  Write messages to your students (optional) that will be sent automatically
+  when they join or complete your course to encourage students to engage with
+  course content. If you do not wish to send a welcome or congratulations
+  message, leave the text box blank.
+</p>
+<form class="p-3 text-start" [formGroup]="MessagesForm">
+  <p class="fw-bold text-start">Welcome Message</p>
+  <mat-form-field class="example-full-width w-75">
+    <textarea
+      formControlName="WelcomeMessage"
+      matInput
+      placeholder="Welcome Message..."
+    ></textarea>
+  </mat-form-field>
+  <p class="fw-bold text-start">Congratulations Message</p>
+  <mat-form-field class="example-full-width w-75">
+    <textarea
+      formControlName="CongratulationsMessage"
+      matInput
+      placeholder="Congratulations Message..."
+    ></textarea>
+  </mat-form-field>
+</form>

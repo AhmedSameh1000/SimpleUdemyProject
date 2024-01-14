@@ -1,0 +1,69 @@
+<form
+  [formGroup]="CourseIntro"
+  class="d-flex flex-column justify-content-between"
+  style="height: 100%"
+>
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex">
+    <mat-tab label="">
+      <div class="h3 fw-bold">How about a working title?</div>
+      <p>
+        It's ok if you can't think of a good title now. You can change it later.
+      </p>
+      <mat-form-field class="w-75">
+        <input
+          formControlName="Name"
+          matInput
+          placeholder="e.g. Learn Photoshop CS6 from Scratch"
+        />
+      </mat-form-field>
+    </mat-tab>
+    <mat-tab label="">
+      <div class="h3 fw-bold">
+        What category best fits the knowledge you'll share?
+      </div>
+      <p>
+        If you're not sure about the right category, you can change it later.
+      </p>
+      <mat-form-field>
+        <mat-label>Choose category</mat-label>
+        <mat-select formControlName="Category">
+          <mat-option
+            [value]="Category.id"
+            *ngFor="let Category of Categoeies"
+            >{{ Category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </mat-tab>
+  </mat-tab-group>
+  <div class="d-flex justify-content-between myborder p-3">
+    <button
+      [disabled]="selectedTabIndex == 0"
+      mat-raised-button
+      (click)="GoPrevios()"
+      type="button"
+    >
+      Previous
+    </button>
+    <button
+      *ngIf="selectedTabIndex < 1"
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="Continue()"
+      [disabled]="CourseIntro.get('Name').invalid"
+    >
+      Continue
+    </button>
+    <button
+      *ngIf="selectedTabIndex >= 1"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="CreateCourse()"
+      [disabled]="CourseIntro.invalid"
+    >
+      Create Course
+    </button>
+  </div>
+</form>

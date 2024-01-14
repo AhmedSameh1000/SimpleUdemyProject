@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Xabe.FFmpeg" Version="5.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UdemyProject.Contracts\UdemyProject.Contracts.csproj" />
+    <ProjectReference Include="..\UdemyProject.Domain\UdemyProject.Domain.csproj" />
+    <ProjectReference Include="..\UdemyProject.Infrastructure\UdemyProject.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Authentication\AuthenticationQueries\Validators\" />
+    <Folder Include="Features\CourseCategory\CourseCategoryCommands\" />
+    <Folder Include="Features\CourseCategory\CourseCategoryQuries\Validators\" />
+    <Folder Include="Features\CourseLecture\CourseLectureCommand\Validators\" />
+    <Folder Include="Features\CourseLecture\CourseLectureQuery\" />
+    <Folder Include="Features\CourseSection\CourseSectionCommand\Validators\" />
+    <Folder Include="Features\CourseSection\CourseSectionQuery\Validators\" />
+    <Folder Include="Features\Course\CourseQueries\Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="SharedResources\Sharedresources.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SharedResources\Sharedresources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

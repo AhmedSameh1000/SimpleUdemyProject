@@ -1,0 +1,13 @@
+<div>
+  <app-courseheader></app-courseheader>
+  <div class="row gap-2 container-fluid">
+    <app-courseplaning class="col-3"></app-courseplaning>
+    <span [ngSwitch]="SelectedComponent" class="col-7 myborder mt-3">
+      <app-courserequirment *ngSwitchCase="1"></app-courserequirment>
+      <app-curriculm *ngSwitchCase="2"></app-curriculm>
+      <app-landingpage *ngSwitchCase="3"></app-landingpage>
+      <app-pricing *ngSwitchCase="4"></app-pricing>
+      <app-course-message *ngSwitchCase="5"></app-course-message>
+    </span>
+  </div>
+</div>

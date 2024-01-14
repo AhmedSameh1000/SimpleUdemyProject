@@ -1,0 +1,12 @@
+<form class="p-3 text-start" [formGroup]="PriceForm">
+  <h1 class="text-start fw-bold ms-1 mt-3">Set a price for your course</h1>
+  <p class="text-start mt-3">
+    Please select the currency and the price tier for your course. If you’d like
+    to offer your course for free, it must have a total video length of less
+    than 2 hours. Also, courses with practice tests can not be free.
+  </p>
+  <mat-form-field class="example-full-width">
+    <mat-label>price</mat-label>
+    <input formControlName="Price" matInput placeholder="Ex: 10$" />
+  </mat-form-field>
+</form>

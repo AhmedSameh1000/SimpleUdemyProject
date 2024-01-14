@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  background-color: white;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.pointer {
+  cursor: pointer;
+}
+.myborder {
+  border: 1px solid #d1d7dc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+i {
+  cursor: pointer;
+}
+.clamp {
+  font-size: clamp(1rem, 10vw, 1rem);
+}

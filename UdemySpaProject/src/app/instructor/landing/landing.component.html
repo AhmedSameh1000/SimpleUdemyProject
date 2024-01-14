@@ -1,0 +1,193 @@
+<div class="container justify-content-between mt-5 d-flex align-items-center">
+  <h1 class="text-start fs-1 fw-bold">Courses</h1>
+
+  <div class="d-flex justify-content-end" routerLink="/instructor/basic">
+    <button mat-raised-button color="primary">New Course</button>
+  </div>
+</div>
+
+<div class="container d-flex flex-column gap-3 mt-2">
+  <div
+    [routerLink]="'/coursecreation/' + Course.id"
+    *ngFor="let Course of Courses"
+    class="myborder d-flex justify-content-between onhover pointer"
+  >
+    <div class="land"></div>
+    <div class="fw-bolder txt">
+      <div>Edit/manage course</div>
+    </div>
+    <div class="w-50 d-flex justify-content-start align-items-center">
+      <div class="d-flex">
+        <img
+          height="130px"
+          width="200px"
+          [src]="
+            Course.image == null
+              ? '../../../assets/defaultCourseImage/placeholder.jpg'
+              : Course.image
+          "
+        />
+      </div>
+      <div
+        class="ops h-100 d-flex justify-content-between align-items-center flex-column"
+      >
+        <strong class="ms-3 mt-2 text-start w-100">Html</strong>
+        <span style="font-size: 12px" class="ms-2 fw-bold mb-2 text-nowrap"
+          >Draft public</span
+        >
+      </div>
+    </div>
+    <div
+      class="ops cont w-50 d-flex gap-2 align-items-center justify-content-end"
+    >
+      <div class="text-nowrap fw-bolder">Finish your Course</div>
+
+      <div class="bar">
+        <div
+          [ngStyle]="{ 'width.%': Course.progress }"
+          class="PercentageCourse"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 fs-6">
+  Based on your experience, we think these resources will be helpful.
+</div>
+
+<div class="mt-3 w-100 container d-flex flex-column gap-3">
+  <div class="myborder p-0">
+    <div class="row align-items-center">
+      <div
+        class="col-12 col-md-6 d-flex justify-content-center justify-content-lg-start"
+      >
+        <img src="../../../assets/Images/CourseImage.jpg" alt="" />
+      </div>
+
+      <div class="col-12 col-md-6 text-start mt-4 pb-5">
+        <h1 class="ms-3 fw-bold">Create an Engaging Course</h1>
+        <div class="ms-3 text-start fs-6">
+          Whether you've been teaching for years or are teaching for the first
+          time, you can make an engaging course. We've compiled resources and
+          best practices to help you get to the next level, no matter where
+          you're starting.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="m-auto row gap-3 align-items-center justify-content-around">
+    <div
+      class="ps-0 row justify-content-center align-items-center col-12 col-lg-6 myborder"
+    >
+      <div
+        class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-start ps-0"
+      >
+        <img class="d-block" src="../../../assets/Images/new.jpg" alt="" />
+      </div>
+      <div class="col-12 col-lg-6 text-start mt-4 pb-5">
+        <h1 class="fw-bold">Get Started with Video</h1>
+        <div class="text-start fs-6">
+          Quality video lectures can set your course apart. Use our resources to
+          learn the basics.
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="ps-0 row justify-content-between align-items-center col-12 col-lg-6 myborder"
+    >
+      <div
+        class="d-flex justify-content-center justify-content-lg-start jus ps-0 col-12 col-lg-6"
+      >
+        <img src="../../../assets/Images/new2.jpg" alt="" />
+      </div>
+      <div class="col-12 col-lg-6 text-start mt-4 pb-5">
+        <h1 class="fw-bold">Build Your Audience</h1>
+        <div class="text-start fs-6">
+          Set your course up for success by building your audience.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="myborder p-0">
+    <div class="row align-items-center">
+      <div
+        class="col-12 col-md-6 d-flex justify-content-center justify-content-lg-start"
+      >
+        <img src="../../../assets/Images/Ins.jpg" alt="" />
+      </div>
+
+      <div class="col-12 col-md-6 text-start mt-4 pb-5">
+        <h1 class="ms-3 fw-bold">Join the New Instructor Challenge!</h1>
+        <div class="ms-3 text-start fs-6">
+          Get exclusive tips and resources designed to help you launch your
+          first course faster! Eligible instructors who publish their first
+          course on time will receive a special bonus to celebrate. Start today!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-5 fs-6 mb-5">
+  Have questions? Here are our most popular instructor resources.
+</div>
+
+<div class="container flex-wrap justify-content-center gap-3 mt-5 d-flex">
+  <div>
+    <i class="fa-solid fa-display mb-3" style="font-size: 60px"></i>
+
+    <a class="pointer d-block fs-5 mb-3 text-decoration-underline"
+      >Test Video</a
+    >
+    <p>
+      Send us a sample video and <br />
+      get expert feedback.
+    </p>
+  </div>
+  <div>
+    <i class="fa-regular fa-message mb-3" style="font-size: 60px"></i>
+    <a class="pointer d-block fs-5 mb-3 text-decoration-underline"
+      >Instructor Community</a
+    >
+    <p>
+      Connect with experienced <br />
+      instructors. Ask questions, <br />
+      browse discussions, and more.
+    </p>
+  </div>
+
+  <div>
+    <i class="fa-solid fa-person-chalkboard mb-3" style="font-size: 60px"></i>
+    <a class="pointer d-block fs-5 mb-3 text-decoration-underline"
+      >Teaching Center</a
+    >
+    <p>
+      Learn about best practices for <br />
+      teaching on Udemy.
+    </p>
+  </div>
+  <div>
+    <i class="fa-solid fa-stairs mb-3" style="font-size: 60px"></i>
+
+    <a class="pointer d-block fs-5 mb-3 text-decoration-underline"
+      >Marketplace Insights</a
+    >
+    <p>
+      Validate your course topic by <br />
+      exploring our marketplace <br />
+      supply and demand.
+    </p>
+  </div>
+  <div>
+    <i class="fa-solid fa-question mb-3" style="font-size: 60px"></i>
+
+    <a class="pointer d-block fs-5 mb-3 text-decoration-underline"
+      >Help and Support</a
+    >
+    <p>
+      Browse our Help Center or <br />
+      contact our support team.
+    </p>
+  </div>
+</div>

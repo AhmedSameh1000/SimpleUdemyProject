@@ -1,0 +1,4 @@
+:host ::ng-deep .mdc-tab-indicator,
+.mat-mdc-tab {
+  display: none;
+}
