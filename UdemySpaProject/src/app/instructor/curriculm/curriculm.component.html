@@ -144,10 +144,25 @@
                     placeholder="Add a description , include whate students witll be able to do after completing the lecture."
                   ></textarea>
                 </mat-form-field>
-                <input type="file" class="form-control" />
+                <input
+                  type="file"
+                  (change)="SelectFile($event)"
+                  class="form-control"
+                />
 
                 <div class="d-flex mt-3 justify-content-end gap-2">
-                  <button mat-raised-button>Save Lecture</button>
+                  <button
+                    mat-raised-button
+                    (click)="
+                      SaveLecture(
+                        lecture.get('id')?.value,
+                        lecture.get('Lecturetitle')?.value,
+                        lecture.get('LectureDescription')?.value
+                      )
+                    "
+                  >
+                    Save Lecture
+                  </button>
                   <button
                     mat-raised-button
                     color="accent"

@@ -165,6 +165,26 @@ export class CurriculmComponent implements OnInit, OnDestroy {
       },
     });
   }
+  File: any;
+  SelectFile(event: any) {
+    this.File = event.target.files[0];
+  }
+  SaveLecture(id, title, description) {
+    let CourseLecture = new FormData();
+    CourseLecture.append('id', id);
+    CourseLecture.append('Title', title);
+    CourseLecture.append('Description', description);
+
+    if (this.File != null || this.File != undefined) {
+      CourseLecture.append('Video', this.File, this.File.name);
+    }
+    this.LectureService.UpdateLecture(CourseLecture).subscribe({
+      next: (res) => {
+        this.LoadSections();
+        console.log(res);
+      },
+    });
+  }
 
   Show(div: HTMLDivElement) {
     div.classList.toggle('d-none');

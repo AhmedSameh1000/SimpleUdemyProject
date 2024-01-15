@@ -23,9 +23,9 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\CourseImages\" />
+    <Folder Include="wwwroot\CoursesVideos\" />
     <Folder Include="wwwroot\PromotionalVideo\" />
     <Folder Include="wwwroot\UsersImagesProfile\" />
-    <Folder Include="wwwroot\CoursesVideos\" />
   </ItemGroup>
 
 </Project>

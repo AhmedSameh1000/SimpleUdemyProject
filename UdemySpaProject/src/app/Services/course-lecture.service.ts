@@ -14,7 +14,7 @@ export class CourseLectureService {
   }
 
   UpdateLecture(Lecture) {
-    return this.HttpClient.post(
+    return this.HttpClient.put(
       `http://localhost:5227/api/CourseLecture/UpdateLecture`,
       Lecture
     );
