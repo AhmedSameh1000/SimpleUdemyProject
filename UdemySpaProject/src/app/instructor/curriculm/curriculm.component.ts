@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +20,8 @@ export class CurriculmComponent implements OnInit, OnDestroy {
     private Service: CurriculmService,
     private SectionService: CourseSectionService,
     private ActivatedRoute: ActivatedRoute,
-    private LectureService: CourseLectureService
+    private LectureService: CourseLectureService,
+    private ToastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -69,9 +71,9 @@ export class CurriculmComponent implements OnInit, OnDestroy {
     Sectionsdata.forEach((sectionData: any) => {
       const group = new FormGroup({
         id: new FormControl(sectionData.id),
-        SectionTitle: new FormControl(sectionData.title),
+        SectionTitle: new FormControl(sectionData.title ?? ''),
         SectionDescription: new FormControl(
-          sectionData.whatStudentLearnFromthisSection
+          sectionData.whatStudentLearnFromthisSection ?? ''
         ),
         Lectures: new FormArray([]),
       });
@@ -81,9 +83,9 @@ export class CurriculmComponent implements OnInit, OnDestroy {
       (sectionData.lectures || []).forEach((lecture: any) => {
         const lectureGroup = new FormGroup({
           id: new FormControl(lecture.id),
-          Lecturetitle: new FormControl(lecture.title),
-          LectureDescription: new FormControl(lecture.description),
-          videoSectionUrl: new FormControl(lecture.videoSectionUrl),
+          Lecturetitle: new FormControl(lecture.title ?? ''),
+          LectureDescription: new FormControl(lecture.description ?? ''),
+          videoSectionUrl: new FormControl(lecture.videoSectionUrl ?? ''),
           menutes: new FormControl(lecture.menutes),
         });
 
@@ -166,10 +168,21 @@ export class CurriculmComponent implements OnInit, OnDestroy {
     });
   }
   File: any;
+  AllowedVideoExtension = 'mp4';
   SelectFile(event: any) {
     this.File = event.target.files[0];
   }
+
   SaveLecture(id, title, description) {
+    if (this.File != null || this.File != undefined) {
+      var extension: string = this.File.name.split('.')[1];
+      if (this.AllowedVideoExtension != extension) {
+        this.ToastrService.warning(
+          `File not allowed choose valid one with Extension ${this.AllowedVideoExtension}`
+        );
+        return;
+      }
+    }
     let CourseLecture = new FormData();
     CourseLecture.append('id', id);
     CourseLecture.append('Title', title);
