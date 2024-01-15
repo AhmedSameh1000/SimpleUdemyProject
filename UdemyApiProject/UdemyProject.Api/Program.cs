@@ -28,8 +28,9 @@ using (var Scope = app.Services.CreateScope())
     var RoleManger = Scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var CategoryRepository = Scope.ServiceProvider.GetRequiredService<ICourseCategoryRepository>();
     var LangugeRepository = Scope.ServiceProvider.GetRequiredService<ICourseLangugeRepository>();
+    var userProfileRepository = Scope.ServiceProvider.GetRequiredService<IUserProfileRepository>();
 
-    await new SeedAdminWithRolesinitialData(RoleManger, UserManger).SeedData();
+    await new SeedAdminWithRolesinitialData(RoleManger, UserManger, userProfileRepository).SeedData();
 
     await new SeedCategoriesInitialData(CategoryRepository).SeedCategories();
     await new SeedLanguge(LangugeRepository).seedLanguge();

@@ -1,0 +1,29 @@
+<form class="w-50">
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      type="text"
+      [(ngModel)]="Email"
+      disabled
+      name="Email"
+      class="form-control"
+      placeholder="Your Email"
+    />
+  </div>
+  <div class="form-group">
+    <label>password</label>
+    <div class="d-flex justify-content-between align-items-center">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Your Password"
+        value="**********"
+        disabled
+      />
+      <div class="icon" (click)="OpenChangePassword()">
+        <i class="fa-solid fa-pen"></i>
+        <!-- Replace with your desired icon class -->
+      </div>
+    </div>
+  </div>
+</form>

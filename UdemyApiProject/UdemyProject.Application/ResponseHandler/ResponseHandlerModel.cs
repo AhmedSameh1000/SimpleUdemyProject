@@ -59,7 +59,6 @@ namespace UdemyProject.Application.ResponseHandler
             {
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
-                Errors = Message.Split(',').ToList(),
                 Message = Message ?? "BadRequest",
                 //Message = _stringLocalizer[SharedSesourcesKeys.BadRequest],
             };

@@ -1,0 +1,36 @@
+<div class="container">
+  <form>
+    <h3 class="fw-bold text-start">Image preview</h3>
+    <p class="text-start">Minimum 200x200 pixels, Maximum 6000x6000 pixels</p>
+
+    <div
+      class="w-50"
+      style="background-color: #d7dfe3; border: 1px solid black"
+    >
+      <img
+        [src]="
+          UserImage == null || UserImage == undefined
+            ? '../../../assets/profileimagedefault/download.png'
+            : UserImage
+        "
+        alt=""
+        #img
+      />
+    </div>
+    <div class="w-50 form-group border border-1 border-dark mt-3">
+      <input
+        (change)="SelectImage($event, img)"
+        type="file"
+        class="p-2 form-control"
+        placeholder="Website URL "
+      />
+    </div>
+    <div
+      (click)="SaveImage()"
+      class="pointer bg-dark text-light h3 fw-bold mt-3 d-flex justify-content-center align-items-center"
+      style="width: 100px; height: 60px"
+    >
+      <span>Save</span>
+    </div>
+  </form>
+</div>

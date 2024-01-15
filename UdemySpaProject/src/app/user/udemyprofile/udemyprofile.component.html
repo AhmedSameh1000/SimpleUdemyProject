@@ -1,0 +1,95 @@
+<div class="container mt-2">
+  <form class="row" [formGroup]="UsemyprofileForm">
+    <div class="col-12 col-lg-6">
+      <div class="form-group">
+        <label for="input1">Full Name</label>
+        <input
+          type="text"
+          formControlName="FullName"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': UsemyprofileForm?.get('FullName')?.invalid
+          }"
+          placeholder="Full Name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="input1">Headline</label>
+        <input
+          formControlName="Headline"
+          type="text"
+          class="form-control"
+          placeholder="Instructor at Udemy "
+        />
+      </div>
+      <div class="form-group">
+        <label for="input1">Biography</label>
+        <textarea class="form-control" formControlName="Biography"></textarea>
+        <p class="mt-3 fw-bold">
+          To help learners learn more about you, your bio should reflect your
+          Credibility, Empathy, Passion, and Personality. Your biography should
+          have at least 50 words, links and coupon codes are not permitted.
+        </p>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="form-group">
+        <label for="input1">Website</label>
+        <input
+          formControlName="WebsiteUrl"
+          type="text"
+          class="form-control"
+          placeholder="Website URL "
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="input1">Twitter</label>
+        <input
+          formControlName="TwitterUrl"
+          type="text"
+          class="form-control"
+          placeholder="URL Account"
+        />
+      </div>
+      <div class="form-group">
+        <label for="input1">Facebook</label>
+        <input
+          formControlName="FacebookUrl"
+          type="text"
+          class="form-control"
+          placeholder="URL Account"
+        />
+      </div>
+      <div class="form-group">
+        <label for="input1">LinkedIn</label>
+        <input
+          formControlName="LinkedInUrl"
+          type="text"
+          class="form-control"
+          placeholder="URL Account"
+        />
+      </div>
+      <div class="form-group">
+        <label for="input1">Youtube</label>
+        <input
+          formControlName="YoutubeUrl"
+          type="text"
+          class="form-control"
+          placeholder="URL Account"
+        />
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex justify-content-start mt-md-3 mt-sm-3 mt-2">
+    <button
+      style="width: 100px; height: 60px"
+      [disabled]="UsemyprofileForm.pristine"
+      (click)="Updateprofile()"
+      class="btn btn-dark rounded-0"
+    >
+      Save
+    </button>
+  </div>
+</div>

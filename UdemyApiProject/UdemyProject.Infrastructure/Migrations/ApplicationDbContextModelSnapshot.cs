@@ -340,6 +340,60 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.ToTable("courseRequirments");
                 });
 
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Lecture", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoLectureUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VideoMinuteLength")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("Lectures");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Section", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WhatStudentLearnFromthisSection")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Sections");
+                });
+
             modelBuilder.Entity("UdemyProject.Domain.Entities.StudentCourse", b =>
                 {
                     b.Property<int>("Id")
@@ -362,6 +416,54 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.HasIndex("InstructorId");
 
                     b.ToTable("students");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.UserProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Biography")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacebookUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Headline")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedInUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebsiteUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("applicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("applicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.UserRefreshToken", b =>
@@ -524,6 +626,28 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Lecture", b =>
+                {
+                    b.HasOne("UdemyProject.Domain.Entities.Section", "Section")
+                        .WithMany("Lecture")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Section");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Section", b =>
+                {
+                    b.HasOne("UdemyProject.Domain.Entities.Course", "Course")
+                        .WithMany("Sections")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("UdemyProject.Domain.Entities.StudentCourse", b =>
                 {
                     b.HasOne("UdemyProject.Domain.Entities.Course", "Course")
@@ -541,6 +665,17 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.UserProfile", b =>
+                {
+                    b.HasOne("UdemyProject.Domain.Entities.ApplicationUser", "applicationUser")
+                        .WithOne("userProfile")
+                        .HasForeignKey("UdemyProject.Domain.Entities.UserProfile", "applicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("applicationUser");
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.UserRefreshToken", b =>
@@ -581,11 +716,16 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("CoursesICreated");
 
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("userProfile")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.Course", b =>
                 {
                     b.Navigation("Requirments");
+
+                    b.Navigation("Sections");
 
                     b.Navigation("whatYouLearnFromCourse");
 
@@ -600,6 +740,11 @@ namespace UdemyProject.Infrastructure.Migrations
             modelBuilder.Entity("UdemyProject.Domain.Entities.CourseLanguge", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Section", b =>
+                {
+                    b.Navigation("Lecture");
                 });
 #pragma warning restore 612, 618
         }

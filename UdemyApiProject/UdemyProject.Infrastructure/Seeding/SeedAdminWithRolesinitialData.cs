@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SimpleEcommerce.Infrastructure.RepositoryImplementation;
+using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Domain.Entities;
 
 namespace UdemyProject.Infrastructure.Seeding
@@ -7,11 +9,13 @@ namespace UdemyProject.Infrastructure.Seeding
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserProfileRepository _UserProfileRepository;
 
-        public SeedAdminWithRolesinitialData(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public SeedAdminWithRolesinitialData(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IUserProfileRepository userProfileRepository)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _UserProfileRepository = userProfileRepository;
         }
 
         public async Task SeedData()
@@ -53,6 +57,14 @@ namespace UdemyProject.Infrastructure.Seeding
             {
                 await _userManager.AddToRolesAsync(UserToSeed, new List<string> { UserRole.Name, AdminRole.Name });
             }
+
+            var UdemyProfile = new UserProfile()
+            {
+                applicationUserId = UserToSeed.Id,
+                FullName = UserToSeed.Name,
+            };
+            await _UserProfileRepository.Add(UdemyProfile);
+            await _UserProfileRepository.SaveChanges();
         }
     }
 }

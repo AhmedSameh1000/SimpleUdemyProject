@@ -1,0 +1,34 @@
+input {
+  border: 1px solid black;
+  border-radius: 0;
+  padding: 10px;
+}
+input:focus {
+  border-color: black;
+  box-shadow: none;
+}
+label {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.form-group {
+  margin-top: 20px !important;
+  text-align: start;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px; /* Adjust the distance from the right as needed */
+  top: 67%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.form-control {
+  padding-right: 30px; /* Adjust the padding to accommodate the icon */
+}

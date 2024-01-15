@@ -18,13 +18,16 @@ namespace UdemyProject.Application.ServicesImplementation.AuthServicesImplementa
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IRefreshTokenRepository _RefreshTokenRepository;
+        private readonly IUserProfileRepository _UserProfileRepository;
         private readonly JWT _jwt;
 
         public AuthServices(UserManager<ApplicationUser> userManager,
-            IOptions<JWT> jwt, IRefreshTokenRepository refreshTokenRepository)
+            IOptions<JWT> jwt, IRefreshTokenRepository refreshTokenRepository,
+            IUserProfileRepository userProfileRepository)
         {
             _userManager = userManager;
             _RefreshTokenRepository = refreshTokenRepository;
+            _UserProfileRepository = userProfileRepository;
             _jwt = jwt.Value;
         }
 
@@ -41,7 +44,7 @@ namespace UdemyProject.Application.ServicesImplementation.AuthServicesImplementa
             {
                 new Claim("Id", user.Id),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Email, user.Email),
+                new Claim("Email", user.Email),
             }
             .Union(userClaims)
             .Union(roleClaims);
@@ -159,6 +162,14 @@ namespace UdemyProject.Application.ServicesImplementation.AuthServicesImplementa
 
                 return new AuthModel { Message = errors };
             }
+
+            var UdemyProfile = new UserProfile()
+            {
+                applicationUserId = user.Id,
+                FullName = user.Name,
+            };
+            await _UserProfileRepository.Add(UdemyProfile);
+            await _UserProfileRepository.SaveChanges();
             await _userManager.AddToRoleAsync(user, "User");
             var Token = await this.GenerateToken(user);
 

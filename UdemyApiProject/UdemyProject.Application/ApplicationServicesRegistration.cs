@@ -12,6 +12,7 @@ using UdemyProject.Application.ServicesImplementation.Courselangugeimplementatio
 using UdemyProject.Application.ServicesImplementation.CourseLectureServiceImplementation;
 using UdemyProject.Application.ServicesImplementation.CourseSectionServiceImplementation;
 using UdemyProject.Application.ServicesImplementation.CourseServicesimplementation;
+using UdemyProject.Application.ServicesImplementation.UserProfileimplementation;
 using UdemyProject.Contracts.RepositoryContracts;
 using UdemyProject.Contracts.ServicesContracts;
 
@@ -84,6 +85,7 @@ namespace UdemyProject.Application
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ICourseSectionService, CourseSectionService>();
             services.AddScoped<ICourseLectureService, CourseLectureService>();
+            services.AddScoped<IUserProfileServices, UserProfileServices>();
             services.AddMediatR(md => md.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

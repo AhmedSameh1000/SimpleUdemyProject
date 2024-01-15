@@ -17,6 +17,7 @@ namespace UdemyProject.Infrastructure.DbContext
         public DbSet<CourseCategory> courseCategories { get; set; }
 
         public DbSet<CourseRequirment> courseRequirments { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
 
         public DbSet<StudentCourse> students { get; set; }
 

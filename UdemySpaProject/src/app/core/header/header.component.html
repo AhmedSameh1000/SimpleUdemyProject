@@ -66,8 +66,18 @@
           log out
         </button>
       </div>
-      <div class="ms-2">
-        <i class="fa-solid fa-globe pointer"></i>
+      <div class="ms-2 pointer" routerLink="user/settings">
+        <img
+          width="40"
+          height="40"
+          class="rounded rounded-5"
+          [src]="
+            Image == null || Image == undefined
+              ? '../../../assets/profileimagedefault/download.png'
+              : Image
+          "
+          alt=""
+        />
       </div>
     </div>
   </div>
