@@ -4,6 +4,7 @@ using UdemyProject.Application.Features.Course.CourseCommands.Models;
 using UdemyProject.Application.Features.Course.CourseQueries.Models;
 using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
+using UdemyProject.Contracts.Helpers;
 
 namespace UdemyProject.Api.Controllers
 {
@@ -65,6 +66,14 @@ namespace UdemyProject.Api.Controllers
         {
             var Response = await _Mediator.Send(new GetCourseDetailsModelQuery(Id));
             return NewResult(Response);
+        }
+
+        [HttpGet("GetCoursePaginated")]
+        public async Task<IActionResult> GetCourseDetails([FromQuery] PaginationQuery paginationQuery)
+        {
+            var Response = await _Mediator.Send(new GetCoursesPaginatedModelQuery(paginationQuery));
+
+            return Ok(Response);
         }
 
         [HttpGet("CourseLandingPage")]

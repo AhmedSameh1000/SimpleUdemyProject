@@ -9,5 +9,5 @@ using UdemyProject.Contracts.DTOs.CourseDTOs;
 
 namespace UdemyProject.Application.Features.Course.CourseQueries.Models
 {
-    public record GetCourseDetailsModelQuery(int CourseId) : IRequest<ResponseModel<CourseForReturnDto>>;
+    public record GetCourseDetailsModelQuery(int CourseId) : IRequest<ResponseModel<CourseDetailsForReturnDto>>;
 }

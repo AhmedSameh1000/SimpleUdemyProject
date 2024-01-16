@@ -16,6 +16,8 @@ namespace UdemyProject.Contract.RepositoryContracts
 
         Task<IEnumerable<T>> GetAllAsNoTracking(Expression<Func<T, bool>> filter, string[] InclueProperties = null);
 
+        IQueryable<T> GetAllQuerableAsNoTracking(string[] InclueProperties = null);
+
         Task<IEnumerable<T>> GetAllAsTracking(Expression<Func<T, bool>> filter, string[] InclueProperties = null);
 
         Task Add(T entity);

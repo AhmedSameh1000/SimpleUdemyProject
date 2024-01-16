@@ -108,7 +108,7 @@ namespace UdemyProject.Application.Mapping
                   .ForMember(src => src.Course, opt => opt.Ignore())
                 .ReverseMap();
 
-            CreateMap<CourseForReturnDto, Course>()
+            CreateMap<CourseDetailsForReturnDto, Course>()
                 .ForMember(c => c.Requirments, opt => opt.MapFrom(c => c.Requirments))
                 .ForMember(c => c.whatYouLearnFromCourse, opt => opt.MapFrom(c => c.WhateWillYouLearnFromCourse))
                 .ForMember(c => c.whoIsthisCoursefors, opt => opt.MapFrom(c => c.WhoIsThisCourseFor))

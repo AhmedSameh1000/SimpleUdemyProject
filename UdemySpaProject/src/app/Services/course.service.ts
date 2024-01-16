@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -94,6 +94,30 @@ export class CourseService {
   GetCoursPrice(Id: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/GetCoursePrice?CourseId=${Id}`
+    );
+  }
+  GetCoursePaginated(QueryPaginateion: any) {
+    let paginationQuery = new HttpParams();
+
+    if (QueryPaginateion.pageSize != null) {
+      paginationQuery = paginationQuery.set(
+        'pageSize',
+        QueryPaginateion.pageSize
+      );
+    }
+    if (QueryPaginateion.pageNumber != null) {
+      paginationQuery = paginationQuery.set(
+        'pageNumber',
+        QueryPaginateion.pageNumber
+      );
+    }
+    if (QueryPaginateion.search != null) {
+      paginationQuery = paginationQuery.set('search', QueryPaginateion.search);
+    }
+
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/GetCoursePaginated`,
+      { params: paginationQuery }
     );
   }
 

@@ -2,6 +2,8 @@
 using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
 using UdemyProject.Contracts.DTOs.SectionDTOs;
+using UdemyProject.Contracts.Helpers;
+using UdemyProject.Domain.Entities;
 
 namespace UdemyProject.Contracts.ServicesContracts
 {
@@ -11,7 +13,7 @@ namespace UdemyProject.Contracts.ServicesContracts
 
         Task CreateRequimentCourse(CoursePrerequisiteDTO prerequisiteDTO);
 
-        Task<CourseForReturnDto> GetCourse(int Id);
+        Task<CourseDetailsForReturnDto> GetCourse(int Id);
 
         Task<bool> SaveCourseLanding(CourseLandingDTO courseLanding);
 
@@ -28,6 +30,8 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<bool> UpdateCourseprice(CoursePriceForUpdate coursePriceForUpdate);
 
         Task<CoursePriceForReturnDTO> GetCoursePrice(int Id);
+
+        public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery);
 
         Task<bool> DeleteCourse(int CourseId, string InstructorId);
     }

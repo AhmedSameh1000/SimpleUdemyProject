@@ -136,5 +136,18 @@ namespace SimpleEcommerce.Infrastructure.RepositoryImplementation
         {
             _dbContext.Set<T>().RemoveRange(Entities);
         }
+
+        public IQueryable<T> GetAllQuerableAsNoTracking(string[] InclueProperties = null)
+        {
+            IQueryable<T> Query = _dbContext.Set<T>().AsNoTracking().AsQueryable();
+            if (InclueProperties != null)
+            {
+                foreach (var includeProperty in InclueProperties)
+                {
+                    Query = Query.Include(includeProperty.Trim());
+                }
+            }
+            return Query.AsQueryable();
+        }
     }
 }

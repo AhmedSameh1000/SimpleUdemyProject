@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using System.Linq.Expressions;
 using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
 using UdemyProject.Contracts.DTOs.SectionDTOs;
+using UdemyProject.Contracts.Helpers;
 using UdemyProject.Contracts.ServicesContracts;
 using UdemyProject.Domain.Entities;
 
@@ -91,13 +94,13 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             await _CourseRepository.SaveChanges();
         }
 
-        public async Task<CourseForReturnDto> GetCourse(int Id)
+        public async Task<CourseDetailsForReturnDto> GetCourse(int Id)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse" });
             if (Course is null)
                 return null;
 
-            var CourseForReturn = _Mapper.Map<CourseForReturnDto>(Course);
+            var CourseForReturn = _Mapper.Map<CourseDetailsForReturnDto>(Course);
 
             return CourseForReturn;
         }
@@ -284,6 +287,20 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
 
             FileUrl = fileName + extension;
             return FileUrl;
+        }
+
+        public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery)
+        {
+            Expression<Func<UdemyProject.Domain.Entities.Course, CourseForReturnDTO>> expression = e => new CourseForReturnDTO(e.Id, e.Title, e.SubTitle, e.Price.HasValue ? e.Price.Value : 0, e.Instructor.Name, e.InstructorId, Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", e.Image));
+
+            var Query = _CourseRepository.GetAllQuerableAsNoTracking(new[] { "Instructor" }).AsQueryable();
+
+            if (paginationQuery.search != null)
+            {
+                Query = Query.Where(c => c.Title.ToLower().Contains(paginationQuery.search.ToLower()));
+            }
+
+            return Query.Select(expression);
         }
     }
 }

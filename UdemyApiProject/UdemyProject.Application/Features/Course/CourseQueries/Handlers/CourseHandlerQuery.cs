@@ -1,35 +1,43 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Localization;
-
+using SchoolProject.Core.Wrappers;
+using System;
+using System.Linq.Expressions;
 using UdemyProject.Application.Features.Course.CourseQueries.Models;
 using UdemyProject.Application.ResponseHandler;
 using UdemyProject.Application.Shared;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
+using UdemyProject.Contracts.Helpers;
 using UdemyProject.Contracts.ServicesContracts;
+using X.PagedList;
 
 namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
 {
     public class CourseHandlerQuery : ResponseHandlerModel,
-        IRequestHandler<GetCourseDetailsModelQuery, ResponseModel<CourseForReturnDto>>,
+        IRequestHandler<GetCourseDetailsModelQuery, ResponseModel<CourseDetailsForReturnDto>>,
         IRequestHandler<GetCourseLandingPageQuery, ResponseModel<CourseLandingPageForReturnDTO>>,
         IRequestHandler<GetCourseVideoPromotionpathQuery, string>,
         IRequestHandler<GetCoursesForInstructorModelQuery, ResponseModel<List<InstructorMinimalCourses>>>,
         IRequestHandler<GetCourseMessageModelQuery, ResponseModel<CourseMessageForReturnDTo>>,
-        IRequestHandler<GetCoursePriceModelQuery, ResponseModel<CoursePriceForReturnDTO>>
+        IRequestHandler<GetCoursePriceModelQuery, ResponseModel<CoursePriceForReturnDTO>>,
+        IRequestHandler<GetCoursesPaginatedModelQuery, PaginatedResult<CourseForReturnDTO>>
     {
         private readonly ICourseService _CourseService;
+        private readonly IWebHostEnvironment _WebHost;
 
-        public CourseHandlerQuery(IStringLocalizer<Sharedresources> stringLocalizer, ICourseService courseService) : base(stringLocalizer)
+        public CourseHandlerQuery(IStringLocalizer<Sharedresources> stringLocalizer, ICourseService courseService, IWebHostEnvironment webHost) : base(stringLocalizer)
         {
             _CourseService = courseService;
+            _WebHost = webHost;
         }
 
-        public async Task<ResponseModel<CourseForReturnDto>> Handle(GetCourseDetailsModelQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseModel<CourseDetailsForReturnDto>> Handle(GetCourseDetailsModelQuery request, CancellationToken cancellationToken)
         {
             var CourseDetails = await _CourseService.GetCourse(request.CourseId);
             if (CourseDetails == null)
             {
-                return NotFound<CourseForReturnDto>();
+                return NotFound<CourseDetailsForReturnDto>();
             }
 
             return Success(CourseDetails);
@@ -85,5 +93,28 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
 
             return Success(Course);
         }
+
+        public async Task<PaginatedResult<CourseForReturnDTO>> Handle(GetCoursesPaginatedModelQuery request, CancellationToken cancellationToken)
+        {
+            var Querable = _CourseService.GetCoursesQuerable(request.query);
+
+            //var PaginatedList = await Querable.ToPaginatedListAsync(request.query.pageNumber, request.query.pageSize);
+            var PaginatedList = await Querable.ToPaginatedListAsync(request.query.pageNumber, request.query.pageSize);
+
+            return PaginatedList;
+        }
+
+        /*
+
+            public async Task<IPagedList<CourseForReturnDTO>> Handle(GetCoursesPaginatedModelQuery request, CancellationToken cancellationToken)
+        {
+            var Querable = _CourseService.GetCoursesQuerable(request.query);
+
+            //var PaginatedList = await Querable.ToPaginatedListAsync(request.query.pageNumber, request.query.pageSize);
+            var PaginatedList = await Querable.ToPagedListAsync(request.query.pageNumber, request.query.pageSize);
+
+            return PaginatedList;
+        }
+         */
     }
 }
