@@ -17,7 +17,9 @@ export class PricingComponent implements OnInit, OnDestroy {
     private AuthService: AuthService
   ) {}
   ngOnDestroy(): void {
-    this.Obs1.unsubscribe();
+    if (this.Obs1) {
+      this.Obs1.unsubscribe();
+    }
   }
   ngOnInit(): void {
     localStorage.setItem(

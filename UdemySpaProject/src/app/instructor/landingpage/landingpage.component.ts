@@ -36,7 +36,9 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     this.LoadStreamVideoPromotion();
   }
   ngOnDestroy(): void {
-    this.Obs1.unsubscribe();
+    if (this.Obs1) {
+      this.Obs1.unsubscribe();
+    }
   }
   videoUrl: any;
 

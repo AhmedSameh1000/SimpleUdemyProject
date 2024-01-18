@@ -43,8 +43,8 @@ namespace UdemyProject.Application.ServicesImplementation.AuthServicesImplementa
             var claims = new[]
             {
                 new Claim("Id", user.Id),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim("Email", user.Email),
+                new Claim("Name", user.Name),
             }
             .Union(userClaims)
             .Union(roleClaims);

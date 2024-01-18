@@ -28,7 +28,9 @@ export class CourseMessageComponent implements OnInit, OnDestroy {
     this.LoadCourseMessage();
   }
   ngOnDestroy(): void {
-    this.Obs1.unsubscribe();
+    if (this.Obs1) {
+      this.Obs1.unsubscribe();
+    }
   }
   SubscribeToEventFire() {
     this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({

@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\0e569fb9-9782-4407-b0e0-65b38e1f6a99.jpg",
+      "PackagePath": "staticwebassets\\CourseImages\\0e569fb9-9782-4407-b0e0-65b38e1f6a99.jpg"
+    },
+    {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\1e46f67b-1f50-4e9f-b19f-281a2c5db176.jpg",
       "PackagePath": "staticwebassets\\CourseImages\\1e46f67b-1f50-4e9f-b19f-281a2c5db176.jpg"
     },
@@ -9,8 +13,24 @@
       "PackagePath": "staticwebassets\\CourseImages\\25c3e23e-2bc6-4d8f-99ee-1e06ed8c6ad9.jpg"
     },
     {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\6a207169-52d3-4ed5-96ae-08942bd8d28b.png",
+      "PackagePath": "staticwebassets\\CourseImages\\6a207169-52d3-4ed5-96ae-08942bd8d28b.png"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\8754b97e-485e-43b9-b1b3-3b778187774d.png",
+      "PackagePath": "staticwebassets\\CourseImages\\8754b97e-485e-43b9-b1b3-3b778187774d.png"
+    },
+    {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\a11d4062-c7e8-4614-826e-c067a4ecfbe9.png",
       "PackagePath": "staticwebassets\\CourseImages\\a11d4062-c7e8-4614-826e-c067a4ecfbe9.png"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\baadba30-eb6f-40ba-849a-82e4d8181483.jpg",
+      "PackagePath": "staticwebassets\\CourseImages\\baadba30-eb6f-40ba-849a-82e4d8181483.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\c56bbd0d-b365-4de6-b9ae-dea2d2357b1f.jpg",
+      "PackagePath": "staticwebassets\\CourseImages\\c56bbd0d-b365-4de6-b9ae-dea2d2357b1f.jpg"
     },
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\ffa74a88-1c2b-43fd-b686-9ed037437a4b.jpg",
@@ -23,6 +43,10 @@
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffprobe.exe"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\bfcfa03a-3090-476a-86cd-ffd499bf4f05.mp4",
+      "PackagePath": "staticwebassets\\PromotionalVideo\\bfcfa03a-3090-476a-86cd-ffd499bf4f05.mp4"
     },
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\638eeb38-86e9-4712-a89c-bca3497256f3.jpg",

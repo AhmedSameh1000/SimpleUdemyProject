@@ -17,7 +17,9 @@
           {{ Course.intrcutorName }}
         </p>
 
-        <strong class="ms-2">{{ Course.price }}$</strong>
+        <strong class="ms-2">{{
+          Course.price == 0 ? "free" : Course.price + " $"
+        }}</strong>
       </mat-card>
     </div>
   </div>

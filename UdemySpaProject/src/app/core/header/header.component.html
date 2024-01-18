@@ -16,7 +16,12 @@
       <div>
         <div>
           <div class="pointer newhide">
-            <img src="../../../assets/download.png" width="90px" alt="" />
+            <img
+              src="../../../assets/download.png"
+              routerLink=""
+              width="90px"
+              alt=""
+            />
             <button mat-button [matMenuTriggerFor]="Categories">
               Categories
             </button>
@@ -82,6 +87,25 @@
           [matMenuTriggerFor]="menu"
         />
         <mat-menu #menu="matMenu" class="m-3">
+          <div class="d-flex align-items-center justify-content-around">
+            <img
+              width="60"
+              height="60"
+              class="rounded rounded-5"
+              [src]="
+                Image == null || Image == undefined
+                  ? '../../../assets/profileimagedefault/download.png'
+                  : Image
+              "
+            />
+            <div>
+              <p class="fw-bolder m-0">{{ AuthService.GetName() }}</p>
+              <p style="font-size: 12px" class="m-0">
+                {{ AuthService.GetEmail() }}
+              </p>
+            </div>
+          </div>
+          <hr />
           <button mat-menu-item>My learning</button>
           <button mat-menu-item>My card</button>
           <button mat-menu-item>Wichlist</button>
@@ -121,7 +145,7 @@
         <button mat-button><mat-icon>home</mat-icon> Home</button>
       </mat-list-item>
 
-      <mat-list-item>
+      <mat-list-item routerLink="user/settings">
         <button mat-button><mat-icon>settings</mat-icon>Settings</button>
       </mat-list-item>
 

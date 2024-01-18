@@ -28,6 +28,10 @@ export class AuthService {
     var DecodedToken = this.GetDecodedToken();
     return DecodedToken.Email;
   }
+  GetName() {
+    var DecodedToken = this.GetDecodedToken();
+    return DecodedToken.Name;
+  }
   Signup(SignupModel: any) {
     return this.httpclient.post(
       'http://localhost:5227/api/Auth/Register',

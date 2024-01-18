@@ -16,7 +16,9 @@ export class CourserequirmentComponent implements OnInit, OnDestroy {
     private Toastr: ToastrService
   ) {}
   ngOnDestroy(): void {
-    this.Obs1.unsubscribe();
+    if (this.Obs1) {
+      this.Obs1.unsubscribe();
+    }
   }
 
   Obs1: any;
