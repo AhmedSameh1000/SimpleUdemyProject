@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\UsersImagesProfile\\638eeb38-86e9-4712-a89c-bca3497256f3.jpg"
     },
     {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\7b0ceec9-3b35-4e77-9cf8-3123e193dad6.jpg",
+      "PackagePath": "staticwebassets\\UsersImagesProfile\\7b0ceec9-3b35-4e77-9cf8-3123e193dad6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\a9eb26fc-b96c-4d0c-a46d-315336c8e29b.jpg",
+      "PackagePath": "staticwebassets\\UsersImagesProfile\\a9eb26fc-b96c-4d0c-a46d-315336c8e29b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\b5938fb0-2cca-495a-a7ae-e6aca5f6e87f.jpg",
+      "PackagePath": "staticwebassets\\UsersImagesProfile\\b5938fb0-2cca-495a-a7ae-e6aca5f6e87f.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

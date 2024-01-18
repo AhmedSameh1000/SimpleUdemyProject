@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UdemyProject.Contracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d73480ddea1ade0b1b4ee65097fb96f36df0274")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+258aed3512ae8d7dbb1c531dd1d33e8b8e0eb854")]
 [assembly: System.Reflection.AssemblyProductAttribute("UdemyProject.Contracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UdemyProject.Contracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

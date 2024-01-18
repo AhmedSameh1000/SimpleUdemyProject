@@ -8,21 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private AuthService: AuthService,
-    private CourseService: CourseService
-  ) {}
+  constructor(private CourseService: CourseService) {}
   ngOnInit(): void {
     this.GetCourses();
   }
-
   Courses = [];
+  TotalCount: number;
+  pageSize: number;
+  params: any = {};
   GetCourses() {
-    var params = {};
-    this.CourseService.GetCoursePaginated(params).subscribe({
+    this.CourseService.GetCoursePaginated(this.params).subscribe({
       next: (res: any) => {
+        this.TotalCount = res.totalCount;
+        this.pageSize = res.pageSize;
         this.Courses = res.data;
       },
     });
+  }
+  onPageChange(event: any): void {
+    console.log(event);
+    this.params.pageNumber = event.pageIndex + 1;
+    this.params.pageSize = event.pageSize;
+    this.GetCourses();
   }
 }

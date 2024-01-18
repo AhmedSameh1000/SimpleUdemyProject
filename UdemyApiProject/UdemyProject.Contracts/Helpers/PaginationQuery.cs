@@ -9,7 +9,7 @@ namespace UdemyProject.Contracts.Helpers
     public class PaginationQuery
     {
         public int pageNumber { get; set; } = 1;
-        public int pageSize { get; set; } = 10;
+        public int pageSize { get; set; } = 30;
 
         public string? search { get; set; }
     }
