@@ -60,7 +60,6 @@ export class UdemyprofileComponent implements OnInit {
       this.AuthService.GetUserId()
     ).subscribe({
       next: (res: any) => {
-        console.log(res);
         var data = res.data;
         this.UsemyprofileForm.patchValue({
           FullName: data.fullName,
@@ -73,9 +72,7 @@ export class UdemyprofileComponent implements OnInit {
           YoutubeUrl: data.youtubeUrl,
         });
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => {},
     });
   }
 }

@@ -27,8 +27,7 @@ export class ProfilepictureComponent implements OnInit {
       UserImage.append('userId', this.AuthService.GetUserId());
       this.UserProfileService.UploadUserImage(UserImage).subscribe({
         next: (res) => {
-          console.log(res);
-          this.UserProfileService.ChangeImage();
+          this.UserProfileService.ChangeImage('');
         },
       });
     }
@@ -39,7 +38,6 @@ export class ProfilepictureComponent implements OnInit {
       this.AuthService.GetUserId()
     ).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.UserImage = res.data;
       },
     });

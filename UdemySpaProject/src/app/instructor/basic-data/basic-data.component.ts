@@ -26,7 +26,6 @@ export class BasicDataComponent implements OnInit {
   GetCategories() {
     this.CourseCategoryService.GetCategories().subscribe({
       next: (res: any) => {
-        console.log(res);
         this.Categoeies = res.data;
       },
     });
@@ -47,7 +46,6 @@ export class BasicDataComponent implements OnInit {
     // routerLink = '/instructor/coursecreation';
     this.CourseService.CreateBasicCourse(this.CourseIntro.value).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.Router.navigate([`/instructor/coursecreation/${res.data}`]);
       },
     });

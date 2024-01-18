@@ -51,3 +51,10 @@
     display: none !important;
   }
 }
+.Wrap-if-med {
+}
+@media (max-width: 540px) {
+  .Wrap-if-med {
+    text-wrap: wrap !important;
+  }
+}

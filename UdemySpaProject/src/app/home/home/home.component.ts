@@ -8,29 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  Securedata = [];
-
   constructor(
     private AuthService: AuthService,
     private CourseService: CourseService
   ) {}
   ngOnInit(): void {
-    this.GetData();
     this.GetCourses();
   }
-  GetData() {
-    this.AuthService.GetData().subscribe({
-      next: (res: any) => {
-        this.Securedata = res;
-      },
-    });
-  }
 
+  Courses = [];
   GetCourses() {
     var params = {};
     this.CourseService.GetCoursePaginated(params).subscribe({
       next: (res: any) => {
-        console.log(res);
+        this.Courses = res.data;
       },
     });
   }

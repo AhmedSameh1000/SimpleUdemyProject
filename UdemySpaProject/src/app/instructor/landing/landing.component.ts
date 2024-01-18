@@ -23,7 +23,6 @@ export class LandingComponent implements OnInit {
     ).subscribe({
       next: (Res: any) => {
         this.Courses = Res.data;
-        console.log(Res.data);
       },
     });
   }

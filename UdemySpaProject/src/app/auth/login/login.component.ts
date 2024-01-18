@@ -1,3 +1,4 @@
+import { UserProfileService } from './../../Services/user-profile.service';
 import { AuthService } from './../../Services/auth.service';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
@@ -12,7 +13,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private AuthService: AuthService, private Router: Router) {}
+  constructor(
+    private AuthService: AuthService,
+
+    private Router: Router,
+    private UserProfileService: UserProfileService
+  ) {}
+  ngOnDestroy(): void {
+    if (this.Obs1 != null || this.Obs1 != undefined) {
+      this.Obs1.unsubscribe();
+    }
+  }
   ngOnInit(): void {
     this.CreatelogInForm();
   }
@@ -25,17 +36,26 @@ export class LoginComponent implements OnInit {
     });
   }
   EmailorPasswordIsIncorrect = '';
+  Obs1: any;
   Login() {
     if (this.LoginForm.invalid) {
       return;
     }
-    this.AuthService.LogIn(this.LoginForm.value).subscribe({
+    this.Obs1 = this.AuthService.LogIn(this.LoginForm.value).subscribe({
       next: (res: any) => {
         this.AuthService.SaveTokens(res);
+        this.UserProfileService.MyImage.next(true);
+        this.UserProfileService.GetUserProfileImage(
+          this.AuthService.GetUserId()
+        ).subscribe({
+          next: (res: any) => {
+            this.UserProfileService.ChangeImage(res.data);
+          },
+        });
         this.Router.navigate(['']);
       },
       error: (err) => {
-        this.EmailorPasswordIsIncorrect = err.error.errors[0];
+        this.EmailorPasswordIsIncorrect = err.error.message;
       },
     });
   }

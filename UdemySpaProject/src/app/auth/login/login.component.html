@@ -1,7 +1,7 @@
 <form class="example-form" [formGroup]="LoginForm">
   <mat-form-field class="example-full-width">
     <mat-icon matPrefix>email</mat-icon>
-    <input matInput placeholder="Email...." formControlName="Email" />
+    <input matInput placeholder="Email" formControlName="Email" />
     <mat-error
       *ngIf="
         LoginForm.get('Email')?.errors?.['required'] &&

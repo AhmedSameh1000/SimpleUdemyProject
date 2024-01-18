@@ -1,6 +1,13 @@
+import { Router } from '@angular/router';
 import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { UserProfileService } from './../../Services/user-profile.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  DoCheck,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -12,9 +19,24 @@ export class HeaderComponent implements OnInit {
   constructor(
     public AuthService: AuthService,
     private UserProfileService: UserProfileService,
-    private CourseCategoryService: CourseCategoryService
-  ) {}
+    private CourseCategoryService: CourseCategoryService,
+    private Router: Router
+  ) {
+    this.LoaduserProfileImage();
+  }
+
+  Obs1: any;
+  Obs2: any;
+  Obs3: any;
+
   ngOnInit(): void {
+    this.UserProfileService.MyImage.asObservable().subscribe({
+      next: (res) => {
+        if (res) {
+          this.LoaduserProfileImage();
+        }
+      },
+    });
     this.LoaduserProfileImage();
     this.IsImageProfileChanges();
     this.LoadCategories();
@@ -37,12 +59,20 @@ export class HeaderComponent implements OnInit {
   }
   Image: any;
   LoaduserProfileImage() {
+    if (!this.AuthService.isLoggedIn()) return;
     this.UserProfileService.GetUserProfileImage(
       this.AuthService.GetUserId()
     ).subscribe({
       next: (res: any) => {
         this.Image = res.data;
       },
+      error: (err) => {
+        this.Image = '../../../assets/profileimagedefault/download.png';
+      },
     });
+  }
+  logOut() {
+    this.AuthService.logout();
+    this.Router.navigate(['']);
   }
 }

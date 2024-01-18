@@ -61,7 +61,7 @@
           class="ms-2 bg-black text-white"
           routerLink="auth/register"
           *ngIf="AuthService.isLoggedIn()"
-          (click)="AuthService.logout()"
+          (click)="logOut()"
         >
           log out
         </button>
@@ -113,8 +113,6 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <div style="text-align: center; height: 90vh">
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

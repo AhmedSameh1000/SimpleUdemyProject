@@ -37,10 +37,12 @@ export class UserProfileService {
     );
   }
 
-  ImageChanges = new Subject<void>();
+  MyImage = new Subject<boolean>();
 
-  ChangeImage() {
-    this.ImageChanges.next();
+  private ImageChanges = new Subject();
+
+  ChangeImage(url) {
+    this.ImageChanges.next(url);
   }
   GetChangeImageEvent() {
     return this.ImageChanges.asObservable();

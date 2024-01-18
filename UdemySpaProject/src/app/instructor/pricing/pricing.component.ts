@@ -57,7 +57,6 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.ActivatedRoute.paramMap.subscribe({
       next: (data: any) => {
         this.CourseId = +data.get('Id');
-        console.log(this.CourseId);
       },
     });
   }

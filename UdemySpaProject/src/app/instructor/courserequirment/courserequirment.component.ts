@@ -33,7 +33,6 @@ export class CourserequirmentComponent implements OnInit, OnDestroy {
   SaveRequirmentWhenFireAction() {
     this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({
       next: (res) => {
-        console.log(this.PrerequisiteForm);
         var data = new MyData();
         data.Data = this.PrerequisiteForm.value;
         data.isDirty = this.PrerequisiteForm.dirty;

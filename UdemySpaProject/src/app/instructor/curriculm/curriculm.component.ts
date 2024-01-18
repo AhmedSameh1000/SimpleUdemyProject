@@ -41,9 +41,7 @@ export class CurriculmComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         this.SetSections(res.data);
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => {},
     });
   }
 
@@ -55,19 +53,14 @@ export class CurriculmComponent implements OnInit, OnDestroy {
       SectionDescription: SectionDescription,
     };
     this.SectionService.UpdateSection(forUpdateDTO).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
+      next: (res) => {},
+      error: (err) => {},
     });
   }
   SetSections(Sectionsdata: any) {
     const Sections = this.CurriculmForm.get('Sections') as FormArray;
 
     Sections.clear();
-    console.log(Sectionsdata);
     Sectionsdata.forEach((sectionData: any) => {
       const group = new FormGroup({
         id: new FormControl(sectionData.id),

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +15,7 @@ export class AuthService {
       logInModel
     );
   }
-  GetData() {
-    return this.httpclient.get('http://localhost:5227/api/Auth/SecureData');
-  }
+
   JWTHealper = new JwtHelperService();
   GetUserId() {
     if (this.isLoggedIn()) {

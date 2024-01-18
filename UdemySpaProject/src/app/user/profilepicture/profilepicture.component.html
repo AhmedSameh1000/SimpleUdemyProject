@@ -4,16 +4,17 @@
     <p class="text-start">Minimum 200x200 pixels, Maximum 6000x6000 pixels</p>
 
     <div
-      class="w-50"
-      style="background-color: #d7dfe3; border: 1px solid black"
+      class="d-flex justify-content-center w-50"
+      style="background-color: white; border: 1px solid black"
     >
       <img
+        width="300"
+        height="300px"
         [src]="
           UserImage == null || UserImage == undefined
             ? '../../../assets/profileimagedefault/download.png'
             : UserImage
         "
-        alt=""
         #img
       />
     </div>

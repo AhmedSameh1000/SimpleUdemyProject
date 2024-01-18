@@ -57,7 +57,6 @@ export class ChangePasswordComponent implements OnInit {
         this.MatDialogRef.close();
       },
       error: (err) => {
-        console.log(err.error.message);
         this.PaswordisWrond = err.error.message;
       },
     });

@@ -84,7 +84,6 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     this.ActivatedRoute.paramMap.subscribe({
       next: (data: any) => {
         this.CourseId = +data.get('Id');
-        console.log(this.CourseId);
       },
     });
   }
@@ -147,8 +146,6 @@ export class LandingpageComponent implements OnInit, OnDestroy {
       return;
     }
     img.parentElement.style.padding = '0';
-
-    console.log();
 
     img.style.width = '100%';
     img.style.height = '100%';

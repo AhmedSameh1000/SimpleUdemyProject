@@ -43,7 +43,6 @@ export class CourseheaderComponent implements OnInit {
           data.isDirty ||
           data.numberObComponent == ComponentNumbers.RequirmentComponentnumber
         ) {
-          console.log(data.isDirty);
           this.SaveCourse(data.numberObComponent, data);
         }
       },
@@ -55,7 +54,6 @@ export class CourseheaderComponent implements OnInit {
     this.ActivatedRoute.paramMap.subscribe({
       next: (data: any) => {
         this.CourseId = +data.get('Id');
-        console.log(this.CourseId);
       },
     });
   }

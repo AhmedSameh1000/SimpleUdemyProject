@@ -13,8 +13,8 @@ export class AccountsecurityComponent {
 
   OpenChangePassword() {
     var AfterClose = this.Dialog.open(ChangePasswordComponent, {
-      width: '40%',
-      height: '60%',
+      minWidth: '50%',
+      minHeight: '60%',
       disableClose: true,
     });
   }
