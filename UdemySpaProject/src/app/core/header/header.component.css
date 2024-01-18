@@ -36,3 +36,30 @@
     font-size: 10px;
   }
 }
+@media (max-width: 917px) {
+  .newhide {
+    display: none;
+  }
+}
+input,
+textarea {
+  border: 1px solid black;
+  border-radius: 0;
+  padding: 10px;
+}
+input:focus,
+textarea:focus {
+  border-color: black;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .myfont {
+    font-size: 10px;
+  }
+}
+@media (max-width: 1200px) {
+  .myfont {
+    font-size: 13px;
+  }
+}

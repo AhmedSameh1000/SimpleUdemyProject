@@ -3,17 +3,24 @@
   class="w-100 d-flex justify-content-between align-items-center"
 >
   <div class="w-100 d-flex justify-content-between align-items-center">
-    <div class="w-50 d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between gap-2 align-items-center">
       <div class="d-flex justify-content-between">
-        <button mat-icon-button (click)="drawer.toggle()">
+        <button
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="AuthService.isLoggedIn()"
+        >
           <mat-icon>menu</mat-icon>
         </button>
       </div>
       <div>
         <div>
-          <button mat-button [matMenuTriggerFor]="Categories">
-            Categories
-          </button>
+          <div class="pointer newhide">
+            <img src="../../../assets/download.png" width="90px" alt="" />
+            <button mat-button [matMenuTriggerFor]="Categories">
+              Categories
+            </button>
+          </div>
           <mat-menu #Categories="matMenu" class="mt-3">
             <button mat-menu-item *ngFor="let Category of CategoryList">
               {{ Category.name }}
@@ -21,24 +28,29 @@
           </mat-menu>
         </div>
       </div>
-      <div class="search-bar" style="width: 300% !important">
+      <div>
         <input type="text" placeholder="Search..." />
-        <i class="fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
-    <div class="w-50 d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-end align-items-center">
       <div
-        class="font me-2 pointer"
+        class="font me-2 pointer myfont newhide"
         *ngIf="AuthService.isLoggedIn()"
         routerLink="instructor/landing"
       >
         Teach On Udemy
       </div>
-      <div class="ms-2 font me-3 pointer" *ngIf="AuthService.isLoggedIn()">
+      <div
+        class="ms-2 font me-3 pointer myfont newhide"
+        *ngIf="AuthService.isLoggedIn()"
+      >
         My Learning
       </div>
-      <div *ngIf="AuthService.isLoggedIn()">
-        <i class="fa fa-cart-shopping fs-3 ms-1 pointer"></i>
+      <div *ngIf="AuthService.isLoggedIn()" class="newhide">
+        <i class="fa fa-cart-shopping fs-3 me-3 pointer"></i>
+      </div>
+      <div *ngIf="AuthService.isLoggedIn()" class="newhide">
+        <i class="fa-regular fa-heart fs-3 me-3 pointer"></i>
       </div>
       <div *ngIf="!AuthService.isLoggedIn()">
         <button mat-raised-button class="ms-4" routerLink="auth/login">
@@ -55,22 +67,7 @@
           Sign up
         </button>
       </div>
-      <div>
-        <button
-          mat-raised-button
-          class="ms-2 bg-black text-white"
-          routerLink="auth/register"
-          *ngIf="AuthService.isLoggedIn()"
-          (click)="logOut()"
-        >
-          log out
-        </button>
-      </div>
-      <div
-        class="ms-2 pointer"
-        routerLink="user/settings"
-        *ngIf="AuthService.isLoggedIn()"
-      >
+      <div class="ms-2 pointer" *ngIf="AuthService.isLoggedIn()">
         <img
           width="40"
           height="40"
@@ -81,7 +78,33 @@
               : Image
           "
           alt=""
+          mat-button
+          [matMenuTriggerFor]="menu"
         />
+        <mat-menu #menu="matMenu" class="m-3">
+          <button mat-menu-item>My learning</button>
+          <button mat-menu-item>My card</button>
+          <button mat-menu-item>Wichlist</button>
+          <button
+            mat-menu-item
+            *ngIf="AuthService.isLoggedIn()"
+            routerLink="instructor/landing"
+          >
+            Intstructor dashboard
+          </button>
+          <hr />
+          <button mat-menu-item routerLink="user/settings">
+            Account Settings
+          </button>
+          <button
+            mat-menu-item
+            routerLink="auth/register"
+            *ngIf="AuthService.isLoggedIn()"
+            (click)="logOut()"
+          >
+            Log out
+          </button>
+        </mat-menu>
       </div>
     </div>
   </div>
@@ -90,7 +113,7 @@
 <mat-drawer-container autosize>
   <mat-drawer #drawer opened="false" mode="side" position="start">
     <mat-nav-list>
-      <mat-list-item>
+      <mat-list-item routerLink="instructor/landing">
         <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
       </mat-list-item>
 
