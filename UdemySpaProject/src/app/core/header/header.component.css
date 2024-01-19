@@ -36,11 +36,7 @@
     font-size: 10px;
   }
 }
-@media (max-width: 917px) {
-  .newhide {
-    display: none;
-  }
-}
+
 input,
 textarea {
   border: 1px solid black;

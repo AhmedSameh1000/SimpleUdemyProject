@@ -7,6 +7,7 @@ import {
   DoCheck,
   OnDestroy,
   OnInit,
+  Renderer2,
 } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit {
     public AuthService: AuthService,
     private UserProfileService: UserProfileService,
     private CourseCategoryService: CourseCategoryService,
-    private Router: Router
+    private Router: Router,
+    private renderer: Renderer2
   ) {
     this.LoaduserProfileImage();
   }

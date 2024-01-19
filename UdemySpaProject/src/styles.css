@@ -28,3 +28,8 @@ i {
 .clamp {
   font-size: clamp(1rem, 10vw, 1rem);
 }
+@media (max-width: 917px) {
+  .newhide {
+    display: none;
+  }
+}

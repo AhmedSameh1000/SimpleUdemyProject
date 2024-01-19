@@ -1,3 +1,27 @@
+<hr />
+<mat-tab-group class="p-0 m-0" [animationDuration]="0">
+  <mat-tab *ngFor="let category of categories" [label]="category.name">
+  </mat-tab>
+</mat-tab-group>
+<hr />
+<div class="container position-relative newhide" style="height: 500px">
+  <img
+    src="../../../assets/Images/138d7fdb-b142-4fef-9543-ec83bd9e15cd.jpg"
+    class="h-100 w-100"
+    alt=""
+  />
+  <mat-card
+    class="bg-light text-black position-absolute d-flex justify-content-center p-4 rounded rounded-0"
+    style="top: 30%; width: 35%; left: 10%; height: 40%"
+  >
+    <h1 class="fw-bolder">Skill up with the Leading Up podcast</h1>
+    <p>
+      Listen to Season 5 and learn to work, lead, and live better. New episodes
+      drop on Wednesdays.
+    </p>
+  </mat-card>
+</div>
+
 <div>
   <div class="container mycontainer">
     <div *ngFor="let Course of Courses" class="pointer text-start">
@@ -23,7 +47,7 @@
       </mat-card>
     </div>
   </div>
-  <div *ngIf="Courses.length > 10">
+  <div>
     <mat-paginator
       [length]="TotalCount"
       [pageSize]="pageSize"

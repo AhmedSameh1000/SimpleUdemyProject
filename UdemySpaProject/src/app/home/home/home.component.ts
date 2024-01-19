@@ -1,3 +1,4 @@
+import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { CourseService } from 'src/app/Services/course.service';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private CourseService: CourseService) {}
+  constructor(
+    private CourseService: CourseService,
+    private CourseCategoryService: CourseCategoryService
+  ) {}
   ngOnInit(): void {
     this.GetCourses();
+    this.LoadCategorises();
   }
   Courses = [];
   TotalCount: number;
@@ -25,8 +30,15 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+  categories = [];
+  LoadCategorises() {
+    this.CourseCategoryService.GetCategories().subscribe({
+      next: (res: any) => {
+        this.categories = res.data;
+      },
+    });
+  }
   onPageChange(event: any): void {
-    console.log(event);
     this.params.pageNumber = event.pageIndex + 1;
     this.params.pageSize = event.pageSize;
     this.GetCourses();
