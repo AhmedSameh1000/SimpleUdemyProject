@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { PriceService } from './../../Services/price.service';
 import { CourseService, MyData } from './../../Services/course.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RequirmentService } from 'src/app/Services/requirment.service';
 import { MessageService } from 'src/app/Services/message.service';
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
@@ -16,7 +16,7 @@ import { CurriculmService } from 'src/app/Services/curriculm.service';
   templateUrl: './courseheader.component.html',
   styleUrls: ['./courseheader.component.css'],
 })
-export class CourseheaderComponent implements OnInit {
+export class CourseheaderComponent implements OnInit, OnDestroy {
   constructor(
     private courseService: CourseService,
     private requirmentService: RequirmentService,
@@ -28,8 +28,14 @@ export class CourseheaderComponent implements OnInit {
     private Router: Router,
     private ActivatedRoute: ActivatedRoute
   ) {}
+  ngOnDestroy(): void {
+    if (this.Obs1) {
+      this.Obs1.unsubscribe();
+    }
+  }
 
   IsCurriculmComponent: boolean;
+  Obs1: any;
   ngOnInit(): void {
     this.CurriculmService.GetCurriculmComponent().subscribe({
       next: (IsCurriculmComponent) => {
@@ -37,7 +43,7 @@ export class CourseheaderComponent implements OnInit {
       },
     });
     this.GetCoursId();
-    this.courseService.GetFiredData().subscribe({
+    this.Obs1 = this.courseService.GetFiredData().subscribe({
       next: (data) => {
         if (
           data.isDirty ||
