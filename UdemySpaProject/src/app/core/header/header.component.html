@@ -34,8 +34,14 @@
         </div>
       </div>
       <div class="position-relative">
-        <input type="text" placeholder="Search..." />
+        <input
+          type="text"
+          placeholder="Search..."
+          #inp
+          (keyup.enter)="OnSearch(inp.value)"
+        />
         <i
+          (click)="OnSearch(inp.value)"
           class="fa-solid fa-magnifying-glass position-absolute"
           style="top: 30%; right: 5%"
         ></i>

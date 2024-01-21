@@ -1,3 +1,4 @@
+import { CourseService } from 'src/app/Services/course.service';
 import { Router } from '@angular/router';
 import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { UserProfileService } from './../../Services/user-profile.service';
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
     public AuthService: AuthService,
     private UserProfileService: UserProfileService,
     private CourseCategoryService: CourseCategoryService,
+    private CourseService: CourseService,
     private Router: Router,
     private renderer: Renderer2
   ) {
@@ -76,5 +78,10 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.AuthService.logout();
     this.Router.navigate(['']);
+  }
+  OnSearch(value) {
+    this.Router.navigate(['/filterCourses'], {
+      queryParams: { Search: value },
+    });
   }
 }

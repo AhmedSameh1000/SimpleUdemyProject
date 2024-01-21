@@ -11,6 +11,8 @@ namespace UdemyProject.Contracts.Helpers
         public int pageNumber { get; set; } = 1;
         public int pageSize { get; set; } = 30;
 
+        public int? langugeId { get; set; }
+        public int? categoryId { get; set; }
         public string? search { get; set; }
     }
 }

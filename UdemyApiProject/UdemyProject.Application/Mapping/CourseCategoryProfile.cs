@@ -13,7 +13,8 @@ namespace UdemyProject.Application.Mapping
 
         public void MapFrom_CourseCategory_CourseCategoryDTO()
         {
-            CreateMap<CourseCategory, CourseCategoryDTO>().ReverseMap();
+            CreateMap<CourseCategory, CourseCategoryDTO>()
+                .ForMember(c => c.coursesCount, opt => opt.MapFrom(c => c.Courses.Count())).ReverseMap();
         }
     }
 }

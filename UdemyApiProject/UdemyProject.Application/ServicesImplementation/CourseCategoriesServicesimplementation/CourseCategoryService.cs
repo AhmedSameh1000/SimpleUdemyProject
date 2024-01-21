@@ -21,7 +21,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseCategoriesServic
 
         public async Task<List<CourseCategoryDTO>> GetCourseCategories()
         {
-            var Categories = await _CourseCategoryRepository.GetAllAsNoTracking();
+            var Categories = await _CourseCategoryRepository.GetAllAsNoTracking(new[] { "Courses" } );
 
             var CategoriesForReturn = _Mapper.Map<List<CourseCategoryDTO>>(Categories);
 

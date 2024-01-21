@@ -10,5 +10,7 @@ namespace UdemyProject.Contracts.DTOs.CourseLangugeDTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public int CoursesCount { get; set; }
     }
 }

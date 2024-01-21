@@ -299,6 +299,15 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 Query = Query.Where(c => c.Title.ToLower().Contains(paginationQuery.search.ToLower()));
             }
+            if (paginationQuery.langugeId != null)
+            {
+                Query = Query.Where(c => c.langugeId == paginationQuery.langugeId);
+            }   
+            if (paginationQuery.categoryId != null)
+            {
+                Query = Query.Where(c => c.CategoryId == paginationQuery.categoryId);
+            }
+
 
             return Query.Select(expression);
         }

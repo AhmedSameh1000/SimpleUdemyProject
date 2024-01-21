@@ -24,8 +24,8 @@
         <div>Section : {{ i + 1 }}</div>
         <div>
           {{
-            section.get("SectionTitle")?.value == null ||
-            section.get("SectionTitle")?.value == undefined
+            section.get("SectionTitle")?.value == "" ||
+            section.get("SectionTitle")?.value == ""
               ? "Section Name"
               : section.get("SectionTitle").value
           }}
@@ -109,16 +109,16 @@
                 <div>
                   <mat-panel-description>
                     {{
-                      lecture.get("Lecturetitle")?.value == null ||
-                      lecture.get("Lecturetitle")?.value == null
+                      lecture.get("Lecturetitle")?.value == "" ||
+                      lecture.get("Lecturetitle")?.value == ""
                         ? "Lecture Name"
                         : lecture.get("Lecturetitle")?.value
                     }}
                     :
                     <span class="text-primary">
                       {{
-                        lecture.get("menutes")?.value == null ||
-                        lecture.get("menutes")?.value == null
+                        lecture.get("menutes")?.value == "" ||
+                        lecture.get("menutes")?.value == ""
                           ? "0"
                           : lecture.get("menutes")?.value
                       }}

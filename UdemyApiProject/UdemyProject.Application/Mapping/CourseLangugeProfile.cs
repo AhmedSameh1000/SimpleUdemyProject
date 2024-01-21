@@ -13,7 +13,9 @@ namespace UdemyProject.Application.Mapping
 
         public void MapFrom_CourseLanguge_CourseLangugeDTO()
         {
-            CreateMap<CourseLanguge, CourselangugeDTO>().ReverseMap();
+            CreateMap<CourseLanguge, CourselangugeDTO>()
+                .ForMember(c=>c.CoursesCount,opt=>opt.MapFrom(c=>c.Courses.Count()))
+                .ReverseMap();
         }
     }
 }

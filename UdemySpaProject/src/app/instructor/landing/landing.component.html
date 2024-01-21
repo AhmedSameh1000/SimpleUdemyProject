@@ -8,7 +8,7 @@
 
 <div class="container d-flex flex-column gap-3 mt-2">
   <div
-    [routerLink]="'/coursecreation/' + Course.id"
+    (click)="GoToCourseCreation(Course.id, Course.name)"
     *ngFor="let Course of Courses"
     class="myborder d-flex justify-content-between onhover pointer"
   >

@@ -27,7 +27,7 @@ namespace UdemyProject.Application.ServicesImplementation.Courselangugeimplement
 
         public async Task<List<CourselangugeDTO>> GetAlllanguge()
         {
-            var languges = await _CourseLangugeRepository.GetAllAsNoTracking();
+            var languges = await _CourseLangugeRepository.GetAllAsNoTracking(new[] { "Courses" }  );
             var Languges = _Mapper.Map<List<CourselangugeDTO>>(languges);
 
             return Languges;

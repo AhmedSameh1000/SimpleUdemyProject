@@ -273,6 +273,9 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<int?>("langugeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("totalHours")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");

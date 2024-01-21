@@ -1,7 +1,12 @@
 <div class="container mt-5">
   <h1 class="fw-bolder fs-1 text-start mb-3">Profile & settings</h1>
 
-  <mat-tab-group animationDuration="0ms" [disableRipple]="true">
+  <mat-tab-group
+    animationDuration="0ms"
+    [disableRipple]="true"
+    mat-align-tabs="start"
+    mat-stretch-tabs="false"
+  >
     <mat-tab label="Udemy profile">
       <app-udemyprofile></app-udemyprofile>
     </mat-tab>

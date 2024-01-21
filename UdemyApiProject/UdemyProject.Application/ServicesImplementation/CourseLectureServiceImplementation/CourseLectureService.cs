@@ -14,12 +14,14 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
     {
         private readonly ICourseSectionRepository _CourseSectionRepository;
         private readonly ICourseLectureRepository _CourseLectureRepository;
+        private readonly ICourseRepository _CourseRepository;
         private readonly IWebHostEnvironment _Host;
 
-        public CourseLectureService(ICourseSectionRepository courseSectionRepository, ICourseLectureRepository courseLectureRepository, IWebHostEnvironment Host)
+        public CourseLectureService(ICourseSectionRepository courseSectionRepository, ICourseLectureRepository courseLectureRepository, ICourseRepository courseRepository, IWebHostEnvironment Host)
         {
             _CourseSectionRepository = courseSectionRepository;
             _CourseLectureRepository = courseLectureRepository;
+            _CourseRepository = courseRepository;
             _Host = Host;
         }
 

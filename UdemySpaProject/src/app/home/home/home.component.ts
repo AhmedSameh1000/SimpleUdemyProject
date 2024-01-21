@@ -1,7 +1,10 @@
 import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { CourseService } from 'src/app/Services/course.service';
 import { AuthService } from 'src/app/Services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
+import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +14,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   constructor(
     private CourseService: CourseService,
-    private CourseCategoryService: CourseCategoryService
+    private CourseCategoryService: CourseCategoryService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.GetCourses();
@@ -43,4 +47,6 @@ export class HomeComponent implements OnInit {
     this.params.pageSize = event.pageSize;
     this.GetCourses();
   }
+
+  Control = new FormControl(null, [Validators.required]);
 }

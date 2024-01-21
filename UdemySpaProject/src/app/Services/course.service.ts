@@ -114,6 +114,18 @@ export class CourseService {
     if (QueryPaginateion.search != null) {
       paginationQuery = paginationQuery.set('search', QueryPaginateion.search);
     }
+    if (QueryPaginateion.langugeId != null) {
+      paginationQuery = paginationQuery.set(
+        'langugeId',
+        QueryPaginateion.langugeId
+      );
+    }
+    if (QueryPaginateion.categoryId != null) {
+      paginationQuery = paginationQuery.set(
+        'categoryId',
+        QueryPaginateion.categoryId
+      );
+    }
 
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/GetCoursePaginated`,

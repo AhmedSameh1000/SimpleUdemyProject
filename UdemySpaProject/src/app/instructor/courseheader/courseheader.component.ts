@@ -42,15 +42,11 @@ export class CourseheaderComponent implements OnInit, OnDestroy {
         this.IsCurriculmComponent = IsCurriculmComponent;
       },
     });
+
     this.GetCoursId();
     this.Obs1 = this.courseService.GetFiredData().subscribe({
       next: (data) => {
-        if (
-          data.isDirty ||
-          data.numberObComponent == ComponentNumbers.RequirmentComponentnumber
-        ) {
-          this.SaveCourse(data.numberObComponent, data);
-        }
+        this.SaveCourse(data.numberObComponent, data);
       },
     });
   }

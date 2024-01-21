@@ -79,7 +79,7 @@ export class CurriculmComponent implements OnInit, OnDestroy {
           Lecturetitle: new FormControl(lecture.title ?? ''),
           LectureDescription: new FormControl(lecture.description ?? ''),
           videoSectionUrl: new FormControl(lecture.videoSectionUrl ?? ''),
-          menutes: new FormControl(lecture.menutes),
+          menutes: new FormControl(lecture.menutes ?? ''),
         });
 
         lecturesArray.push(lectureGroup);

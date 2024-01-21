@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/Services/course.service';
@@ -10,7 +11,8 @@ import { CourseService } from 'src/app/Services/course.service';
 export class LandingComponent implements OnInit {
   constructor(
     private AuthService: AuthService,
-    private CourseseService: CourseService
+    private CourseseService: CourseService,
+    private Router: Router
   ) {}
   ngOnInit(): void {
     this.LoadCourses();
@@ -25,5 +27,8 @@ export class LandingComponent implements OnInit {
         this.Courses = Res.data;
       },
     });
+  }
+  GoToCourseCreation(CourseId: any, title: any) {
+    this.Router.navigate([`/coursecreation/${CourseId}`]);
   }
 }
