@@ -27,7 +27,11 @@
             </button>
           </div>
           <mat-menu #Categories="matMenu" class="mt-3">
-            <button mat-menu-item *ngFor="let Category of CategoryList">
+            <button
+              mat-menu-item
+              *ngFor="let Category of CategoryList"
+              (click)="SendCategoryIdToSearch(Category.id)"
+            >
               {{ Category.name }}
             </button>
           </mat-menu>

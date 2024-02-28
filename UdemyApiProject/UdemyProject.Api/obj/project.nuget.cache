@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M+RiywhB61PMUpu8vlZf2nnI/AZjg9OqUOL5QGRNdeaOr5AyOxG8hikcgeRobNkA2nvYFjrJJ6TyHeNvQrkCJg==",
+  "dgSpecHash": "LeUBsKmgTxPpMIojlZM5eVYeYnpLDyTeViHqmfFTMpj5/IHieFbq1/aED9v7o+3cvoAX0/62k2w/SVgKZB7aZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\LastAndList\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
   "expectedPackageFiles": [
@@ -117,7 +117,11 @@
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\xabe.ffmpeg\\5.2.6\\xabe.ffmpeg.5.2.6.nupkg.sha512"
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\xabe.ffmpeg\\5.2.6\\xabe.ffmpeg.5.2.6.nupkg.sha512",
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.16\\microsoft.netcore.app.host.win-x64.7.0.16.nupkg.sha512"
   ],
   "logs": []
 }

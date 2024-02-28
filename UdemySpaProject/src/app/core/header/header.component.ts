@@ -84,4 +84,9 @@ export class HeaderComponent implements OnInit {
       queryParams: { Search: value },
     });
   }
+  SendCategoryIdToSearch(CategoryId) {
+    this.Router.navigate(['/filterCourses'], {
+      queryParams: { categoryId: CategoryId },
+    });
+  }
 }

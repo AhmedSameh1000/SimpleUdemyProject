@@ -20,7 +20,7 @@ export class CourseFilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSearchString();
-
+    this.loadCategoryId();
     this.LoadLanguges();
     this.LoadCategories();
   }
@@ -60,6 +60,16 @@ export class CourseFilterComponent implements OnInit {
     this.ActivatedRoute.queryParamMap.subscribe({
       next: (Res: any) => {
         this.SearchString = Res.get('Search');
+        this.LoadCourses();
+      },
+    });
+  }
+
+  loadCategoryId() {
+    this.ActivatedRoute.queryParamMap.subscribe({
+      next: (Res: any) => {
+        this.CategoryId = Res.get('categoryId');
+        console.log(`'Ahmed ${this.CategoryId}`);
         this.LoadCourses();
       },
     });
