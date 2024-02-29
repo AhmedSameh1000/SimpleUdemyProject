@@ -1,0 +1,8 @@
+@media (min-width: 650px) {
+  .imgW {
+    height: 400px !important;
+  }
+}
+.bbtn:hover {
+  background-color: rgb(230, 244, 245);
+}

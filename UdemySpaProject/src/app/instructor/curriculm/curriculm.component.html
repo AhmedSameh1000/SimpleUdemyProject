@@ -106,16 +106,23 @@
                 <div>
                   <mat-panel-title> Lecture {{ j + 1 }}: </mat-panel-title>
                 </div>
-                <div>
-                  <mat-panel-description>
-                    {{
-                      lecture.get("Lecturetitle")?.value == "" ||
-                      lecture.get("Lecturetitle")?.value == ""
-                        ? "Lecture Name"
-                        : lecture.get("Lecturetitle")?.value
-                    }}
-                    :
-                    <span class="text-primary">
+                <div style="width: 80%">
+                  <mat-panel-description
+                    class="w-100 d-flex justify-content-between"
+                  >
+                    <div>
+                      {{
+                        lecture.get("Lecturetitle")?.value == ""
+                          ? "Lecture Name is empty"
+                          : lecture.get("Lecturetitle")?.value.length > 20
+                          ? lecture
+                              .get("Lecturetitle")
+                              ?.value.substring(0, 40) + "..."
+                          : lecture.get("Lecturetitle")?.value
+                      }}:
+                    </div>
+
+                    <div class="text-primary">
                       {{
                         lecture.get("menutes")?.value == "" ||
                         lecture.get("menutes")?.value == ""
@@ -123,19 +130,11 @@
                           : lecture.get("menutes")?.value
                       }}
                       minutes
-                    </span>
+                    </div>
                   </mat-panel-description>
                 </div>
               </mat-expansion-panel-header>
               <div class="d-flex flex-column">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Title</mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Title"
-                    formControlName="Lecturetitle"
-                  />
-                </mat-form-field>
                 <mat-form-field class="example-full-width">
                   <mat-label>Enter Description</mat-label>
                   <textarea

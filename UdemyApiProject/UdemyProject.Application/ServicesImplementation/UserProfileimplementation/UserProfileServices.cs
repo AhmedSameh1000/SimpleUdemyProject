@@ -13,14 +13,20 @@ namespace UdemyProject.Application.ServicesImplementation.UserProfileimplementat
     {
         private readonly IUserProfileRepository _UserProfileRepository;
         private readonly UserManager<ApplicationUser> _UserManager;
+        private readonly IFileServices _FileServices;
         private readonly IWebHostEnvironment _Host;
         private readonly IHttpContextAccessor _HttpContextAccessor;
 
-        public UserProfileServices(IUserProfileRepository userProfileRepository, UserManager<ApplicationUser> userManager,
-            IWebHostEnvironment Host, IHttpContextAccessor httpContextAccessor)
+        public UserProfileServices(
+            IUserProfileRepository userProfileRepository,
+            UserManager<ApplicationUser> userManager,
+            IFileServices fileServices,
+            IWebHostEnvironment Host,
+            IHttpContextAccessor httpContextAccessor)
         {
             _UserProfileRepository = userProfileRepository;
             _UserManager = userManager;
+            _FileServices = fileServices;
             _Host = Host;
             _HttpContextAccessor = httpContextAccessor;
         }
@@ -84,39 +90,15 @@ namespace UdemyProject.Application.ServicesImplementation.UserProfileimplementat
             {
                 if (UserProfile.ImageUrl != null)
                 {
-                    DeleteFileInWWWRoot("UsersImagesProfile", UserProfile.ImageUrl);
+                    _FileServices.DeleteFile("UsersImagesProfile", UserProfile.ImageUrl);
                 }
-                var URL = SaveFile(userprofileDTO.Image, Path.Combine(_Host.WebRootPath, "UsersImagesProfile"));
-                UserProfile.ImageUrl = URL;
+                var Result = _FileServices.SaveFile(userprofileDTO.Image, Path.Combine(_Host.WebRootPath, "UsersImagesProfile"));
+
+                UserProfile.ImageUrl = Result.Path;
             }
 
             _UserProfileRepository.Update(UserProfile);
             return await _UserProfileRepository.SaveChanges();
-        }
-
-        public string SaveFile(IFormFile file, string FolderPath)
-        {
-            var FileUrl = "";
-            string fileName = Guid.NewGuid().ToString();
-            string extension = Path.GetExtension(file.FileName);
-            using (FileStream fileStreams = new(Path.Combine(FolderPath,
-                            fileName + extension), FileMode.Create))
-            {
-                file.CopyTo(fileStreams);
-            }
-
-            FileUrl = fileName + extension;
-            return FileUrl;
-        }
-
-        public void DeleteFileInWWWRoot(string Folderpath, string fileNamewithExtension)
-        {
-            var path = Path.Combine(_Host.WebRootPath, Folderpath, Path.GetFileName(fileNamewithExtension));
-            var IsExist = Path.Exists(path);
-            if (IsExist)
-            {
-                File.Delete(path);
-            }
         }
 
         public async Task<string> GetUserProfileImage(string userId)

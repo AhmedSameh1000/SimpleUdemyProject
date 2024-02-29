@@ -21,7 +21,9 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
         IRequestHandler<GetCoursesForInstructorModelQuery, ResponseModel<List<InstructorMinimalCourses>>>,
         IRequestHandler<GetCourseMessageModelQuery, ResponseModel<CourseMessageForReturnDTo>>,
         IRequestHandler<GetCoursePriceModelQuery, ResponseModel<CoursePriceForReturnDTO>>,
-        IRequestHandler<GetCoursesPaginatedModelQuery, PaginatedResult<CourseForReturnDTO>>
+        IRequestHandler<GetCoursesPaginatedModelQuery, PaginatedResult<CourseForReturnDTO>>,
+        IRequestHandler<GetCourseFullDetailsQuery, ResponseModel<Course_With_Instructor_Details>>
+
     {
         private readonly ICourseService _CourseService;
         private readonly IWebHostEnvironment _WebHost;
@@ -102,6 +104,15 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             var PaginatedList = await Querable.ToPaginatedListAsync(request.query.pageNumber, request.query.pageSize);
 
             return PaginatedList;
+        }
+
+        public async Task<ResponseModel<Course_With_Instructor_Details>> Handle(GetCourseFullDetailsQuery request, CancellationToken cancellationToken)
+        {
+            var Result = await _CourseService.GetFullCourseDetails(request.courseId);
+            if (Result is null)
+                return BadRequest<Course_With_Instructor_Details>();
+
+            return Success(Result);
         }
 
         /*

@@ -48,6 +48,11 @@ export class CourseService {
       `http://localhost:5227/api/Course/InstructorCourss?InstructorId=${userId}`
     );
   }
+  GetCourseFullDetails(courseId: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/GetCourseFullDetails?CourseId=${courseId}`
+    );
+  }
   SaveCourseLandingPage(CourseLandingPage: any) {
     return this.HttpClient.post(
       'http://localhost:5227/api/Course/SaveCourseLanding',

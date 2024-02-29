@@ -1,0 +1,179 @@
+<div
+  class="mt-3 container d-flex justify-content-center flex-column"
+  *ngIf="CourseDetails"
+>
+  <div
+    class="position-relative d-flex justify-content-center align-items-center"
+  >
+    <img
+      [src]="CourseDetails.courseImage"
+      width="100%"
+      class="position-relative pointer imgW d-block m-auto border border-2 border border-2 border-black"
+    />
+    <div
+      class="border-black position-absolute bg-light border border-1 d-flex justify-content-center align-content-center"
+      style="border-radius: 50%; height: 50px; width: 50px"
+    >
+      <div
+        class="pointer d-flex justify-content-center align-items-center w-100 h-100"
+      >
+        <i class="fs-1 fa-solid fa-play"></i>
+      </div>
+    </div>
+    <div
+      class="pointer text-dark position-absolute text-light fw-bold fs-4"
+      style="bottom: 10%"
+    >
+      Preview this course
+    </div>
+  </div>
+  <h1 class="text-start mt-2 fw-bold">{{ CourseDetails.courseTitle }}</h1>
+  <h1 class="text-start mt-2">{{ CourseDetails.courseSubTitle }}</h1>
+
+  <div class="d-flex gap-2">
+    <div>4.6</div>
+    <rating
+      [(ngModel)]="rate"
+      [max]="5"
+      class="fs-2"
+      style="color: orange"
+      [readonly]="true"
+    ></rating>
+    <div class="text-primary text-decoration-underline pointer">
+      (4450 rating)
+    </div>
+    <div class="text-primary">19806 students</div>
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-user-tie"></i> Created by
+    <span class="pointer text-primary text-decoration-underline">{{
+      CourseDetails.instructoreDetaisl.name
+    }}</span>
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-triangle-exclamation"></i> Last update
+    {{ CourseDetails.lastUpdated | date }}
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-globe"></i> {{ CourseDetails.languge }}
+  </div>
+  <div class="mt-2">
+    <i class="fa-solid fa-hourglass-half"></i>
+    {{
+      CourseDetails.duration < 60
+        ? CourseDetails.duration + " minutes"
+        : (CourseDetails.duration / 60).toFixed(1) + " hours"
+    }}
+  </div>
+
+  <div class="mt-3">
+    <h1 class="fw-bold">Subscribe to Udemy’s top courses</h1>
+    <h3>
+      Get this course, plus 11,000+ of our top-rated courses, with Personal Plan
+    </h3>
+    <h4 class="fw-bold">Course Price 4$</h4>
+
+    <div class="d-flex w-100 justify-content-between gap-3">
+      <div
+        class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
+      >
+        <span> Add to cart </span>
+      </div>
+      <div
+        class="d-flex justify-content-center align-items-center border border-3 p-2 pointer bbtn"
+      >
+        <i class="fs-2 fa-regular fa-heart"></i>
+      </div>
+    </div>
+  </div>
+  <div class="myborder mt-3 p-3">
+    <h1 class="fw-bold">What you'll learn</h1>
+    <div class="row">
+      <div
+        *ngFor="let requirment of CourseDetails.whateyoulearn"
+        class="col-6 d-flex gap-2 justify-content-start align-content-center"
+      >
+        <i class="fs-4 fa-solid fa-check" style="color: rgb(107, 118, 118)"></i>
+        <div>
+          {{ requirment }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-3">
+    <h1 class="fw-bold">Course content</h1>
+    <div class="d-flex gap-1">
+      <div>{{ CourseDetails.contentSections.length + " sections" }}</div>
+      <div>{{ GetLecturesCount() + " lectures " }}</div>
+      <div></div>
+      <div>
+        {{
+          CourseDetails.duration < 60
+            ? CourseDetails.duration + " minutes"
+            : (CourseDetails.duration / 60).toFixed(1) + " hours"
+        }}
+        total length
+      </div>
+    </div>
+  </div>
+  <mat-accordion class="mt-3">
+    <mat-expansion-panel
+      *ngFor="let Section of CourseDetails.contentSections; let i = index"
+    >
+      <mat-expansion-panel-header>
+        <div>
+          <mat-panel-title> Section {{ i + 1 }}: </mat-panel-title>
+        </div>
+        <div>
+          <mat-panel-description class="w-100 d-flex justify-content-between">
+            <div
+              class="w-100 d-flex justify-content-between align-items-center"
+            >
+              <div>{{ Section.sectionTitle }}</div>
+              <div class="text-primary">
+                {{ Section.totalMinutes }}
+                minutes
+              </div>
+            </div>
+          </mat-panel-description>
+        </div>
+      </mat-expansion-panel-header>
+      <div
+        class="d-flex justify-content-between p-2"
+        *ngFor="let lecture of Section.lectureContent"
+      >
+        <div>
+          <i class="fa-solid fa-circle-play"></i>
+
+          {{
+            lecture.lecturetitle.length > 50
+              ? lecture.lecturetitle.substring(0, 50) + "..."
+              : lecture.lecturetitle
+          }}
+        </div>
+        <div>{{ lecture.totalMinutes }} min</div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="mt-3">
+    <h1 class="fw-bold">Requirements</h1>
+    <ul>
+      <li *ngFor="let Requirment of CourseDetails.courrseRequirments">
+        {{ Requirment }}
+      </li>
+    </ul>
+  </div>
+  <div class="mt-3">
+    <h1 class="fw-bold">Who this course is for:</h1>
+    <ul>
+      <li *ngFor="let whoIsCourseFor of CourseDetails.whoIsCourseFor">
+        {{ whoIsCourseFor }}
+      </li>
+    </ul>
+  </div>
+  <div class="mt-3">
+    <h1 class="fw-bold">Description</h1>
+    <p>{{ CourseDetails.description }}</p>
+  </div>
+</div>

@@ -34,5 +34,7 @@ namespace UdemyProject.Contracts.ServicesContracts
         public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery);
 
         Task<bool> DeleteCourse(int CourseId, string InstructorId);
+
+        Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId);
     }
 }

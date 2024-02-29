@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { InstructorModule } from './instructor/instructor.module';
 import { ToastrModule } from 'ngx-toastr';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,
       closeButton: true,
     }),
+    RatingModule.forRoot(),
   ],
   providers: [
     {

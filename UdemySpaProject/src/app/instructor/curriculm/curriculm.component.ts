@@ -160,7 +160,7 @@ export class CurriculmComponent implements OnInit, OnDestroy {
       },
     });
   }
-  File: any;
+  File: File;
   AllowedVideoExtension = 'mp4';
   SelectFile(event: any) {
     this.File = event.target.files[0];
@@ -168,7 +168,7 @@ export class CurriculmComponent implements OnInit, OnDestroy {
 
   SaveLecture(id, title, description) {
     if (this.File != null || this.File != undefined) {
-      var extension: string = this.File.name.split('.')[1];
+      var extension: string = this.File.type.split('/')[1];
       if (this.AllowedVideoExtension != extension) {
         this.ToastrService.warning(
           `File not allowed choose valid one with Extension ${this.AllowedVideoExtension}`

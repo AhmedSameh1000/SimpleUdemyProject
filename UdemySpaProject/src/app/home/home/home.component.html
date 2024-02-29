@@ -19,7 +19,11 @@
 
 <div>
   <div class="container mycontainer">
-    <div *ngFor="let Course of Courses" class="pointer text-start">
+    <div
+      *ngFor="let Course of Courses"
+      class="pointer text-start"
+      [routerLink]="'courseDetails/' + Course.id"
+    >
       <mat-card>
         <img
           style="height: 180px; width: 100%"

@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UdemyProject.Contract.RepositoryContracts;
+﻿using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.LectureDTOs;
 using UdemyProject.Contracts.DTOs.SectionDTOs;
 using UdemyProject.Contracts.RepositoryContracts;
@@ -17,17 +11,17 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
     {
         private readonly ICourseSectionRepository _CourseSectionRepository;
         private readonly ICourseRepository _CourseRepository;
-        private readonly IWebHostEnvironment _Host;
+        private readonly IFileServices _FileServices;
 
         public CourseSectionService(
             ICourseSectionRepository courseSectionRepository,
             ICourseRepository courseRepository,
-            IWebHostEnvironment Host
+            IFileServices fileServices
             )
         {
             _CourseSectionRepository = courseSectionRepository;
             _CourseRepository = courseRepository;
-            _Host = Host;
+            _FileServices = fileServices;
         }
 
         public async Task<bool> CreateSection(int CourseId)
@@ -55,7 +49,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
             {
                 if (l.VideoLectureUrl != null)
                 {
-                    DeleteFileInWWWRoot("CoursesVideos", l.VideoLectureUrl);
+                    _FileServices.DeleteFile("CoursesVideos", l.VideoLectureUrl);
                 }
             });
             Section.Lecture = null;
@@ -108,16 +102,6 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
 
             _CourseSectionRepository.Update(Section);
             return await _CourseSectionRepository.SaveChanges();
-        }
-
-        public void DeleteFileInWWWRoot(string Folderpath, string fileNamewithExtension)
-        {
-            var path = Path.Combine(_Host.WebRootPath, Folderpath, Path.GetFileName(fileNamewithExtension));
-            var IsExist = Path.Exists(path);
-            if (IsExist)
-            {
-                File.Delete(path);
-            }
         }
     }
 }

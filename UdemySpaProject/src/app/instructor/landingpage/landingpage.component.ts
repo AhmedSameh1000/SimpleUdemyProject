@@ -162,7 +162,7 @@ export class LandingpageComponent implements OnInit, OnDestroy {
   SelectVideo($event: any, video: HTMLVideoElement, img: HTMLImageElement) {
     const file = $event.target.files[0];
     video.src = URL.createObjectURL(file);
-    var extension: string = file.name.split('.')[1];
+    var extension: string = file.type.split('/')[1];
 
     if (this.AllowedVideoExtension != extension) {
       this.Toastr.warning('File not allowed choose valid one');

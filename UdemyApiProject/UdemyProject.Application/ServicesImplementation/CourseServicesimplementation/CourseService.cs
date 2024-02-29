@@ -8,6 +8,7 @@ using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
 using UdemyProject.Contracts.DTOs.SectionDTOs;
 using UdemyProject.Contracts.Helpers;
+using UdemyProject.Contracts.RepositoryContracts;
 using UdemyProject.Contracts.ServicesContracts;
 using UdemyProject.Domain.Entities;
 
@@ -19,21 +20,34 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         private readonly ICourseRequimentRepository _CourseRequimentRepository;
         private readonly IWhatYouLearnFromCourseRepository _WhatYouLearnFromCourseRepository;
         private readonly IWhoIsThisCourseForRepository _WhoIsThisCourseForRepository;
+        private readonly IUserProfileRepository _UserProfileRepository;
+        private readonly ICourseSectionRepository _CourseSectionRepository;
+        private readonly IUserRepository _UserRepository;
         private readonly IWebHostEnvironment _Host;
+        private readonly IFileServices _FileServices;
         private readonly IHttpContextAccessor _HttpContextAccessor;
         private readonly IMapper _Mapper;
 
         public CourseService(ICourseRepository courseRepository, ICourseRequimentRepository courseRequimentRepository,
             IWhatYouLearnFromCourseRepository whatYouLearnFromCourseRepository,
             IWhoIsThisCourseForRepository whoIsThisCourseForRepository,
-            IWebHostEnvironment host, IHttpContextAccessor httpContextAccessor,
+            IUserProfileRepository userProfileRepository,
+            ICourseSectionRepository courseSectionRepository,
+            IUserRepository userRepository,
+            IWebHostEnvironment host,
+            IFileServices fileServices,
+            IHttpContextAccessor httpContextAccessor,
             IMapper mapper)
         {
             _CourseRepository = courseRepository;
             _CourseRequimentRepository = courseRequimentRepository;
             _WhatYouLearnFromCourseRepository = whatYouLearnFromCourseRepository;
             _WhoIsThisCourseForRepository = whoIsThisCourseForRepository;
+            _UserProfileRepository = userProfileRepository;
+            _CourseSectionRepository = courseSectionRepository;
+            _UserRepository = userRepository;
             _Host = host;
+            _FileServices = fileServices;
             _HttpContextAccessor = httpContextAccessor;
             _Mapper = mapper;
         }
@@ -162,25 +176,15 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
 
             if (isDeleted && Course.Image != null)
             {
-                DeleteFileInWWWRoot("CourseImages", Course.Image);
+                _FileServices.DeleteFile("CourseImages", Course.Image);
             }
 
             if (isDeleted && Course.CoursePromotionalVideo != null)
             {
-                DeleteFileInWWWRoot("PromotionalVideo", Course.CoursePromotionalVideo);
+                _FileServices.DeleteFile("PromotionalVideo", Course.CoursePromotionalVideo);
             }
 
             return isDeleted;
-        }
-
-        public void DeleteFileInWWWRoot(string Folderpath, string fileNamewithExtension)
-        {
-            var path = Path.Combine(_Host.WebRootPath, Folderpath, Path.GetFileName(fileNamewithExtension));
-            var IsExist = Path.Exists(path);
-            if (IsExist)
-            {
-                File.Delete(path);
-            }
         }
 
         public async Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId)
@@ -221,18 +225,18 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 if (Course.Image != null)
                 {
-                    DeleteFileInWWWRoot("CourseImages", Course.Image);
+                    _FileServices.DeleteFile("CourseImages", Course.Image);
                 }
-                Course.Image = SaveFile(courseLanding.Image, Path.Combine(_Host.WebRootPath, "CourseImages"));
+                Course.Image = _FileServices.SaveFile(courseLanding.Image, Path.Combine(_Host.WebRootPath, "CourseImages")).Path;
             }
 
             if (courseLanding.PromotionVideo is not null)
             {
                 if (Course.CoursePromotionalVideo != null)
                 {
-                    DeleteFileInWWWRoot("PromotionalVideo", Course.CoursePromotionalVideo);
+                    _FileServices.DeleteFile("PromotionalVideo", Course.CoursePromotionalVideo);
                 }
-                Course.CoursePromotionalVideo = SaveFile(courseLanding.PromotionVideo, Path.Combine(_Host.WebRootPath, "PromotionalVideo"));
+                Course.CoursePromotionalVideo = _FileServices.SaveFile(courseLanding.PromotionVideo, Path.Combine(_Host.WebRootPath, "PromotionalVideo")).Path;
             }
 
             Course.Title = courseLanding.Title;
@@ -274,21 +278,6 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return await _CourseRepository.SaveChanges();
         }
 
-        public string SaveFile(IFormFile file, string FolderPath)
-        {
-            var FileUrl = "";
-            string fileName = Guid.NewGuid().ToString();
-            string extension = Path.GetExtension(file.FileName);
-            using (FileStream fileStreams = new(Path.Combine(FolderPath,
-                            fileName + extension), FileMode.Create))
-            {
-                file.CopyTo(fileStreams);
-            }
-
-            FileUrl = fileName + extension;
-            return FileUrl;
-        }
-
         public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery)
         {
             Expression<Func<UdemyProject.Domain.Entities.Course, CourseForReturnDTO>> expression = e => new CourseForReturnDTO(e.Id, e.Title, e.SubTitle, e.Price.HasValue ? e.Price.Value : 0, e.Instructor.Name, e.InstructorId, Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", e.Image));
@@ -302,14 +291,67 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             if (paginationQuery.langugeId != null)
             {
                 Query = Query.Where(c => c.langugeId == paginationQuery.langugeId);
-            }   
+            }
             if (paginationQuery.categoryId != null)
             {
                 Query = Query.Where(c => c.CategoryId == paginationQuery.categoryId);
             }
 
-
             return Query.Select(expression);
+        }
+
+        public async Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == CourseId, new[] { "languge", "category", "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Students", });
+
+            if (Course is null)
+            {
+                return null;
+            }
+
+            var UdemyAccount = await _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == Course.InstructorId);
+            var Instructor = await _UserRepository.GetFirstOrDefault(c => c.Id == Course.InstructorId, new[] { "CoursesICreated" });
+            var Sections = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == CourseId, new[] { "Lecture" });
+
+            var Result = new Course_With_Instructor_Details()
+            {
+                courseId = CourseId,
+                courseImage = Course.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", Course.Image),
+                courseRating = 0,
+                courseSubTitle = Course.SubTitle,
+                courseTitle = Course.Title,
+                description = Course.Description,
+                languge = Course.languge.Name,
+                lastUpdated = DateTime.Now,
+                instructoreDetaisl = new InstructoreDetaisl()
+                {
+                    instructorId = Instructor.Id,
+                    biography = UdemyAccount.Biography,
+                    courseCount = Instructor.CoursesICreated.Count(),
+                    name = Instructor.Name,
+                    instructorImage = UdemyAccount.ImageUrl == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "UsersImagesProfile", UdemyAccount.ImageUrl),
+                },
+                courrseRequirments = Course.Requirments.Select(c => c.Text).ToList(),
+                whateyoulearn = Course.whatYouLearnFromCourse.Select(c => c.Text).ToList(),
+                whoIsCourseFor = Course.whoIsthisCoursefors.Select(c => c.Text).ToList(),
+                duration = Sections.Sum(s => s.Lecture.Sum(l => l.VideoMinuteLength.HasValue ? l.VideoMinuteLength.Value : 0)),
+                isPaidforCurrentUser = true,
+                contentSections = Sections.Select(c => new courseContentSectionDto()
+                {
+                    sectionId = c.Id,
+                    lectureCount = c.Lecture.Count(),
+                    sectionTitle = c.Title,
+                    totalMinutes = c.Lecture.Sum(c => c.VideoMinuteLength.HasValue ? c.VideoMinuteLength.Value : 0),
+                    lectureContent = c.Lecture.Select(c => new courseLectureContentDto()
+                    {
+                        lectureId = c.Id,
+                        Lecturetitle = c.Title,
+                        totalMinutes = c.VideoMinuteLength.HasValue ? c.VideoMinuteLength.Value : 0
+                    }).ToList()
+                }).ToList()
+            };
+
+            return Result;
         }
     }
 }

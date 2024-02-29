@@ -112,5 +112,13 @@ namespace UdemyProject.Api.Controllers
 
             return NewResult(Response);
         }
+
+        [HttpGet("GetCourseFullDetails")]
+        public async Task<IActionResult> GetCourseFullDetails(int CourseId)
+        {
+            var Response = await _Mediator.Send(new GetCourseFullDetailsQuery(CourseId));
+
+            return NewResult(Response);
+        }
     }
 }

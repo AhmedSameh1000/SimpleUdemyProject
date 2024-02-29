@@ -14,14 +14,18 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
     {
         private readonly ICourseSectionRepository _CourseSectionRepository;
         private readonly ICourseLectureRepository _CourseLectureRepository;
-        private readonly ICourseRepository _CourseRepository;
+        private readonly IFileServices _FileServices;
         private readonly IWebHostEnvironment _Host;
 
-        public CourseLectureService(ICourseSectionRepository courseSectionRepository, ICourseLectureRepository courseLectureRepository, ICourseRepository courseRepository, IWebHostEnvironment Host)
+        public CourseLectureService(
+            ICourseSectionRepository courseSectionRepository,
+            ICourseLectureRepository courseLectureRepository,
+            IFileServices fileServices,
+            IWebHostEnvironment Host)
         {
             _CourseSectionRepository = courseSectionRepository;
             _CourseLectureRepository = courseLectureRepository;
-            _CourseRepository = courseRepository;
+            _FileServices = fileServices;
             _Host = Host;
         }
 
@@ -48,7 +52,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
             if (Lecture is null)
                 return false;
 
-            Lecture.Title = lectureForUpdateDTO.Title;
+            
             Lecture.Description = lectureForUpdateDTO.Description;
 
             if (lectureForUpdateDTO.Video != null)
@@ -59,14 +63,15 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
 
                     if (Path.Exists(CurrentVideo))
                     {
-                        DeleteFileInWWWRoot("CoursesVideos", Lecture.VideoLectureUrl);
+                        _FileServices.DeleteFile("CoursesVideos", Lecture.VideoLectureUrl);
                     }
                 }
 
                 FFmpeg.SetExecutablesPath(Path.Combine(_Host.WebRootPath, "FFPEG"), "ffmpeg", "ffprobe");
-                var Url = SaveFile(lectureForUpdateDTO.Video, Path.Combine(_Host.WebRootPath, "CoursesVideos"));
-                Lecture.VideoLectureUrl = Url;
-                var LectureVideoPath = Path.Combine(_Host.WebRootPath, "CoursesVideos", Url);
+                var Res = _FileServices.SaveFile(lectureForUpdateDTO.Video, Path.Combine(_Host.WebRootPath, "CoursesVideos"));
+                Lecture.VideoLectureUrl = Res.Path;
+                Lecture.Title = Res.Name;
+                var LectureVideoPath = Path.Combine(_Host.WebRootPath, "CoursesVideos", Res.Path);
 
                 if (Path.Exists(LectureVideoPath))
                 {
@@ -77,32 +82,6 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
             _CourseLectureRepository.Update(Lecture);
             return await _CourseLectureRepository.SaveChanges();
         }
-
-        public void DeleteFileInWWWRoot(string Folderpath, string fileNamewithExtension)
-        {
-            var path = Path.Combine(_Host.WebRootPath, Folderpath, Path.GetFileName(fileNamewithExtension));
-            var IsExist = Path.Exists(path);
-            if (IsExist)
-            {
-                File.Delete(path);
-            }
-        }
-
-        public string SaveFile(IFormFile file, string FolderPath)
-        {
-            var FileUrl = "";
-            string fileName = Guid.NewGuid().ToString();
-            string extension = Path.GetExtension(file.FileName);
-            using (FileStream fileStreams = new(Path.Combine(FolderPath,
-                            fileName + extension), FileMode.Create))
-            {
-                file.CopyTo(fileStreams);
-            }
-
-            FileUrl = fileName + extension;
-            return FileUrl;
-        }
-
         public async Task<bool> DeleteLecture(int lectureId)
         {
             var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureId);
@@ -115,7 +94,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
 
                 if (Path.Exists(CurrentVideo))
                 {
-                    DeleteFileInWWWRoot("CoursesVideos", Lecture.VideoLectureUrl);
+                    _FileServices.DeleteFile("CoursesVideos", Lecture.VideoLectureUrl);
                 }
             }
 
