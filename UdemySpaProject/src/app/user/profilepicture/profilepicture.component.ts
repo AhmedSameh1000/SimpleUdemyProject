@@ -44,7 +44,7 @@ export class ProfilepictureComponent implements OnInit {
   }
 
   File: any;
-  AllowdExtens = ['png', 'jpg'];
+  AllowdExtens = ['png', 'jpg', 'jpeg'];
   SelectImage(event, img: HTMLImageElement) {
     if (!this.AllowdExtens.includes(event.target.files[0].type.split('/')[1])) {
       this.Toaster.warning('Choose Valid Image');

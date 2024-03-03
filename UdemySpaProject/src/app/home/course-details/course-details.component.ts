@@ -1,6 +1,8 @@
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/Services/course.service';
 import { Component, OnInit } from '@angular/core';
+import { VideoComponent } from '../video/video.component';
 
 @Component({
   selector: 'app-course-details',
@@ -10,7 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class CourseDetailsComponent implements OnInit {
   constructor(
     private CourseService: CourseService,
-    private ActivatedRoute: ActivatedRoute
+    private ActivatedRoute: ActivatedRoute,
+    private MatDialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.GetCoursId();
@@ -46,4 +49,11 @@ export class CourseDetailsComponent implements OnInit {
     return count;
   }
   rate = 3;
+
+  OpenVideoDilog() {
+    this.MatDialog.open(VideoComponent, {
+      data: this.CourseId,
+      minWidth: '50%',
+    });
+  }
 }

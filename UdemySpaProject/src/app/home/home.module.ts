@@ -7,9 +7,10 @@ import { MaterialModule } from '../material/material.module';
 import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { FormsModule } from '@angular/forms';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { VideoComponent } from './video/video.component';
 
 @NgModule({
-  declarations: [HomeComponent, CourseFilterComponent, CourseDetailsComponent],
+  declarations: [HomeComponent, CourseFilterComponent, CourseDetailsComponent, VideoComponent],
   imports: [CommonModule, HomeRoutingModule, MaterialModule, FormsModule],
 })
 export class HomeModule {}

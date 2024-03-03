@@ -31,6 +31,10 @@ namespace UdemyProject.Application.ServicesImplementation.FileServiceImplementat
 
         public FileInformation SaveFile(IFormFile file, string FolderPath)
         {
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
             var FileUrl = "";
             string fileName = Guid.NewGuid().ToString();
             string extension = Path.GetExtension(file.FileName);

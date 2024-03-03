@@ -3,6 +3,7 @@
   *ngIf="CourseDetails"
 >
   <div
+    (click)="OpenVideoDilog()"
     class="position-relative d-flex justify-content-center align-items-center"
   >
     <img
@@ -11,8 +12,13 @@
       class="position-relative pointer imgW d-block m-auto border border-2 border border-2 border-black"
     />
     <div
-      class="border-black position-absolute bg-light border border-1 d-flex justify-content-center align-content-center"
-      style="border-radius: 50%; height: 50px; width: 50px"
+      class="myborder border-black position-absolute bg-light border border-1 d-flex justify-content-center align-content-center"
+      style="
+        background-color: fdfeff;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+      "
     >
       <div
         class="pointer d-flex justify-content-center align-items-center w-100 h-100"
@@ -143,15 +149,11 @@
         *ngFor="let lecture of Section.lectureContent"
       >
         <div>
-          <i class="fa-solid fa-circle-play"></i>
+          <i class="fa-solid fa-circle-play text-primary"></i>
 
-          {{
-            lecture.lecturetitle.length > 50
-              ? lecture.lecturetitle.substring(0, 50) + "..."
-              : lecture.lecturetitle
-          }}
+          {{ lecture.lecturetitle }}
         </div>
-        <div>{{ lecture.totalMinutes }} min</div>
+        <div class="text-primary">{{ lecture.totalMinutes }} min</div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
@@ -175,5 +177,51 @@
   <div class="mt-3">
     <h1 class="fw-bold">Description</h1>
     <p>{{ CourseDetails.description }}</p>
+  </div>
+  <div>
+    <h1 class="fw-bold">Instructor</h1>
+    <h1 class="text-primary text-decoration-underline pointer">
+      {{ CourseDetails.instructoreDetaisl.name }}
+    </h1>
+
+    <h2 class="text-secondary">Professional Software Developer</h2>
+    <div class="d-flex justify-content-start gap-2 align-items-center">
+      <div>
+        <img
+          style="border-radius: 50%"
+          [src]="CourseDetails.instructoreDetaisl.instructorImage"
+          width="130px"
+          height="130px"
+        />
+      </div>
+      <div class="fw-bold">
+        <p>
+          <i class="fa-solid fa-star"></i>
+          4.6 Instructor Rating
+        </p>
+        <p>
+          <i class="fa-solid fa-certificate"></i>
+          6,588 Reviews
+        </p>
+        <p>
+          <i class="fa-solid fa-user-group"></i>
+          29,288 Students
+        </p>
+        <p>
+          <i class="fa-solid fa-circle-play"></i>
+
+          {{ CourseDetails.instructoreDetaisl.courseCount }} Courses
+        </p>
+      </div>
+    </div>
+    <p class="mt-2 text-start">
+      Sameer Saini is a professional Full Stack Software Developer with over 12
+      years of Industry Experience. Initially started as a back-end developer
+      using ASP.NET Framework, he shifted towards building highly scalable
+      full-stack applications that follow best practices and clean code
+      standards. Sameer is an advocate of best practices and with his vast
+      industry experience, he likes to mentor and teach many other software
+      professionals.
+    </p>
   </div>
 </div>
