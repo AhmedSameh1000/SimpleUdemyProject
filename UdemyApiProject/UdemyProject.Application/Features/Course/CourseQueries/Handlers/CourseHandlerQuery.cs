@@ -108,7 +108,7 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
 
         public async Task<ResponseModel<Course_With_Instructor_Details>> Handle(GetCourseFullDetailsQuery request, CancellationToken cancellationToken)
         {
-            var Result = await _CourseService.GetFullCourseDetails(request.courseId);
+            var Result = await _CourseService.GetFullCourseDetails(request.courseId, request.userId);
             if (Result is null)
                 return BadRequest<Course_With_Instructor_Details>();
 

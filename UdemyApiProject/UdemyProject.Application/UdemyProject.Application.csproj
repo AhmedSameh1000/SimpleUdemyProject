@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Authentication\AuthenticationQueries\Validators\" />
-    <Folder Include="Features\Cart\CartQuery\" />
     <Folder Include="Features\CourseCategory\CourseCategoryCommands\" />
     <Folder Include="Features\CourseCategory\CourseCategoryQuries\Validators\" />
     <Folder Include="Features\CourseLecture\CourseLectureCommand\Validators\" />

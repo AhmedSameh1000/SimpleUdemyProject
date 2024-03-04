@@ -38,6 +38,8 @@ namespace UdemyProject.Application.ServicesImplementation.CartItemService
                         {
                             courseId = cartItemForCreate.courseId,
                             coursePrice = cartItemForCreate.price,
+                            cartItemTitle=cartItemForCreate.cartItemTitle,
+                            ApplicationUserId=cartItemForCreate.userId
                         }
                     }
                 });
@@ -48,11 +50,26 @@ namespace UdemyProject.Application.ServicesImplementation.CartItemService
                 {
                     courseId = cartItemForCreate.courseId,
                     coursePrice = cartItemForCreate.price,
+                    cartItemTitle = cartItemForCreate.cartItemTitle,
+                    ApplicationUserId = cartItemForCreate.userId
                 });
                 AvailableCart.totalPrice += cartItemForCreate.price;
                 _CartRepository.Update(AvailableCart);
             }
 
+            return await _CartRepository.SaveChanges();
+        }
+
+        public async Task<bool> RemoveCartItem(int CourseId, string userId)
+        {
+            var Cartitem = await _CartItemRepository.GetFirstOrDefault(c => c.courseId == CourseId && c.ApplicationUserId == userId);
+
+            if (Cartitem is null)
+            {
+                return false;
+            }
+
+            _CartItemRepository.Remove(Cartitem);
             return await _CartRepository.SaveChanges();
         }
     }

@@ -26,6 +26,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         private readonly IWebHostEnvironment _Host;
         private readonly IFileServices _FileServices;
         private readonly IHttpContextAccessor _HttpContextAccessor;
+        private readonly ICartItemRepository _CartItemRepository;
         private readonly IMapper _Mapper;
 
         public CourseService(ICourseRepository courseRepository, ICourseRequimentRepository courseRequimentRepository,
@@ -37,6 +38,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             IWebHostEnvironment host,
             IFileServices fileServices,
             IHttpContextAccessor httpContextAccessor,
+            ICartItemRepository cartItemRepository,
             IMapper mapper)
         {
             _CourseRepository = courseRepository;
@@ -49,6 +51,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _Host = host;
             _FileServices = fileServices;
             _HttpContextAccessor = httpContextAccessor;
+            _CartItemRepository = cartItemRepository;
             _Mapper = mapper;
         }
 
@@ -219,6 +222,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         public async Task<bool> SaveCourseLanding(CourseLandingDTO courseLanding)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseLanding.CourseId);
+
             if (Course is null) return false;
 
             if (courseLanding.Image is not null)
@@ -307,7 +311,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return Query.Select(expression);
         }
 
-        public async Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId)
+        public async Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId,string userId)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == CourseId, new[] { "languge", "category", "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Students", });
 
@@ -319,7 +323,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             var UdemyAccount = await _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == Course.InstructorId);
             var Instructor = await _UserRepository.GetFirstOrDefault(c => c.Id == Course.InstructorId, new[] { "CoursesICreated" });
             var Sections = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == CourseId, new[] { "Lecture" });
-
+            var isInCart = await _CartItemRepository.GetFirstOrDefault(c => c.courseId == CourseId&&c.ApplicationUserId==userId);
             var Result = new Course_With_Instructor_Details()
             {
                 courseId = CourseId,
@@ -331,6 +335,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 languge = Course.languge.Name,
                 lastUpdated = DateTime.Now,
                 coursePrice = Course.Price.HasValue ? Course.Price.Value : 0,
+                isInCart = isInCart == null ? false : true,
                 instructoreDetaisl = new InstructoreDetaisl()
                 {
                     instructorId = Instructor.Id,

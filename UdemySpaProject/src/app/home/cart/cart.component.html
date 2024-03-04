@@ -1,45 +1,95 @@
-<div class="container-sm d-flex flex-column justify-content-center mt-5">
+<div
+  class="container-sm d-flex flex-column justify-content-center mt-5"
+  *ngIf="Cart"
+>
   <h1 class="fw-bold">Shopping Cart</h1>
 
-  <div class="d-flex flex-column-reverse flex-lg-row gap-3">
+  <div
+    class="myborder d-flex justify-content-center align-items-center"
+    style="height: 70vh"
+    *ngIf="Cart.items == null || Cart.items.length <= 0"
+  >
+    <img
+      width="60%"
+      height="60%"
+      src="../../../assets/Images/empty-shopping-cart-v2.jpg"
+      alt=""
+    />
+  </div>
+  <div
+    *ngIf="Cart.items != null && Cart.items.length > 0"
+    class="d-flex flex-column-reverse flex-lg-row gap-3 fw-bold"
+  >
     <div style="width: 70%" class="mt-sm-5 mt-2">
-      <h3 class="text-dark fw-bold">2 Courses in Cart</h3>
+      <h3 class="text-dark fw-bold">
+        {{ Cart.items.length + " Courses in Cart" }}
+      </h3>
       <hr />
-      <div class="d-flex gap-1 justify-content-around cont">
-        <div>
-          <img
-            width="80%"
-            height="80%"
-            class="myimg"
-            src="http://localhost:5227\UsersImagesProfile\4255277e-5107-4e9e-94de-d226be8f2e5b.jpg"
-            alt=""
-          />
-        </div>
+      <div *ngFor="let Cartitem of Cart.items" class="row position-relative">
+        <div
+          class="col-12 col-lg-6 d-flex gap-1 justify-content-start text-start cont"
+        >
+          <div class="w-25">
+            <img class="w-100" [src]="Cartitem.cartItemImage" alt="" />
+          </div>
 
-        <div>
-          <h3 class="text-start">
-            CompTIA Security+ (SY0-701) Complete Course & Exam
-          </h3>
-          <div class="d-flex gap-2">
-            <div>4.6</div>
-            <rating
-              [(ngModel)]="rate"
-              [max]="5"
-              class="fs-3"
-              style="color: orange"
-              [readonly]="true"
-            ></rating>
-            <div class="newhide text-primary text-decoration-underline pointer">
-              (4450 rating)
+          <div>
+            <h3 class="text-start">
+              {{ Cartitem.cartItemTitle }}
+            </h3>
+            <div class="d-flex gap-2">
+              <div>4.6</div>
+              <rating
+                [(ngModel)]="Cartitem.cartItemRating"
+                [max]="5"
+                class="fs-3"
+                style="color: orange"
+                [readonly]="true"
+              ></rating>
+              <div
+                class="newhide text-primary text-decoration-underline pointer"
+              >
+                (4450 rating)
+              </div>
+            </div>
+            <div class="d-flex gap-2 align-items-center mt-lg-3">
+              <p class="text-primary">
+                {{
+                  Cartitem.totalMinutes < 60
+                    ? Cartitem.totalMinutes + " Minutes"
+                    : Cartitem.totalMinutes / 60 + " hours"
+                }}
+              </p>
+              <i class="fa-solid fa-circle mb-2 text-secondary"></i>
+              <p class="text-primary">
+                {{ Cartitem.lecturesCount + " Lectures" }}
+              </p>
             </div>
           </div>
+          <div
+            class="text-primary fw-bold mt-1 position-absolute top-0 end-0 me-2"
+          >
+            {{ Cartitem.price == 0 ? "free" : Cartitem.price + " EGP" }}
+          </div>
         </div>
-        <div class="text-primary fw-bold mt-1">1399 EGP</div>
+
+        <div class="text-primary col-12 col-lg-6 row">
+          <p
+            class="pointer col-6 col-lg-12"
+            (click)="RemoveFromCart(Cartitem.courseId)"
+          >
+            Remove
+          </p>
+          <p class="pointer col-6 col-lg-12">Move to wichlist</p>
+        </div>
+        <hr />
       </div>
     </div>
     <div>
       <h3 class="text-secondary fw-bold">Total:</h3>
-      <h1 class="fw-bold">priceE£3,199.98</h1>
+      <h1 class="fw-bold">
+        {{ Cart.totlaPrice == 0 ? "free" : Cart.totlaPrice + " EGP" }}
+      </h1>
       <button mat-raised-button color="primary" class="w-100 rounded rounded-0">
         Checkout
       </button>

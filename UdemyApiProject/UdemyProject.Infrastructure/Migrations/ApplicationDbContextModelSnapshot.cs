@@ -233,7 +233,6 @@ namespace UdemyProject.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("applicationUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("isDeleted")
@@ -257,16 +256,25 @@ namespace UdemyProject.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("cartId")
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("cartId")
                         .HasColumnType("int");
 
-                    b.Property<int>("courseId")
+                    b.Property<string>("cartItemTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("courseId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("coursePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("cartId");
 
@@ -649,25 +657,28 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.HasOne("UdemyProject.Domain.Entities.ApplicationUser", "applicationUser")
                         .WithMany("carts")
                         .HasForeignKey("applicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("applicationUser");
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.CartItem", b =>
                 {
+                    b.HasOne("UdemyProject.Domain.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("cartItems")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("UdemyProject.Domain.Entities.Cart", "cart")
                         .WithMany("cartItems")
                         .HasForeignKey("cartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("UdemyProject.Domain.Entities.Course", "course")
                         .WithMany()
-                        .HasForeignKey("courseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("courseId");
+
+                    b.Navigation("ApplicationUser");
 
                     b.Navigation("cart");
 
@@ -800,6 +811,8 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("CoursesICreated");
 
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("cartItems");
 
                     b.Navigation("carts");
 

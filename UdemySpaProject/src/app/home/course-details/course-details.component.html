@@ -81,15 +81,24 @@
 
     <div class="d-flex w-100 justify-content-between gap-3">
       <div
+        *ngIf="!CourseDetails.isInCart"
         (click)="AddToCart()"
         class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
       >
         <span> Add to cart </span>
       </div>
       <div
+        (click)="RemoveCartItem()"
+        *ngIf="CourseDetails.isInCart"
+        class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
+      >
+        <span> Remove from cart </span>
+      </div>
+      <div
         class="d-flex justify-content-center align-items-center border border-3 p-2 pointer bbtn"
       >
-        <i class="fs-2 fa-regular fa-heart"></i>
+        <i *ngIf="!CourseDetails.isInCart" class="fs-2 fa-regular fa-heart"></i>
+        <i *ngIf="CourseDetails.isInCart" class="fs-2 fa-solid fa-heart"></i>
       </div>
     </div>
   </div>

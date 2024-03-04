@@ -48,9 +48,9 @@ export class CourseService {
       `http://localhost:5227/api/Course/InstructorCourss?InstructorId=${userId}`
     );
   }
-  GetCourseFullDetails(courseId: any) {
+  GetCourseFullDetails(courseId: any, userId: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/GetCourseFullDetails?CourseId=${courseId}`
+      `http://localhost:5227/api/Course/GetCourseFullDetails?CourseId=${courseId}&userId=${userId}`
     );
   }
   SaveCourseLandingPage(CourseLandingPage: any) {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Reflection.Emit;
 using UdemyProject.Domain.Entities;
 
 namespace UdemyProject.Infrastructure.DbContext
@@ -35,6 +36,12 @@ namespace UdemyProject.Infrastructure.DbContext
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<CartItem>()
+                .HasOne(c => c.cart)
+                .WithMany(c => c.cartItems)
+                .HasForeignKey(c => c.cartId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
         }

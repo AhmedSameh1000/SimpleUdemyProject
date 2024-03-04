@@ -21,5 +21,12 @@ namespace UdemyProject.Api.Controllers
             var Result = await _Mediator.Send(new CreateCartModelCommand(cartItemForCreate));
             return NewResult(Result);
         }
+
+        [HttpDelete("RemoveCartItem")]
+        public async Task<IActionResult> RemoveCartItem(int CartItemId, string userId)
+        {
+            var Result = await _Mediator.Send(new RemoveCartitemModelCommand(CartItemId, userId));
+            return NewResult(Result);
+        }
     }
 }

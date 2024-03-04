@@ -11,12 +11,10 @@ namespace UdemyProject.Api.Controllers
     public class CourseController : AppBaseController
     {
         private readonly IMediator _Mediator;
-        private readonly IWebHostEnvironment _WebHostEnvironment;
 
-        public CourseController(IMediator mediator, IWebHostEnvironment webHostEnvironment)
+        public CourseController(IMediator mediator)
         {
             _Mediator = mediator;
-            _WebHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost("CreateBasicCourse")]
@@ -54,8 +52,9 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+
         [HttpPost("UpdateCoursePrice")]
-        public async Task<IActionResult> SaveCourseLanding(CoursePriceForUpdate coursePriceForUpdate)
+        public async Task<IActionResult> UpdateCoursePrice(CoursePriceForUpdate coursePriceForUpdate)
         {
             var Response = await _Mediator.Send(new UpdateCoursePriceModelCommand(coursePriceForUpdate));
             return NewResult(Response);
@@ -68,8 +67,9 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+
         [HttpGet("GetCoursePaginated")]
-        public async Task<IActionResult> GetCourseDetails([FromQuery] PaginationQuery paginationQuery)
+        public async Task<IActionResult> GetCoursePaginated([FromQuery] PaginationQuery paginationQuery)
         {
             var Response = await _Mediator.Send(new GetCoursesPaginatedModelQuery(paginationQuery));
 
@@ -114,9 +114,9 @@ namespace UdemyProject.Api.Controllers
         }
 
         [HttpGet("GetCourseFullDetails")]
-        public async Task<IActionResult> GetCourseFullDetails(int CourseId)
+        public async Task<IActionResult> GetCourseFullDetails(int CourseId, string userId)
         {
-            var Response = await _Mediator.Send(new GetCourseFullDetailsQuery(CourseId));
+            var Response = await _Mediator.Send(new GetCourseFullDetailsQuery(CourseId, userId));
 
             return NewResult(Response);
         }

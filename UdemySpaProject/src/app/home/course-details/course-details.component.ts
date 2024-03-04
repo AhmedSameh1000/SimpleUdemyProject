@@ -34,7 +34,10 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
   LoadCourse() {
-    this.CourseService.GetCourseFullDetails(this.CourseId).subscribe({
+    this.CourseService.GetCourseFullDetails(
+      this.CourseId,
+      this.AuthService.GetUserId()
+    ).subscribe({
       next: (res: any) => {
         this.CourseDetails = res.data;
         console.log(res);
@@ -66,10 +69,23 @@ export class CourseDetailsComponent implements OnInit {
       userId: this.AuthService.GetUserId(),
       price: this.CourseDetails.coursePrice,
       courseId: this.CourseId,
+      cartItemTitle: this.CourseDetails.courseTitle,
     };
     this.CartService.AddToCart(Obj).subscribe({
       next: (res) => {
         console.log(res);
+        this.LoadCourse();
+      },
+    });
+  }
+  RemoveCartItem() {
+    this.CartService.RemoveCartItem(
+      this.CourseId,
+      this.AuthService.GetUserId()
+    ).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.LoadCourse();
       },
     });
   }

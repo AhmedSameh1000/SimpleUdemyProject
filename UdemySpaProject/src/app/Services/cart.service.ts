@@ -13,4 +13,16 @@ export class CartService {
       CourseToAdd
     );
   }
+
+  GetCartByUserid(userId: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Cart?userId=${userId}`
+    );
+  }
+
+  RemoveCartItem(cartItemId, userId: any) {
+    return this.HttpClient.delete(
+      `http://localhost:5227/api/CartItem/RemoveCartItem?CartItemId=${cartItemId}&userId=${userId}`
+    );
+  }
 }
