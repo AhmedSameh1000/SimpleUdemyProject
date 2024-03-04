@@ -1,8 +1,16 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\046cbe68-9d48-4cda-87af-da748f7c3cd1.png",
-      "PackagePath": "staticwebassets\\CourseImages\\046cbe68-9d48-4cda-87af-da748f7c3cd1.png"
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\c6b805c4-4f96-402a-ba8a-42c90bdce061.png",
+      "PackagePath": "staticwebassets\\CourseImages\\c6b805c4-4f96-402a-ba8a-42c90bdce061.png"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\c98ff7ff-bf4c-44ab-ae4a-f5db248eeb17.png",
+      "PackagePath": "staticwebassets\\CourseImages\\c98ff7ff-bf4c-44ab-ae4a-f5db248eeb17.png"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CoursesVideos\\8177469a-19f5-4fe2-887f-980fec608c20.mp4",
+      "PackagePath": "staticwebassets\\CoursesVideos\\8177469a-19f5-4fe2-887f-980fec608c20.mp4"
     },
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
@@ -13,12 +21,12 @@
       "PackagePath": "staticwebassets\\FFPEG\\ffprobe.exe"
     },
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\e44cfbf4-a8bb-4187-bd8c-720933d18981.mp4",
-      "PackagePath": "staticwebassets\\PromotionalVideo\\e44cfbf4-a8bb-4187-bd8c-720933d18981.mp4"
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\d96a8e1b-089b-4dbc-99e7-1be22ecae213.mp4",
+      "PackagePath": "staticwebassets\\PromotionalVideo\\d96a8e1b-089b-4dbc-99e7-1be22ecae213.mp4"
     },
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\6855e131-9d32-4a78-9a81-194aedea4b43.jpg",
-      "PackagePath": "staticwebassets\\UsersImagesProfile\\6855e131-9d32-4a78-9a81-194aedea4b43.jpg"
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\4255277e-5107-4e9e-94de-d226be8f2e5b.jpg",
+      "PackagePath": "staticwebassets\\UsersImagesProfile\\4255277e-5107-4e9e-94de-d226be8f2e5b.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",

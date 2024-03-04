@@ -1,11 +1,11 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\046cbe68-9d48-4cda-87af-da748f7c3cd1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\c6b805c4-4f96-402a-ba8a-42c90bdce061.png))">
       <SourceType>Package</SourceType>
       <SourceId>UdemyProject.Api</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/UdemyProject.Api</BasePath>
-      <RelativePath>CourseImages/046cbe68-9d48-4cda-87af-da748f7c3cd1.png</RelativePath>
+      <RelativePath>CourseImages/c6b805c4-4f96-402a-ba8a-42c90bdce061.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -14,7 +14,39 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\046cbe68-9d48-4cda-87af-da748f7c3cd1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\c6b805c4-4f96-402a-ba8a-42c90bdce061.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\c98ff7ff-bf4c-44ab-ae4a-f5db248eeb17.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>UdemyProject.Api</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/UdemyProject.Api</BasePath>
+      <RelativePath>CourseImages/c98ff7ff-bf4c-44ab-ae4a-f5db248eeb17.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\c98ff7ff-bf4c-44ab-ae4a-f5db248eeb17.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CoursesVideos\8177469a-19f5-4fe2-887f-980fec608c20.mp4))">
+      <SourceType>Package</SourceType>
+      <SourceId>UdemyProject.Api</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/UdemyProject.Api</BasePath>
+      <RelativePath>CoursesVideos/8177469a-19f5-4fe2-887f-980fec608c20.mp4</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CoursesVideos\8177469a-19f5-4fe2-887f-980fec608c20.mp4))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FFPEG\ffmpeg.exe))">
       <SourceType>Package</SourceType>
@@ -48,12 +80,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FFPEG\ffprobe.exe))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\e44cfbf4-a8bb-4187-bd8c-720933d18981.mp4))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\d96a8e1b-089b-4dbc-99e7-1be22ecae213.mp4))">
       <SourceType>Package</SourceType>
       <SourceId>UdemyProject.Api</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/UdemyProject.Api</BasePath>
-      <RelativePath>PromotionalVideo/e44cfbf4-a8bb-4187-bd8c-720933d18981.mp4</RelativePath>
+      <RelativePath>PromotionalVideo/d96a8e1b-089b-4dbc-99e7-1be22ecae213.mp4</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -62,14 +94,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\e44cfbf4-a8bb-4187-bd8c-720933d18981.mp4))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\d96a8e1b-089b-4dbc-99e7-1be22ecae213.mp4))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UsersImagesProfile\6855e131-9d32-4a78-9a81-194aedea4b43.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UsersImagesProfile\4255277e-5107-4e9e-94de-d226be8f2e5b.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>UdemyProject.Api</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/UdemyProject.Api</BasePath>
-      <RelativePath>UsersImagesProfile/6855e131-9d32-4a78-9a81-194aedea4b43.jpg</RelativePath>
+      <RelativePath>UsersImagesProfile/4255277e-5107-4e9e-94de-d226be8f2e5b.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -78,7 +110,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UsersImagesProfile\6855e131-9d32-4a78-9a81-194aedea4b43.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\UsersImagesProfile\4255277e-5107-4e9e-94de-d226be8f2e5b.jpg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

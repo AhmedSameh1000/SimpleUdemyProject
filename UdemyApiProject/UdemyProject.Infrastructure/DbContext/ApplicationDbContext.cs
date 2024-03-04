@@ -25,6 +25,8 @@ namespace UdemyProject.Infrastructure.DbContext
         public DbSet<WhoIsthisCoursefor> whoIsthisCoursefor { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
+        public DbSet<Cart> carts { get; set; }
+        public DbSet<CartItem> cartItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

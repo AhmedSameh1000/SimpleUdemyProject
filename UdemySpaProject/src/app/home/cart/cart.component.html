@@ -1,0 +1,48 @@
+<div class="container-sm d-flex flex-column justify-content-center mt-5">
+  <h1 class="fw-bold">Shopping Cart</h1>
+
+  <div class="d-flex flex-column-reverse flex-lg-row gap-3">
+    <div style="width: 70%" class="mt-sm-5 mt-2">
+      <h3 class="text-dark fw-bold">2 Courses in Cart</h3>
+      <hr />
+      <div class="d-flex gap-1 justify-content-around cont">
+        <div>
+          <img
+            width="80%"
+            height="80%"
+            class="myimg"
+            src="http://localhost:5227\UsersImagesProfile\4255277e-5107-4e9e-94de-d226be8f2e5b.jpg"
+            alt=""
+          />
+        </div>
+
+        <div>
+          <h3 class="text-start">
+            CompTIA Security+ (SY0-701) Complete Course & Exam
+          </h3>
+          <div class="d-flex gap-2">
+            <div>4.6</div>
+            <rating
+              [(ngModel)]="rate"
+              [max]="5"
+              class="fs-3"
+              style="color: orange"
+              [readonly]="true"
+            ></rating>
+            <div class="newhide text-primary text-decoration-underline pointer">
+              (4450 rating)
+            </div>
+          </div>
+        </div>
+        <div class="text-primary fw-bold mt-1">1399 EGP</div>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-secondary fw-bold">Total:</h3>
+      <h1 class="fw-bold">priceE£3,199.98</h1>
+      <button mat-raised-button color="primary" class="w-100 rounded rounded-0">
+        Checkout
+      </button>
+    </div>
+  </div>
+</div>

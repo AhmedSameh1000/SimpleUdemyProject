@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UdemyProject.Domain.Entities
+﻿namespace UdemyProject.Domain.Entities
 {
     public class CartItem
     {
@@ -20,9 +14,10 @@ namespace UdemyProject.Domain.Entities
     {
         public int Id { get; set; }
         public string applicationUserId { get; set; }
-        public List<CartItem> Items { get; set; }
+        public List<CartItem> cartItems { get; set; }
 
         public decimal totalPrice { get; set; }
         public ApplicationUser applicationUser { get; set; }
+        public bool isDeleted { get; set; }
     }
 }

@@ -7,6 +7,8 @@ using Microsoft.OpenApi.Models;
 using System.Globalization;
 using System.Reflection;
 using UdemyProject.Application.ServicesImplementation.AuthServicesImplementation;
+using UdemyProject.Application.ServicesImplementation.CartItemService;
+using UdemyProject.Application.ServicesImplementation.CartServicesImplementation;
 using UdemyProject.Application.ServicesImplementation.CourseCategoriesServicesimplementation;
 using UdemyProject.Application.ServicesImplementation.Courselangugeimplementation;
 using UdemyProject.Application.ServicesImplementation.CourseLectureServiceImplementation;
@@ -84,6 +86,8 @@ namespace UdemyProject.Application
             services.AddScoped<ICourseLangugeService, CourseLangugeService>();
             services.AddScoped<ICourseCategoryService, CourseCategoryService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartItemService, CartItemService>();
             services.AddScoped<ICourseSectionService, CourseSectionService>();
             services.AddScoped<ICourseLectureService, CourseLectureService>();
             services.AddScoped<IFileServices, FileService>();

@@ -65,7 +65,7 @@
       >
         My Learning
       </div>
-      <div *ngIf="AuthService.isLoggedIn()" class="newhide">
+      <div *ngIf="AuthService.isLoggedIn()" class="newhide" routerLink="cart">
         <i class="fa fa-cart-shopping fs-3 me-3 pointer"></i>
       </div>
       <div *ngIf="AuthService.isLoggedIn()" class="newhide">

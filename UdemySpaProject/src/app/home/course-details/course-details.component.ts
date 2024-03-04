@@ -1,3 +1,5 @@
+import { AuthService } from 'src/app/Services/auth.service';
+import { CartService } from './../../Services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/Services/course.service';
@@ -12,6 +14,8 @@ import { VideoComponent } from '../video/video.component';
 export class CourseDetailsComponent implements OnInit {
   constructor(
     private CourseService: CourseService,
+    private CartService: CartService,
+    private AuthService: AuthService,
     private ActivatedRoute: ActivatedRoute,
     private MatDialog: MatDialog
   ) {}
@@ -54,6 +58,19 @@ export class CourseDetailsComponent implements OnInit {
     this.MatDialog.open(VideoComponent, {
       data: this.CourseId,
       minWidth: '50%',
+    });
+  }
+
+  AddToCart() {
+    var Obj = {
+      userId: this.AuthService.GetUserId(),
+      price: this.CourseDetails.coursePrice,
+      courseId: this.CourseId,
+    };
+    this.CartService.AddToCart(Obj).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
     });
   }
 }

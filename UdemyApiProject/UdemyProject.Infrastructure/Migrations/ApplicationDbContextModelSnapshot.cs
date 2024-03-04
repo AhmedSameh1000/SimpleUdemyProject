@@ -224,6 +224,57 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("applicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("totalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("applicationUserId");
+
+                    b.ToTable("carts");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("cartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("courseId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("coursePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("cartId");
+
+                    b.HasIndex("courseId");
+
+                    b.ToTable("cartItems");
+                });
+
             modelBuilder.Entity("UdemyProject.Domain.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -593,6 +644,36 @@ namespace UdemyProject.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Cart", b =>
+                {
+                    b.HasOne("UdemyProject.Domain.Entities.ApplicationUser", "applicationUser")
+                        .WithMany("carts")
+                        .HasForeignKey("applicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("applicationUser");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.CartItem", b =>
+                {
+                    b.HasOne("UdemyProject.Domain.Entities.Cart", "cart")
+                        .WithMany("cartItems")
+                        .HasForeignKey("cartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UdemyProject.Domain.Entities.Course", "course")
+                        .WithMany()
+                        .HasForeignKey("courseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("cart");
+
+                    b.Navigation("course");
+                });
+
             modelBuilder.Entity("UdemyProject.Domain.Entities.Course", b =>
                 {
                     b.HasOne("UdemyProject.Domain.Entities.CourseCategory", "category")
@@ -720,8 +801,15 @@ namespace UdemyProject.Infrastructure.Migrations
 
                     b.Navigation("RefreshTokens");
 
+                    b.Navigation("carts");
+
                     b.Navigation("userProfile")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Cart", b =>
+                {
+                    b.Navigation("cartItems");
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.Course", b =>

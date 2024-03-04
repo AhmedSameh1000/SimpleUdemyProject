@@ -31,6 +31,8 @@ namespace UdemyProject.Infrastructure
             services.AddScoped<ICourseSectionRepository, CourseSectionRepository>();
             services.AddScoped<ICourseLectureRepository, CourseLectureRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<ICartItemRepository, CartItemRepository>();
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

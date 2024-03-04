@@ -8,9 +8,10 @@ import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { FormsModule } from '@angular/forms';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { VideoComponent } from './video/video.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-  declarations: [HomeComponent, CourseFilterComponent, CourseDetailsComponent, VideoComponent],
+  declarations: [HomeComponent, CourseFilterComponent, CourseDetailsComponent, VideoComponent, CartComponent],
   imports: [CommonModule, HomeRoutingModule, MaterialModule, FormsModule],
 })
 export class HomeModule {}

@@ -11,5 +11,6 @@ namespace UdemyProject.Domain.Entities
         public List<Course> courses { get; set; }
 
         public List<Course> CoursesICreated { get; set; }
+        public List<Cart> carts { get; set; }
     }
 }

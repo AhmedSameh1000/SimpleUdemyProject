@@ -19,6 +19,7 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
 
         public int duration { get; set; }
         public string languge { get; set; }
+        public decimal coursePrice { get; set; }
         public string description { get; set; }
 
         public bool isPaidforCurrentUser { get; set; }

@@ -280,7 +280,14 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
 
         public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery)
         {
-            Expression<Func<UdemyProject.Domain.Entities.Course, CourseForReturnDTO>> expression = e => new CourseForReturnDTO(e.Id, e.Title, e.SubTitle, e.Price.HasValue ? e.Price.Value : 0, e.Instructor.Name, e.InstructorId, Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", e.Image));
+            Expression<Func<UdemyProject.Domain.Entities.Course, CourseForReturnDTO>> expression = e => new CourseForReturnDTO(
+            e.Id,
+            e.Title,
+            e.SubTitle,
+            e.Price.HasValue ? e.Price.Value : 0,
+            e.Instructor.Name,
+            e.InstructorId,
+            Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", e.Image ?? ""));
 
             var Query = _CourseRepository.GetAllQuerableAsNoTracking(new[] { "Instructor" }).AsQueryable();
 
@@ -323,6 +330,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 description = Course.Description,
                 languge = Course.languge.Name,
                 lastUpdated = DateTime.Now,
+                coursePrice = Course.Price.HasValue ? Course.Price.Value : 0,
                 instructoreDetaisl = new InstructoreDetaisl()
                 {
                     instructorId = Instructor.Id,
