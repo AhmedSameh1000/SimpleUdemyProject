@@ -235,8 +235,11 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<string>("applicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("isDeleted")
+                    b.Property<bool>("isPaid")
                         .HasColumnType("bit");
+
+                    b.Property<string>("sessionPaymentId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("totalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -456,7 +459,7 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.ToTable("Sections");
                 });
 
-            modelBuilder.Entity("UdemyProject.Domain.Entities.StudentCourse", b =>
+            modelBuilder.Entity("UdemyProject.Domain.Entities.UserCourseInrollment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -743,7 +746,7 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("UdemyProject.Domain.Entities.StudentCourse", b =>
+            modelBuilder.Entity("UdemyProject.Domain.Entities.UserCourseInrollment", b =>
                 {
                     b.HasOne("UdemyProject.Domain.Entities.Course", "Course")
                         .WithMany()

@@ -35,6 +35,8 @@ namespace UdemyProject.Contracts.ServicesContracts
 
         Task<bool> DeleteCourse(int CourseId, string InstructorId);
 
-        Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId,string userId);
+        Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId, string userId);
+
+        Task<bool> InrollFreeCourse(int courseId, string userId);
     }
 }

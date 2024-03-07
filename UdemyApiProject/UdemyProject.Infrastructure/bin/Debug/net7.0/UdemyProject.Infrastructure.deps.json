@@ -468,6 +468,26 @@
           }
         }
       },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
+      "Stripe.net/43.17.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "43.17.0.0",
+            "fileVersion": "43.17.0.0"
+          }
+        }
+      },
       "System.CodeDom/4.4.0": {
         "runtime": {
           "lib/netstandard2.0/System.CodeDom.dll": {
@@ -659,6 +679,7 @@
       "UdemyProject.Contracts/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Stripe.net": "43.17.0",
           "UdemyProject.Domain": "1.0.0",
           "X.PagedList": "8.4.7"
         },
@@ -1004,6 +1025,20 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
+    "Stripe.net/43.17.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-prc198vocWue09wityycQN9JJ+6Z/zSyDOhqhUHV6KEp1GKKNCHAfTbvRd1IQlUa+n3vLWVeisrieVNDgT05Dw==",
+      "path": "stripe.net/43.17.0",
+      "hashPath": "stripe.net.43.17.0.nupkg.sha512"
     },
     "System.CodeDom/4.4.0": {
       "type": "package",

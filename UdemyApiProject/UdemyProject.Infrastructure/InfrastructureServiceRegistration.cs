@@ -36,6 +36,7 @@ namespace UdemyProject.Infrastructure
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.Configure<StripeSettings>(configuration.GetSection("Stripe"));
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("ConStr")));

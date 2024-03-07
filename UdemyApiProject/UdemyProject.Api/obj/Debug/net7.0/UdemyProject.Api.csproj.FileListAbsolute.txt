@@ -632,3 +632,4 @@ C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\U
 C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.pdb
 C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.genruntimeconfig.cache
 C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\ref\UdemyProject.Api.dll
+C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\bin\Debug\net7.0\Stripe.net.dll

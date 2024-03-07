@@ -153,6 +153,10 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[43.17.0, )"
+            },
             "X.PagedList": {
               "target": "Package",
               "version": "[8.4.7, )"

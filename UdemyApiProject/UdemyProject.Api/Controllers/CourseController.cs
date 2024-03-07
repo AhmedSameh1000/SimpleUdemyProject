@@ -24,6 +24,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpGet("InrollFreeCourse")]
+        public async Task<IActionResult> InrollFreeCourse(int courseId, string userId)
+        {
+            var Response = await _Mediator.Send(new InrollFreeCourseModelCommand(courseId, userId));
+            return NewResult(Response);
+        }
+
         [HttpPost("CreateRequirmentCourse")]
         public async Task<IActionResult> CreateRequirmentCourse(CoursePrerequisiteDTO prerequisiteDTO)
         {
@@ -52,7 +59,6 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
-
         [HttpPost("UpdateCoursePrice")]
         public async Task<IActionResult> UpdateCoursePrice(CoursePriceForUpdate coursePriceForUpdate)
         {
@@ -66,7 +72,6 @@ namespace UdemyProject.Api.Controllers
             var Response = await _Mediator.Send(new GetCourseDetailsModelQuery(Id));
             return NewResult(Response);
         }
-
 
         [HttpGet("GetCoursePaginated")]
         public async Task<IActionResult> GetCoursePaginated([FromQuery] PaginationQuery paginationQuery)

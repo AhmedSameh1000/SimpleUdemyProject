@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Localization;
+using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace UdemyProject.Application.Features.Cart.CartQuery.Handlers
 {
     public class CartQueeryHandler : ResponseHandlerModel,
         IRequestHandler<GetCartModelQuery, ResponseModel<CartForReturn>>
+
     {
         private readonly ICartService _CartService;
         private readonly ICartItemService _CartItemService;

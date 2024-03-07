@@ -18,6 +18,7 @@ using UdemyProject.Application.ServicesImplementation.FileServiceImplementation;
 using UdemyProject.Application.ServicesImplementation.UserProfileimplementation;
 using UdemyProject.Contracts.RepositoryContracts;
 using UdemyProject.Contracts.ServicesContracts;
+using UdemyProject.Infrastructure.Helpers;
 
 namespace UdemyProject.Application
 {

@@ -63,6 +63,17 @@ export class CourseDetailsComponent implements OnInit {
       minWidth: '50%',
     });
   }
+  InrollFreeCourse() {
+    this.CourseService.InrollFreeCourse(
+      this.CourseId,
+      this.AuthService.GetUserId()
+    ).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.LoadCourse();
+      },
+    });
+  }
 
   AddToCart() {
     var Obj = {

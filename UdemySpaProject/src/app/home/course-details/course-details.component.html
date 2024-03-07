@@ -27,8 +27,8 @@
       </div>
     </div>
     <div
-      class="pointer text-dark position-absolute text-light fw-bold fs-4"
-      style="bottom: 10%"
+      class="pointer position-absolute text-light fw-bold fs-4"
+      style="bottom: 5%"
     >
       Preview this course
     </div>
@@ -77,28 +77,35 @@
     <h3>
       Get this course, plus 11,000+ of our top-rated courses, with Personal Plan
     </h3>
-    <h4 class="fw-bold">Course Price 4$</h4>
+    <h4 class="fw-bold">Course Price {{ CourseDetails.coursePrice }}$</h4>
 
     <div class="d-flex w-100 justify-content-between gap-3">
       <div
-        *ngIf="!CourseDetails.isInCart"
+        *ngIf="CourseDetails.isInMylearning"
+        class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
+      >
+        <span>Go to course</span>
+      </div>
+      <div
+        *ngIf="!CourseDetails.isInCart && CourseDetails.coursePrice != 0"
         (click)="AddToCart()"
         class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
       >
         <span> Add to cart </span>
       </div>
       <div
+        *ngIf="CourseDetails.coursePrice === 0 && !CourseDetails.isInMylearning"
+        (click)="InrollFreeCourse()"
+        class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
+      >
+        <span> Buy this course</span>
+      </div>
+      <div
         (click)="RemoveCartItem()"
-        *ngIf="CourseDetails.isInCart"
+        *ngIf="CourseDetails.isInCart && !CourseDetails.isInMylearning"
         class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
       >
         <span> Remove from cart </span>
-      </div>
-      <div
-        class="d-flex justify-content-center align-items-center border border-3 p-2 pointer bbtn"
-      >
-        <i *ngIf="!CourseDetails.isInCart" class="fs-2 fa-regular fa-heart"></i>
-        <i *ngIf="CourseDetails.isInCart" class="fs-2 fa-solid fa-heart"></i>
       </div>
     </div>
   </div>

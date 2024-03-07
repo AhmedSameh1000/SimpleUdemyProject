@@ -1,40 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\15f1a9d0-011a-496c-a775-5886c1926b12.png",
-      "PackagePath": "staticwebassets\\CourseImages\\15f1a9d0-011a-496c-a775-5886c1926b12.png"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\1c3df187-3844-4407-a7b5-fca16095e5c5.png",
-      "PackagePath": "staticwebassets\\CourseImages\\1c3df187-3844-4407-a7b5-fca16095e5c5.png"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\67efb10f-c245-4a05-a836-7d52d1a701ad.png",
-      "PackagePath": "staticwebassets\\CourseImages\\67efb10f-c245-4a05-a836-7d52d1a701ad.png"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\87436d97-292e-4463-9fed-8483f59164f0.png",
-      "PackagePath": "staticwebassets\\CourseImages\\87436d97-292e-4463-9fed-8483f59164f0.png"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\94c8c90b-414d-4c94-ac25-b163a2ad1fbf.jpg",
-      "PackagePath": "staticwebassets\\CourseImages\\94c8c90b-414d-4c94-ac25-b163a2ad1fbf.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\df30bdd5-0e70-453f-a882-a63cf2f424a0.png",
-      "PackagePath": "staticwebassets\\CourseImages\\df30bdd5-0e70-453f-a882-a63cf2f424a0.png"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\ff8d84e0-ed14-4fbc-8d22-24c24993dedf.png",
-      "PackagePath": "staticwebassets\\CourseImages\\ff8d84e0-ed14-4fbc-8d22-24c24993dedf.png"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CoursesVideos\\7f1200bd-4c69-4dd9-b5e0-7eb2fbc028fa.mp4",
-      "PackagePath": "staticwebassets\\CoursesVideos\\7f1200bd-4c69-4dd9-b5e0-7eb2fbc028fa.mp4"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CoursesVideos\\bbccb071-51e9-4b7e-bcdf-295f3901eeeb.mp4",
-      "PackagePath": "staticwebassets\\CoursesVideos\\bbccb071-51e9-4b7e-bcdf-295f3901eeeb.mp4"
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg",
+      "PackagePath": "staticwebassets\\CourseImages\\4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg"
     },
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
@@ -43,14 +11,6 @@
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffprobe.exe"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\65867b87-0a55-42aa-bc8e-a8cb7243b703.jpg",
-      "PackagePath": "staticwebassets\\UsersImagesProfile\\65867b87-0a55-42aa-bc8e-a8cb7243b703.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\91dbb6a2-d565-41a9-896d-3ea3ff8e2e00.jpg",
-      "PackagePath": "staticwebassets\\UsersImagesProfile\\91dbb6a2-d565-41a9-896d-3ea3ff8e2e00.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",

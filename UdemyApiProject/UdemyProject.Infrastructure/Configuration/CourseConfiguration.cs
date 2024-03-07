@@ -19,7 +19,7 @@ namespace UdemyProject.Infrastructure.Configuration
             builder.HasMany(c => c.whatYouLearnFromCourse).WithOne(c => c.Course).HasForeignKey(c => c.CourseId);
             builder.HasMany(c => c.whoIsthisCoursefors).WithOne(c => c.Course).HasForeignKey(c => c.CourseId);
 
-            builder.HasMany(c => c.Students).WithMany(c => c.courses).UsingEntity<StudentCourse>();
+            builder.HasMany(c => c.Students).WithMany(c => c.coursesInrollments).UsingEntity<UserCourseInrollment>();
             builder.HasOne(c => c.Instructor).WithMany(c => c.CoursesICreated).HasForeignKey(c => c.InstructorId).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(c => c.category).WithMany(c => c.Courses).HasForeignKey(c => c.CategoryId);

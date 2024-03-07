@@ -311,7 +311,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return Query.Select(expression);
         }
 
-        public async Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId,string userId)
+        public async Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId, string userId)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == CourseId, new[] { "languge", "category", "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Students", });
 
@@ -323,7 +323,9 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             var UdemyAccount = await _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == Course.InstructorId);
             var Instructor = await _UserRepository.GetFirstOrDefault(c => c.Id == Course.InstructorId, new[] { "CoursesICreated" });
             var Sections = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == CourseId, new[] { "Lecture" });
-            var isInCart = await _CartItemRepository.GetFirstOrDefault(c => c.courseId == CourseId&&c.ApplicationUserId==userId);
+            var isInCart = await _CartItemRepository.GetFirstOrDefault(c => c.courseId == CourseId && c.ApplicationUserId == userId);
+
+            var user = await _UserRepository.GetFirstOrDefault(c => c.Id == userId, new[] { "coursesInrollments" });
             var Result = new Course_With_Instructor_Details()
             {
                 courseId = CourseId,
@@ -344,6 +346,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                     name = Instructor.Name,
                     instructorImage = UdemyAccount.ImageUrl == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "UsersImagesProfile", UdemyAccount.ImageUrl),
                 },
+                isInMylearning = user.coursesInrollments.Any(c => c.Id == CourseId),
                 courrseRequirments = Course.Requirments.Select(c => c.Text).ToList(),
                 whateyoulearn = Course.whatYouLearnFromCourse.Select(c => c.Text).ToList(),
                 whoIsCourseFor = Course.whoIsthisCoursefors.Select(c => c.Text).ToList(),
@@ -365,6 +368,25 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             };
 
             return Result;
+        }
+
+        public async Task<bool> InrollFreeCourse(int courseId, string userId)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseId);
+            if (Course is null)
+                return false;
+
+            var user = await _UserRepository.GetFirstOrDefault(c => c.Id == userId, new[] { "coursesInrollments" });
+            if (user is null)
+                return false;
+
+            if (user.coursesInrollments.Any(c => c.Id == courseId))
+                return false;
+
+            user.coursesInrollments.Add(Course);
+            _UserRepository.Update(user);
+
+            return await _UserRepository.SaveChanges();
         }
     }
 }

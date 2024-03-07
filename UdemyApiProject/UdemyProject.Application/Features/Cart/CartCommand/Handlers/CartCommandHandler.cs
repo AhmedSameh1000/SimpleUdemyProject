@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Localization;
+using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,16 +18,18 @@ namespace UdemyProject.Application.Features.Cart.CartCommand.Handlers
 {
     public class CartCommandHandler : ResponseHandlerModel,
         IRequestHandler<CreateCartModelCommand, ResponseModel<bool>>,
-        IRequestHandler<RemoveCartitemModelCommand, ResponseModel<bool>>
+        IRequestHandler<RemoveCartitemModelCommand, ResponseModel<bool>>,
+           IRequestHandler<CheckoutModelCommand, ResponseModel<Session>>,
+           IRequestHandler<CoursePaymentModelCommand, ResponseModel<bool>>
     {
         private readonly IValidator<CartItemForCreate> _CartItemForCreateValidator;
-        private readonly ICartItemService _CartService;
+        private readonly ICartService _CartService;
         private readonly ICartItemService _CartItemService;
 
         public CartCommandHandler(
             IStringLocalizer<Sharedresources> stringLocalizer,
             IValidator<CartItemForCreate> CartItemForCreateValidator,
-            ICartItemService cartService,
+            ICartService cartService,
             ICartItemService cartItemService
 
             ) : base(stringLocalizer)
@@ -34,6 +37,15 @@ namespace UdemyProject.Application.Features.Cart.CartCommand.Handlers
             _CartItemForCreateValidator = CartItemForCreateValidator;
             _CartService = cartService;
             _CartItemService = cartItemService;
+        }
+
+        public async Task<ResponseModel<Session>> Handle(CheckoutModelCommand request, CancellationToken cancellationToken)
+        {
+            var Result = await _CartService.CheckOut(request.checkOutProperties);
+            if (Result is null)
+                return BadRequest<Session>();
+
+            return Success(Result);
         }
 
         public async Task<ResponseModel<bool>> Handle(CreateCartModelCommand request, CancellationToken cancellationToken)
@@ -45,7 +57,7 @@ namespace UdemyProject.Application.Features.Cart.CartCommand.Handlers
                 return BadRequest<bool>(string.Join(',', ValidationResult.Errors.Select(c => c.ErrorMessage)));
             }
 
-            var Result = await _CartService.AddCartItem(request.CartForCreate);
+            var Result = await _CartItemService.AddCartItem(request.CartForCreate);
 
             if (!Result)
             {
@@ -63,6 +75,12 @@ namespace UdemyProject.Application.Features.Cart.CartCommand.Handlers
                 return BadRequest<bool>();
 
             return Success(IsDeleted);
+        }
+
+        public async Task<ResponseModel<bool>> Handle(CoursePaymentModelCommand request, CancellationToken cancellationToken)
+        {
+            await _CartService.CoursePaymentConfirmation(request.userId);
+            return Success(true);
         }
     }
 }

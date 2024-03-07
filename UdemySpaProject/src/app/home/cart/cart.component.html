@@ -10,7 +10,7 @@
     *ngIf="Cart.items == null || Cart.items.length <= 0"
   >
     <img
-      width="60%"
+      width="50%"
       height="60%"
       src="../../../assets/Images/empty-shopping-cart-v2.jpg"
       alt=""
@@ -90,7 +90,12 @@
       <h1 class="fw-bold">
         {{ Cart.totlaPrice == 0 ? "free" : Cart.totlaPrice + " EGP" }}
       </h1>
-      <button mat-raised-button color="primary" class="w-100 rounded rounded-0">
+      <button
+        (click)="CheckOut()"
+        mat-raised-button
+        color="primary"
+        class="w-100 rounded rounded-0"
+      >
         Checkout
       </button>
     </div>

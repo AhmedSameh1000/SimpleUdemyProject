@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
+using Stripe;
 using System.Globalization;
 using UdemyProject.Application;
 using UdemyProject.Contract.RepositoryContracts;
@@ -21,6 +22,8 @@ builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 builder.Services.AddInfrastructureRegistration(builder.Configuration).AddApplicationServices();
 
 var app = builder.Build();
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
 app.UseStaticFiles();
 using (var Scope = app.Services.CreateScope())
 {

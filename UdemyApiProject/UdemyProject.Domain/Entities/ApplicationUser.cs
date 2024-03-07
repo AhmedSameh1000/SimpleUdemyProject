@@ -8,7 +8,7 @@ namespace UdemyProject.Domain.Entities
         public UserProfile userProfile { get; set; }
         public List<UserRefreshToken>? RefreshTokens { get; set; }
 
-        public List<Course> courses { get; set; }
+        public List<Course> coursesInrollments { get; set; }
 
         public List<Course> CoursesICreated { get; set; }
         public List<Cart> carts { get; set; }

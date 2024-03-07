@@ -27,6 +27,7 @@ namespace UdemyProject.Domain.Entities
 
         public string? applicationUserId { get; set; }
         public ApplicationUser? applicationUser { get; set; }
-        public bool isDeleted { get; set; }
+        public bool isPaid { get; set; }
+        public string? sessionPaymentId { get; set; }
     }
 }

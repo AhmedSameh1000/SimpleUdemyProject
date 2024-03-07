@@ -2,7 +2,7 @@
 
 namespace UdemyProject.Contract.RepositoryContracts
 {
-    public interface IStudentCourseRepository : IGenericRepository<StudentCourse>
+    public interface IStudentCourseRepository : IGenericRepository<UserCourseInrollment>
     {
     }
 }

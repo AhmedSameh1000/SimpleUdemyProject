@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Stripe.net" Version="43.17.0" />
     <PackageReference Include="X.PagedList" Version="8.4.7" />
   </ItemGroup>
 

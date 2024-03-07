@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,10 +13,21 @@ export class CartService {
       CourseToAdd
     );
   }
+  CheckOut(checkOutProperties: any) {
+    return this.HttpClient.post(
+      `http://localhost:5227/api/Cart/CheckOut`,
+      checkOutProperties
+    );
+  }
 
   GetCartByUserid(userId: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Cart?userId=${userId}`
+    );
+  }
+  CoursePaymentConfirmation(userId: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Cart/CoursePaymentConfirmation?userId=${userId}`
     );
   }
 

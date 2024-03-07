@@ -53,6 +53,11 @@ export class CourseService {
       `http://localhost:5227/api/Course/GetCourseFullDetails?CourseId=${courseId}&userId=${userId}`
     );
   }
+  InrollFreeCourse(courseId: any, userId: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/InrollFreeCourse?CourseId=${courseId}&userId=${userId}`
+    );
+  }
   SaveCourseLandingPage(CourseLandingPage: any) {
     return this.HttpClient.post(
       'http://localhost:5227/api/Course/SaveCourseLanding',

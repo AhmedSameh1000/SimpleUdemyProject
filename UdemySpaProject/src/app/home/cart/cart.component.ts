@@ -36,4 +36,21 @@ export class CartComponent implements OnInit {
       },
     });
   }
+  CheckOut() {
+    var checkOutProperties = {
+      url:
+        window.location.protocol +
+        '//' +
+        window.location.host +
+        '/paymentstatus',
+      cartId: this.Cart.cartId,
+      userId: this.AuthService.GetUserId(),
+    };
+    this.CartServices.CheckOut(checkOutProperties).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        window.location.href = res.data.url;
+      },
+    });
+  }
 }
