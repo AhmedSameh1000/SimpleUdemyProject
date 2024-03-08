@@ -68,9 +68,7 @@
       <div *ngIf="AuthService.isLoggedIn()" class="newhide" routerLink="cart">
         <i class="fa fa-cart-shopping fs-3 me-3 pointer"></i>
       </div>
-      <div *ngIf="AuthService.isLoggedIn()" class="newhide">
-        <i class="fa-regular fa-heart fs-3 me-3 pointer"></i>
-      </div>
+
       <div *ngIf="!AuthService.isLoggedIn()">
         <button mat-raised-button class="ms-4" routerLink="auth/login">
           Log in
@@ -121,8 +119,7 @@
           </div>
           <hr />
           <button mat-menu-item>My learning</button>
-          <button mat-menu-item routerLink="cart">My card</button>
-          <button mat-menu-item>Wichlist</button>
+          <button mat-menu-item routerLink="cart">card</button>
           <button
             mat-menu-item
             *ngIf="AuthService.isLoggedIn()"

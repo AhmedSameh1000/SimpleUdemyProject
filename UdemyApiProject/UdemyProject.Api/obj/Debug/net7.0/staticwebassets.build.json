@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kZvtKQD3yO51KwxyROF5CNBNuTxyBZSL09vGfkvnoro=",
+  "Hash": "dw6rnxK2kYdZBYSpJir54YwoPJT1N9xgbK+HH8JIjQc=",
   "Source": "UdemyProject.Api",
   "BasePath": "_content/UdemyProject.Api",
   "Mode": "Default",
@@ -16,25 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg",
-      "SourceId": "UdemyProject.Api",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
-      "BasePath": "_content/UdemyProject.Api",
-      "RelativePath": "CourseImages/4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\CourseImages\\4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg"
-    },
     {
       "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
       "SourceId": "UdemyProject.Api",

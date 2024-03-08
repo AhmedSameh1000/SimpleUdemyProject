@@ -136,6 +136,30 @@ export class CourseService {
         QueryPaginateion.categoryId
       );
     }
+    if (QueryPaginateion.minPrice != null) {
+      paginationQuery = paginationQuery.set(
+        'minPrice',
+        QueryPaginateion.minPrice
+      );
+    }
+    if (QueryPaginateion.maxPrice != null) {
+      paginationQuery = paginationQuery.set(
+        'maxPrice',
+        QueryPaginateion.maxPrice
+      );
+    }
+    if (QueryPaginateion.minHours != null) {
+      paginationQuery = paginationQuery.set(
+        'minHours',
+        QueryPaginateion.minHours
+      );
+    }
+    if (QueryPaginateion.maxHours != null) {
+      paginationQuery = paginationQuery.set(
+        'maxHours',
+        QueryPaginateion.maxHours
+      );
+    }
 
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/GetCoursePaginated`,

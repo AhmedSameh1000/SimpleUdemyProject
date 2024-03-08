@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg",
-      "PackagePath": "staticwebassets\\CourseImages\\4ac7c19d-728f-4b48-b64d-4ae5069c6ae4.jpg"
-    },
-    {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffmpeg.exe"
     },

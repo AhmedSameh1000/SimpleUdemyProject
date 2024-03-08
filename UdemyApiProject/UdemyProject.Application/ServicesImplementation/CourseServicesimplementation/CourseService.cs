@@ -174,6 +174,20 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             if (Course is null)
                 return false;
 
+            var AllSections = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == CourseId, new[] { "Lecture" });
+            foreach (var Section in AllSections)
+            {
+                Section.Lecture.ForEach((l) =>
+                {
+                    if (l.VideoLectureUrl != null)
+                    {
+                        _FileServices.DeleteFile("CoursesVideos", l.VideoLectureUrl);
+                    }
+                });
+            }
+            _CourseSectionRepository.RemoveRange(AllSections);
+            await _CourseSectionRepository.SaveChanges();
+
             _CourseRepository.Remove(Course);
             var isDeleted = await _CourseRepository.SaveChanges();
 
@@ -282,6 +296,21 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return await _CourseRepository.SaveChanges();
         }
 
+        private int GetLectureCount(List<Section> sections)
+        {
+            var count = 0;
+
+            foreach (var section in sections)
+            {
+                foreach (var item in section.Lecture)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
         public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery)
         {
             Expression<Func<UdemyProject.Domain.Entities.Course, CourseForReturnDTO>> expression = e => new CourseForReturnDTO(
@@ -291,7 +320,10 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             e.Price.HasValue ? e.Price.Value : 0,
             e.Instructor.Name,
             e.InstructorId,
-            Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", e.Image ?? ""));
+            Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", e.Image ?? ""),
+            e.Sections.SelectMany(s => s.Lecture).Count(),
+             e.Sections.SelectMany(s => s.Lecture).Sum(l => l.VideoMinuteLength.HasValue ? l.VideoMinuteLength.Value : 0)
+            );
 
             var Query = _CourseRepository.GetAllQuerableAsNoTracking(new[] { "Instructor" }).AsQueryable();
 
@@ -307,6 +339,20 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 Query = Query.Where(c => c.CategoryId == paginationQuery.categoryId);
             }
+
+            if (paginationQuery.minPrice != null && paginationQuery.maxPrice != null)
+            {
+                Query = Query.Where(c => c.Price >= paginationQuery.minPrice && c.Price <= paginationQuery.maxPrice);
+            }
+
+            if (paginationQuery.minHours != null && paginationQuery.maxHours != null)
+            {
+                Query = Query.Where(c => c.Sections.SelectMany(
+                    s => s.Lecture).Sum(l => l.VideoMinuteLength.HasValue ? l.VideoMinuteLength.Value : 0) >= paginationQuery.minHours
+                    && c.Sections.SelectMany(s => s.Lecture).Sum(l => l.VideoMinuteLength.HasValue ? l.VideoMinuteLength.Value : 0) <= paginationQuery.maxHours);
+            }
+
+            //e.Sections.SelectMany(s => s.Lecture).Sum(l => l.VideoMinuteLength.HasValue ? l.VideoMinuteLength.Value : 0)
 
             return Query.Select(expression);
         }

@@ -1,7 +1,7 @@
 import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { CourseService } from 'src/app/Services/course.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, TitleStrategy } from '@angular/router';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
@@ -19,6 +19,21 @@ export class CourseFilterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.CoursesPricesFilteration = [
+      { min: 0, max: 200 },
+      { min: 200, max: 400 },
+      { min: 400, max: 600 },
+      { min: 600, max: 800 },
+      { min: 800, max: 1000 },
+      { min: 1000, max: 1000000 },
+    ];
+    this.CourseDuration = [
+      { min: 1, max: 3 },
+      { min: 3, max: 6 },
+      { min: 6, max: 11 },
+      { min: 11, max: 16 },
+      { min: 16, max: 1000000 },
+    ];
     this.loadSearchString();
     this.loadCategoryId();
     this.LoadLanguges();
@@ -48,9 +63,14 @@ export class CourseFilterComponent implements OnInit {
       search: this.SearchString,
       langugeId: this.LangugeId,
       categoryId: this.CategoryId,
+      minPrice: this.minPrice,
+      maxPrice: this.maxPrice,
+      minHours: this.minHours,
+      maxHours: this.maxHours,
     }).subscribe({
       next: (res: any) => {
         this.SearchedCourses = res.data;
+        console.log(res);
       },
     });
   }
@@ -69,7 +89,6 @@ export class CourseFilterComponent implements OnInit {
     this.ActivatedRoute.queryParamMap.subscribe({
       next: (Res: any) => {
         this.CategoryId = Res.get('categoryId');
-        console.log(`'Ahmed ${this.CategoryId}`);
         this.LoadCourses();
       },
     });
@@ -83,6 +102,31 @@ export class CourseFilterComponent implements OnInit {
   CategoryId: number;
   SelectCoursesByCategory(categoryId) {
     this.CategoryId = categoryId;
+    this.LoadCourses();
+  }
+
+  CoursesPricesFilteration: any;
+  maxPrice: any;
+  minPrice: any;
+  SelectePrice(Price: any) {
+    this.maxPrice = Price?.max;
+    this.minPrice = Price?.min;
+    this.LoadCourses();
+  }
+
+  CourseDuration: any;
+
+  minHours: number | null = null;
+  maxHours: number | null = null;
+
+  SelecteByDuration(HoursCount: any) {
+    if (HoursCount != null) {
+      this.maxHours = HoursCount.max * 60;
+      this.minHours = HoursCount.min * 60;
+    } else {
+      this.minHours = null;
+      this.maxHours = null;
+    }
     this.LoadCourses();
   }
 }

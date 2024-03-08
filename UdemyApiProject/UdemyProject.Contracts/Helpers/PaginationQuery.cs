@@ -14,5 +14,9 @@ namespace UdemyProject.Contracts.Helpers
         public int? langugeId { get; set; }
         public int? categoryId { get; set; }
         public string? search { get; set; }
+        public decimal? maxPrice { get; set; }
+        public decimal? minPrice { get; set; }
+        public decimal? maxHours { get; set; }
+        public decimal? minHours { get; set; }
     }
 }

@@ -8,7 +8,16 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
 {
     public class CourseForReturnDTO
     {
-        public CourseForReturnDTO(int id, string title, string subTitle, decimal price, string intrcutorName, string instructorId, string courseimage)
+        public CourseForReturnDTO(
+            int id,
+            string title,
+            string subTitle,
+            decimal price,
+            string intrcutorName,
+            string instructorId,
+            string courseimage,
+            int lectureCount,
+            int totalMinutes)
         {
             Id = id;
             Title = title;
@@ -17,6 +26,8 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
             IntrcutorName = intrcutorName;
             InstructorId = instructorId;
             CourseImage = courseimage;
+            LectureCount = lectureCount;
+            this.totalMinutes = totalMinutes;
         }
 
         public int Id { get; set; }
@@ -25,7 +36,9 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
         public string SubTitle { get; set; }
         public decimal Price { get; set; }
 
+        public int totalMinutes { get; }
         public string CourseImage { get; set; }
+        public int LectureCount { get; }
         public string IntrcutorName { get; set; }
         public string InstructorId { get; set; }
     }

@@ -62,12 +62,80 @@
           <mat-expansion-panel-header>
             <mat-panel-title> Video Duration</mat-panel-title>
           </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
+          <mat-radio-group>
+            <mat-radio-button
+              (change)="SelecteByDuration(null)"
+              class="example-margin"
+              [value]="null"
+            >
+              {{ "All" }}
+            </mat-radio-button>
+            <section
+              class="example-section"
+              *ngFor="let Hour of CourseDuration"
+            >
+              <mat-radio-button
+                *ngIf="Hour.max < 1000000"
+                (change)="SelecteByDuration(Hour)"
+                class="example-margin"
+                [value]="Hour"
+              >
+                {{ Hour.min + " ~ " + Hour.max + " Hours" }}
+              </mat-radio-button>
+              <mat-radio-button
+                *ngIf="Hour.max == 1000000"
+                (change)="SelecteByDuration(Hour)"
+                class="example-margin"
+                [value]="Hour"
+              >
+                {{ "16+ Hours" }}
+              </mat-radio-button>
+            </section>
+          </mat-radio-group>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Course Price</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-radio-group>
+            <mat-radio-button
+              (change)="SelectePrice(null)"
+              class="example-margin"
+              [value]="null"
+            >
+              {{ "All" }}
+            </mat-radio-button>
+            <section
+              class="example-section"
+              *ngFor="let Price of CoursesPricesFilteration"
+            >
+              <mat-radio-button
+                *ngIf="Price.max < 1000000"
+                (change)="SelectePrice(Price)"
+                class="example-margin"
+                [value]="Price"
+              >
+                {{ Price.min + " ~ " + Price.max + " EGP" }}
+              </mat-radio-button>
+              <mat-radio-button
+                *ngIf="Price.max == 1000000"
+                (change)="SelectePrice(Price)"
+                class="example-margin"
+                [value]="Price"
+              >
+                {{ "1000+ EGP" }}
+              </mat-radio-button>
+            </section>
+          </mat-radio-group>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
     <div class="col-sm-12 col-md-8 col-lg-8 d-flex flex-column gap-3">
-      <mat-card *ngFor="let Course of SearchedCourses">
+      <mat-card
+        class="pointer"
+        *ngFor="let Course of SearchedCourses"
+        [routerLink]="'/courseDetails/' + Course.id"
+      >
         <div class="d-flex w-100">
           <div>
             <img
@@ -81,7 +149,14 @@
             <div class="h5">{{ Course.title }}</div>
             <div class="h6">{{ Course.subTitle }}</div>
             <p>{{ Course.intrcutorName }}</p>
-            <p>45.5 total hours , 392 lecture</p>
+            <p>
+              {{
+                Course.totalMinutes < 60
+                  ? Course.totalMinutes + " minutes"
+                  : (Course.totalMinutes / 60).toFixed(1) + " hours"
+              }}
+              , {{ Course.lectureCount }} lecture
+            </p>
             <p class="fw-bolder mypositions top-0 end-0 me-2 mt-1">
               {{ Course.price == 0 ? "free" : Course.price + "$" }}
             </p>
