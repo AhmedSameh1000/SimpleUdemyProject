@@ -2,6 +2,7 @@
 using Azure.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Stripe;
 using System.Linq.Expressions;
 using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.Course;
@@ -66,6 +67,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _Mapper.Map(courseBasic, Course);
             await _CourseRepository.Add(Course);
             await _CourseRepository.SaveChanges();
+            await UpdateCourseDate(Course);
 
             return Course.Id;
         }
@@ -106,6 +108,8 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _Mapper.Map(prerequisiteDTO, whatYouLearnFromCourse);
 
             Course.whatYouLearnFromCourse.AddRange(whatYouLearnFromCourse);
+
+            await UpdateCourseDate(Course);
 
             _CourseRepository.Update(Course);
             await _CourseRepository.SaveChanges();
@@ -186,8 +190,10 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 });
             }
             _CourseSectionRepository.RemoveRange(AllSections);
-            await _CourseSectionRepository.SaveChanges();
 
+            var AllItems = await _CartItemRepository.GetAllAsNoTracking(c => c.courseId == Course.Id);
+            _CartItemRepository.RemoveRange(AllItems);
+            await _CartItemRepository.SaveChanges();
             _CourseRepository.Remove(Course);
             var isDeleted = await _CourseRepository.SaveChanges();
 
@@ -256,6 +262,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 }
                 Course.CoursePromotionalVideo = _FileServices.SaveFile(courseLanding.PromotionVideo, Path.Combine(_Host.WebRootPath, "PromotionalVideo")).Path;
             }
+            await UpdateCourseDate(Course);
 
             Course.Title = courseLanding.Title;
 
@@ -275,7 +282,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 return false;
             }
-
+            await UpdateCourseDate(Course);
             _Mapper.Map(courseMessageForUpdateDTO, Course);
 
             _CourseRepository.Update(Course);
@@ -290,25 +297,12 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 return false;
             }
+            await UpdateCourseDate(Course);
+
             _Mapper.Map(coursePriceForUpdate, Course);
 
             _CourseRepository.Update(Course);
             return await _CourseRepository.SaveChanges();
-        }
-
-        private int GetLectureCount(List<Section> sections)
-        {
-            var count = 0;
-
-            foreach (var section in sections)
-            {
-                foreach (var item in section.Lecture)
-                {
-                    count++;
-                }
-            }
-
-            return count;
         }
 
         public IQueryable<CourseForReturnDTO> GetCoursesQuerable(PaginationQuery paginationQuery)
@@ -381,7 +375,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 courseTitle = Course.Title,
                 description = Course.Description,
                 languge = Course.languge.Name,
-                lastUpdated = DateTime.Now,
+                lastUpdated = Course.lastUpdate,
                 coursePrice = Course.Price.HasValue ? Course.Price.Value : 0,
                 isInCart = isInCart == null ? false : true,
                 instructoreDetaisl = new InstructoreDetaisl()
@@ -433,6 +427,13 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _UserRepository.Update(user);
 
             return await _UserRepository.SaveChanges();
+        }
+
+        private async Task UpdateCourseDate(Course course)
+        {
+            course.lastUpdate = DateTime.UtcNow;
+            _CourseRepository.Update(course);
+            await _CourseRepository.SaveChanges();
         }
     }
 }

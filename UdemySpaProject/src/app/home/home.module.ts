@@ -12,7 +12,14 @@ import { CartComponent } from './cart/cart.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 
 @NgModule({
-  declarations: [HomeComponent, CourseFilterComponent, CourseDetailsComponent, VideoComponent, CartComponent, PaymentStatusComponent],
+  declarations: [
+    HomeComponent,
+    CourseFilterComponent,
+    CourseDetailsComponent,
+    VideoComponent,
+    CartComponent,
+    PaymentStatusComponent,
+  ],
   imports: [CommonModule, HomeRoutingModule, MaterialModule, FormsModule],
 })
 export class HomeModule {}

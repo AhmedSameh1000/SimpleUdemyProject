@@ -33,6 +33,7 @@ export class CourseDetailsComponent implements OnInit {
       },
     });
   }
+  notFound: any = false;
   LoadCourse() {
     this.CourseService.GetCourseFullDetails(
       this.CourseId,
@@ -41,6 +42,7 @@ export class CourseDetailsComponent implements OnInit {
       next: (res: any) => {
         this.CourseDetails = res.data;
         console.log(res);
+        this.notFound = true;
       },
     });
   }
@@ -69,7 +71,6 @@ export class CourseDetailsComponent implements OnInit {
       this.AuthService.GetUserId()
     ).subscribe({
       next: (res) => {
-        console.log(res);
         this.LoadCourse();
       },
     });
@@ -84,7 +85,6 @@ export class CourseDetailsComponent implements OnInit {
     };
     this.CartService.AddToCart(Obj).subscribe({
       next: (res) => {
-        console.log(res);
         this.LoadCourse();
       },
     });
@@ -95,7 +95,6 @@ export class CourseDetailsComponent implements OnInit {
       this.AuthService.GetUserId()
     ).subscribe({
       next: (res) => {
-        console.log(res);
         this.LoadCourse();
       },
     });

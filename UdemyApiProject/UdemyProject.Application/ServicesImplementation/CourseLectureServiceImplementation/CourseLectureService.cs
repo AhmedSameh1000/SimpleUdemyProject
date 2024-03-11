@@ -16,17 +16,20 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
         private readonly ICourseLectureRepository _CourseLectureRepository;
         private readonly IFileServices _FileServices;
         private readonly IWebHostEnvironment _Host;
+        private readonly ICourseRepository _CourseRepository;
 
         public CourseLectureService(
             ICourseSectionRepository courseSectionRepository,
             ICourseLectureRepository courseLectureRepository,
             IFileServices fileServices,
-            IWebHostEnvironment Host)
+            IWebHostEnvironment Host,
+            ICourseRepository courseRepository)
         {
             _CourseSectionRepository = courseSectionRepository;
             _CourseLectureRepository = courseLectureRepository;
             _FileServices = fileServices;
             _Host = Host;
+            _CourseRepository = courseRepository;
         }
 
         public async Task<bool> CreateLecture(int sectionId)
@@ -41,18 +44,19 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
             {
                 SectionId = sectionId,
             };
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Section.CourseId);
+            await UpdateCourseDate(Course);
+
             await _CourseLectureRepository.Add(Lecture);
             return await _CourseLectureRepository.SaveChanges();
         }
 
         public async Task<bool> UpdateLecture(LectureForUpdateDTO lectureForUpdateDTO)
         {
-            var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureForUpdateDTO.Id);
-
+            var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureForUpdateDTO.Id, new[] { "Section" });
             if (Lecture is null)
                 return false;
 
-            
             Lecture.Description = lectureForUpdateDTO.Description;
 
             if (lectureForUpdateDTO.Video != null)
@@ -79,12 +83,17 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
                     Lecture.VideoMinuteLength = mediaInfo.Duration.Minutes;
                 }
             }
+
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Lecture.Section.CourseId);
+            await UpdateCourseDate(Course);
+
             _CourseLectureRepository.Update(Lecture);
             return await _CourseLectureRepository.SaveChanges();
         }
+
         public async Task<bool> DeleteLecture(int lectureId)
         {
-            var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureId);
+            var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureId, new[] { "Section" });
 
             if (Lecture == null)
                 return false;
@@ -98,8 +107,18 @@ namespace UdemyProject.Application.ServicesImplementation.CourseLectureServiceIm
                 }
             }
 
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Lecture.Section.CourseId);
+            await UpdateCourseDate(Course);
+
             _CourseLectureRepository.Remove(Lecture);
             return await _CourseLectureRepository.SaveChanges();
+        }
+
+        private async Task UpdateCourseDate(Course course)
+        {
+            course.lastUpdate = DateTime.UtcNow;
+            _CourseRepository.Update(course);
+            await _CourseRepository.SaveChanges();
         }
     }
 }

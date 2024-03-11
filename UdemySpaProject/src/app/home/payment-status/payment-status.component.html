@@ -1,1 +1,50 @@
-<p>payment-status works!</p>
+<div
+  *ngIf="PaymentStatus"
+  class="container d-flex justify-content-center align-items-center h-100"
+>
+  <div class="card mt-5">
+    <div
+      style="
+        border-radius: 200px;
+        height: 200px;
+        width: 200px;
+        background: #f8faf5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      "
+    >
+      <i class="checkmark">✓</i>
+      <!-- <i class="color fa-regular fa-circle-xmark"></i> -->
+    </div>
+    <h1 class="text-center">Success</h1>
+    <p class="text-center">Checkout successful. Thank you for your purchase</p>
+  </div>
+</div>
+
+<div
+  *ngIf="!PaymentStatus"
+  class="container d-flex justify-content-center align-items-center h-100"
+>
+  <div class="card mt-5">
+    <div
+      style="
+        border-radius: 200px;
+        height: 200px;
+        width: 200px;
+        background: #afb2ab;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      "
+    >
+      <i class="fa-solid fa-circle-xmark ms-1 text-danger"></i>
+    </div>
+    <h1 class="text-center text-danger mt-1">failure</h1>
+    <p class="text-center mt-1">
+      Unable to complete checkout process. Please try again later
+    </p>
+  </div>
+</div>

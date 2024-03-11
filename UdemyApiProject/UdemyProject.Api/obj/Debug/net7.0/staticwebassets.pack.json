@@ -1,12 +1,20 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\19cd076e-60c6-4674-bc79-59403cf5c9a8.png",
+      "PackagePath": "staticwebassets\\CourseImages\\19cd076e-60c6-4674-bc79-59403cf5c9a8.png"
+    },
+    {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffmpeg.exe"
     },
     {
       "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffprobe.exe"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\MyUdemyProject\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\04ed5b28-d071-48cd-b94a-4aeabe9064d4.mp4",
+      "PackagePath": "staticwebassets\\PromotionalVideo\\04ed5b28-d071-48cd-b94a-4aeabe9064d4.mp4"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",

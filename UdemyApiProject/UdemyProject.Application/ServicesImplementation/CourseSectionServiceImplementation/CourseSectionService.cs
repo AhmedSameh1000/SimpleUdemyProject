@@ -1,4 +1,5 @@
-﻿using UdemyProject.Contract.RepositoryContracts;
+﻿using Stripe;
+using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.LectureDTOs;
 using UdemyProject.Contracts.DTOs.SectionDTOs;
 using UdemyProject.Contracts.RepositoryContracts;
@@ -30,6 +31,9 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
 
             if (Course is null)
                 return false;
+
+            await UpdateCourseDate(Course);
+
             var Section = new Section()
             {
                 CourseId = CourseId,
@@ -44,6 +48,9 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
             var Section = await _CourseSectionRepository.GetFirstOrDefault(c => c.Id == SectionId, new[] { "Lecture" });
 
             if (Section is null) return false;
+
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Section.CourseId);
+            await UpdateCourseDate(Course);
 
             Section.Lecture.ForEach((l) =>
             {
@@ -97,11 +104,21 @@ namespace UdemyProject.Application.ServicesImplementation.CourseSectionServiceIm
             if (Section is null)
                 return false;
 
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Section.CourseId);
+            await UpdateCourseDate(Course);
+
             Section.Title = forUpdateDTO.SectionTitle;
             Section.WhatStudentLearnFromthisSection = forUpdateDTO.SectionDescription;
 
             _CourseSectionRepository.Update(Section);
             return await _CourseSectionRepository.SaveChanges();
+        }
+
+        private async Task UpdateCourseDate(Course course)
+        {
+            course.lastUpdate = DateTime.UtcNow;
+            _CourseRepository.Update(course);
+            await _CourseRepository.SaveChanges();
         }
     }
 }

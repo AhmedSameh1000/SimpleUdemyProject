@@ -29,6 +29,7 @@
         public List<Section> Sections { get; set; }
 
         public string InstructorId { get; set; }
+        public DateTime lastUpdate { get; set; }
         public ApplicationUser Instructor { get; set; }
         public string? WelcomeMessage { get; set; }
         public string? CongratulationsMessage { get; set; }

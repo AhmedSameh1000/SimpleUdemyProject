@@ -33,3 +33,20 @@ i {
     display: none;
   }
 }
+/* //// */
+
+@media (min-width: 750px) {
+  .image {
+    max-width: 140%;
+  }
+}
+
+@media (max-width: 750px) {
+  .image {
+    width: 100%;
+    height: 100%;
+    margin-left: 25px;
+  }
+}
+
+/*  */
