@@ -1,0 +1,52 @@
+.example-card {
+  max-width: 250px;
+}
+.mycontainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  align-items: stretch; /* Ensures all cards have the same height */
+  margin-top: 40px;
+  justify-content: center;
+}
+/*  */
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Background color for demonstration */
+}
+
+.cont {
+  position: relative;
+}
+
+.image {
+  display: block;
+  width: 300px; /* Adjust the width as needed */
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 74%;
+  background-color: rgba(0, 0, 0, 0); /* Fully transparent initially */
+  transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+.play {
+  display: none !important;
+}
+
+.cont:hover .overlay,
+.cont:hover .play {
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay on hover */
+
+  display: flex !important;
+}

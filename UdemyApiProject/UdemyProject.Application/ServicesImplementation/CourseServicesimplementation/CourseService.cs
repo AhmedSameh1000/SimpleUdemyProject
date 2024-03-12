@@ -435,5 +435,30 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _CourseRepository.Update(course);
             await _CourseRepository.SaveChanges();
         }
+
+        public async Task<List<MyLearningCourseForReturnDto>> GetMyLearnings(string userId)
+        {
+            var user = await _UserRepository.GetFirstOrDefault(c => c.Id == userId, new[] { "coursesInrollments" });
+
+            if (user is null)
+            {
+                return null;
+            }
+            if (user.coursesInrollments is null || user.coursesInrollments.Count == 0)
+            {
+                return Enumerable.Empty<MyLearningCourseForReturnDto>().ToList();
+            }
+            var Result = user.coursesInrollments.Select(c => new MyLearningCourseForReturnDto()
+            {
+                courseId = c.Id,
+                instructorId = c.InstructorId,
+                courseName = c.Title,
+                rating = 4,
+                courseImage = c.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", c.Image),
+                instructorName = user.Name
+            }).ToList();
+
+            return Result;
+        }
     }
 }

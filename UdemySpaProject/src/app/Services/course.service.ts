@@ -94,6 +94,11 @@ export class CourseService {
       `http://localhost:5227/api/Course/CourseLandingPage?Id=${Id}`
     );
   }
+  GetMyLearning(Id: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/GetMyLearning?userId=${Id}`
+    );
+  }
 
   DeleteCourse(CourseId: any, InstructorId: any) {
     return this.HttpClient.delete(

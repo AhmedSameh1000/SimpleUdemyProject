@@ -19,32 +19,30 @@
 
 <div>
   <div class="container mycontainer">
-    <div
+    <mat-card
       *ngFor="let Course of Courses"
-      class="pointer text-start"
+      class="pointer text-start example-card"
       [routerLink]="'courseDetails/' + Course.id"
     >
-      <mat-card>
-        <img
-          style="height: 180px; width: 100%"
-          mat-card-xl-image
-          [src]="Course.courseImage"
-          alt="Course Image"
-        />
-        <div style="height: 40px">
-          <h5 style="font-size: 13px" class="fw-bolder text-start ms-2">
-            {{ Course.title }}
-          </h5>
-        </div>
-        <p class="text-start ms-2">
-          {{ Course.intrcutorName }}
-        </p>
+      <img
+        class="m-auto w-100"
+        mat-card-xl-image
+        [src]="Course.courseImage"
+        alt="Course Image"
+      />
+      <div style="height: 40px">
+        <h5 style="font-size: 13px" class="fw-bolder text-start ms-2">
+          {{ Course.title }}
+        </h5>
+      </div>
+      <p class="text-start ms-2">
+        {{ Course.intrcutorName }}
+      </p>
 
-        <strong class="ms-2">{{
-          Course.price == 0 ? "free" : Course.price + " $"
-        }}</strong>
-      </mat-card>
-    </div>
+      <strong class="ms-2">{{
+        Course.price == 0 ? "free" : Course.price + " $"
+      }}</strong>
+    </mat-card>
   </div>
   <div>
     <mat-paginator

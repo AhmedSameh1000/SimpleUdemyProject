@@ -22,7 +22,8 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
         IRequestHandler<GetCourseMessageModelQuery, ResponseModel<CourseMessageForReturnDTo>>,
         IRequestHandler<GetCoursePriceModelQuery, ResponseModel<CoursePriceForReturnDTO>>,
         IRequestHandler<GetCoursesPaginatedModelQuery, PaginatedResult<CourseForReturnDTO>>,
-        IRequestHandler<GetCourseFullDetailsQuery, ResponseModel<Course_With_Instructor_Details>>
+        IRequestHandler<GetCourseFullDetailsQuery, ResponseModel<Course_With_Instructor_Details>>,
+        IRequestHandler<GetMyLearningModelQuery, ResponseModel<List<MyLearningCourseForReturnDto>>>
 
     {
         private readonly ICourseService _CourseService;
@@ -112,6 +113,17 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             if (Result is null)
                 return BadRequest<Course_With_Instructor_Details>();
 
+            return Success(Result);
+        }
+
+        public async Task<ResponseModel<List<MyLearningCourseForReturnDto>>> Handle(GetMyLearningModelQuery request, CancellationToken cancellationToken)
+        {
+            var Result = await _CourseService.GetMyLearnings(request.userId);
+
+            if (Result is null)
+            {
+                return BadRequest<List<MyLearningCourseForReturnDto>>();
+            }
             return Success(Result);
         }
 

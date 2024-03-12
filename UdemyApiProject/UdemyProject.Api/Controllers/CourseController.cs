@@ -29,6 +29,13 @@ namespace UdemyProject.Api.Controllers
         {
             var Response = await _Mediator.Send(new InrollFreeCourseModelCommand(courseId, userId));
             return NewResult(Response);
+        }    
+        
+        [HttpGet("GetMyLearning")]
+        public async Task<IActionResult> GetMyLearning(string userId)
+        {
+            var Response = await _Mediator.Send(new GetMyLearningModelQuery(userId));
+            return NewResult(Response);
         }
 
         [HttpPost("CreateRequirmentCourse")]

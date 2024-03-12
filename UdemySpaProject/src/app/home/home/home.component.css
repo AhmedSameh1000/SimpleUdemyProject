@@ -1,7 +1,11 @@
+.example-card {
+  max-width: 250px;
+}
 .mycontainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 10px;
   align-items: stretch; /* Ensures all cards have the same height */
   margin-top: 40px;
+  justify-content: center;
 }

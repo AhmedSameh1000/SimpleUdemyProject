@@ -5,6 +5,8 @@ import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
+import { CourseStartComponent } from './course-start/course-start.component';
+import { LearningComponent } from './learning/learning.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'paymentstatus',
     component: PaymentStatusComponent,
+  },
+  {
+    path: 'coursestart/:Id',
+    component: CourseStartComponent,
+  },
+  {
+    path: 'learning',
+    component: LearningComponent,
   },
 ];
 

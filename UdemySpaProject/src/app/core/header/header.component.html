@@ -62,6 +62,7 @@
       <div
         class="ms-2 font me-3 pointer myfont newhide"
         *ngIf="AuthService.isLoggedIn()"
+        routerLink="/learning"
       >
         My Learning
       </div>
@@ -118,7 +119,7 @@
             </div>
           </div>
           <hr />
-          <button mat-menu-item>My learning</button>
+          <button mat-menu-item routerLink="/learning">My learning</button>
           <button mat-menu-item routerLink="cart">card</button>
           <button
             mat-menu-item

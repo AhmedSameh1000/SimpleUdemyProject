@@ -10,6 +10,8 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { VideoComponent } from './video/video.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
+import { CourseStartComponent } from './course-start/course-start.component';
+import { LearningComponent } from './learning/learning.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { PaymentStatusComponent } from './payment-status/payment-status.componen
     VideoComponent,
     CartComponent,
     PaymentStatusComponent,
+    CourseStartComponent,
+    LearningComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, MaterialModule, FormsModule],
 })

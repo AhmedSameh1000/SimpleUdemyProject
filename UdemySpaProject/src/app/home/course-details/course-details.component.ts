@@ -42,6 +42,8 @@ export class CourseDetailsComponent implements OnInit {
       next: (res: any) => {
         this.CourseDetails = res.data;
         console.log(res);
+      },
+      error: (err) => {
         this.notFound = true;
       },
     });

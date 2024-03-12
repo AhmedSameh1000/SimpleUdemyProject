@@ -38,5 +38,8 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId, string userId);
 
         Task<bool> InrollFreeCourse(int courseId, string userId);
+
+        Task<List<MyLearningCourseForReturnDto>> GetMyLearnings(string userId);
+    
     }
 }
