@@ -29,12 +29,19 @@ namespace UdemyProject.Api.Controllers
         {
             var Response = await _Mediator.Send(new InrollFreeCourseModelCommand(courseId, userId));
             return NewResult(Response);
-        }    
-        
+        }
+
         [HttpGet("GetMyLearning")]
         public async Task<IActionResult> GetMyLearning(string userId)
         {
             var Response = await _Mediator.Send(new GetMyLearningModelQuery(userId));
+            return NewResult(Response);
+        }
+
+        [HttpGet("CourseContant")]
+        public async Task<IActionResult> LoadCourseContant(string userId, int courseId)
+        {
+            var Response = await _Mediator.Send(new GetCourseContantModelQuery(userId, courseId));
             return NewResult(Response);
         }
 
@@ -115,6 +122,15 @@ namespace UdemyProject.Api.Controllers
             var Response = await _Mediator.Send(new GetCourseVideoPromotionpathQuery(Id));
 
             return new FileStreamResult(new FileStream(Response, FileMode.Open), "video/mp4");
+        }
+
+        [HttpGet("StartCourse")]
+        public async Task<IActionResult> GetCourseVideoData(string userId, int courseId, int lectureId)
+        {
+            var Response = await _Mediator.Send(new GetCourseVideoDataModelQuery(userId, courseId, lectureId));
+            if (Response.Data is null)
+                return BadRequest();
+            return new FileStreamResult(new FileStream(Response.Data.path, FileMode.Open), "video/mp4");
         }
 
         [HttpGet("GetCoursePrice")]

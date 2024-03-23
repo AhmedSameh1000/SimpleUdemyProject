@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Stripe;
@@ -29,8 +28,11 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         private readonly IHttpContextAccessor _HttpContextAccessor;
         private readonly ICartItemRepository _CartItemRepository;
         private readonly IMapper _Mapper;
+        private readonly ICourseLectureRepository _CourseLectureRepository;
+        private readonly IReviewRepository _ReviewRepository;
 
-        public CourseService(ICourseRepository courseRepository, ICourseRequimentRepository courseRequimentRepository,
+        public CourseService(
+            ICourseRepository courseRepository, ICourseRequimentRepository courseRequimentRepository,
             IWhatYouLearnFromCourseRepository whatYouLearnFromCourseRepository,
             IWhoIsThisCourseForRepository whoIsThisCourseForRepository,
             IUserProfileRepository userProfileRepository,
@@ -40,7 +42,10 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             IFileServices fileServices,
             IHttpContextAccessor httpContextAccessor,
             ICartItemRepository cartItemRepository,
-            IMapper mapper)
+            IMapper mapper,
+            ICourseLectureRepository courseLectureRepository,
+            IReviewRepository reviewRepository
+            )
         {
             _CourseRepository = courseRepository;
             _CourseRequimentRepository = courseRequimentRepository;
@@ -54,6 +59,8 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _HttpContextAccessor = httpContextAccessor;
             _CartItemRepository = cartItemRepository;
             _Mapper = mapper;
+            _CourseLectureRepository = courseLectureRepository;
+            _ReviewRepository = reviewRepository;
         }
 
         public async Task<int> CreateBasicCourse(CourseBasicDataDTO courseBasic)
@@ -63,11 +70,20 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 return -1;
             }
 
+            var user = await _UserRepository.GetFirstOrDefault(c => c.Id == courseBasic.InstructorId, new[] { "coursesInrollments" });
+            if (user is null)
+            {
+                return -1;
+            }
+
             var Course = new Course();
             _Mapper.Map(courseBasic, Course);
             await _CourseRepository.Add(Course);
             await _CourseRepository.SaveChanges();
             await UpdateCourseDate(Course);
+            user.coursesInrollments.Add(Course);
+            _UserRepository.Update(user);
+            await _UserRepository.SaveChanges();
 
             return Course.Id;
         }
@@ -370,7 +386,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 courseId = CourseId,
                 courseImage = Course.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", Course.Image),
-                courseRating = 0,
+                courseRating = GetReview(_ReviewRepository.GetAllAsNoTracking(r => r.courseId == Course.Id).Result.ToList()),
                 courseSubTitle = Course.SubTitle,
                 courseTitle = Course.Title,
                 description = Course.Description,
@@ -453,12 +469,147 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 courseId = c.Id,
                 instructorId = c.InstructorId,
                 courseName = c.Title,
-                rating = 4,
+                rating = GetReview(_ReviewRepository.GetAllAsNoTracking(r => r.courseId == c.Id).Result.ToList()),
                 courseImage = c.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", c.Image),
                 instructorName = user.Name
             }).ToList();
 
             return Result;
         }
+
+        private int GetReview(List<Domain.Entities.Review> reviews)
+        {
+            var AllReviewsSum = reviews.Sum(c => c.stars);
+            var Count = reviews.Count();
+
+            if (AllReviewsSum == 0 || Count == 0)
+                return 0;
+
+            return AllReviewsSum / Count;
+        }
+
+        public async Task<ContantStartDToForReturn> LoadCourseContent(string userId, int courseId)
+        {
+            var user = await _UserRepository.GetFirstOrDefault(c => c.Id == userId, new[] { "coursesInrollments" });
+
+            if (user is null)
+                return null;
+
+            var isExistinInrolments = user.coursesInrollments.Any(c => c.Id == courseId);
+
+            if (!isExistinInrolments)
+                return null;
+
+            var Sections = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == courseId, new[] { "Lecture" });
+
+            var Reviews = await _ReviewRepository.GetAllAsNoTracking(c => c.courseId == courseId, new[] { "user" });
+
+            var course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseId, new[] { "languge", "Students", "Instructor", "whatYouLearnFromCourse" });
+            var Profile = await _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == course.InstructorId);
+            var CourseSection = Sections.Select(c => new courseContentSectionDto()
+            {
+                sectionId = c.Id,
+                lectureCount = c.Lecture.Count(),
+                sectionTitle = c.Title,
+
+                totalMinutes = c.Lecture.Sum(c => c.VideoMinuteLength.HasValue ? c.VideoMinuteLength.Value : 0),
+                lectureContent = c.Lecture.Select(c => new courseLectureContentDto()
+                {
+                    lectureId = c.Id,
+                    Lecturetitle = c.Title,
+                    totalMinutes = c.VideoMinuteLength.HasValue ? c.VideoMinuteLength.Value : 0
+                }).ToList(),
+            }).ToList();
+
+            var Result = new ContantStartDToForReturn()
+            {
+                totalMinutes = Sections.SelectMany(section => section.Lecture).Sum(lecture => lecture.VideoMinuteLength.HasValue ? lecture.VideoMinuteLength.Value : 0),
+                courseContentSection = CourseSection,
+                lectureCount = Sections.SelectMany(s => s.Lecture).Count(),
+                rating = GetReview(_ReviewRepository.GetAllAsNoTracking(r => r.courseId == courseId).Result.ToList()),
+                courseReviews = Reviews.Select(r => new CourseReviewDtoForReturn()
+                {
+                    stars = r.stars,
+                    text = r.Text,
+                    userImagePath = GetUserImage(r.userId).userProfileImage,
+                    userName = GetUserImage(r.userId).userName
+                }).ToList(),
+                aboutCourseDto = new AboutCourseDto()
+                {
+                    discription = course.Description,
+                    languge = course.languge.Name,
+                    studentsCount = course.Students.Count(),
+                    whatWillYouLearn = course.whatYouLearnFromCourse.Select(c => c.Text).ToList(),
+                    headline = Profile.Headline,
+                    instructoreDetails = new InstructoreDetaisl()
+                    {
+                        biography = Profile.Biography,
+                        courseCount = course.Students.Count(),
+                        instructorId = course.InstructorId,
+                        name = course.Instructor.Name,
+                        instructorImage = Profile.ImageUrl == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "UsersImagesProfile", Profile.ImageUrl),
+                        socialAccount = new SocialAccount()
+
+                        {
+                            userId = user.Id,
+                            facebook = Profile.FacebookUrl,
+                            linkedIn = Profile.LinkedInUrl,
+                            twiter = Profile.TwitterUrl,
+                            youtube = Profile.LinkedInUrl
+                        }
+                    }
+                }
+            };
+            return Result;
+        }
+
+        private MyDataResult GetUserImage(string userId)
+        {
+            var userprofile = _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == userId).Result;
+            if (userprofile is null)
+                return null;
+
+            return new MyDataResult()
+            {
+                userProfileImage = userprofile.ImageUrl == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "UsersImagesProfile", userprofile.ImageUrl),
+
+                userName = userprofile.FullName
+            };
+        }
+
+        public async Task<CourseVideoData> CourseVideoData(string userId, int courseId, int lectureId)
+        {
+            var user = await _UserRepository.GetFirstOrDefault(c => c.Id == userId, new[] { "coursesInrollments" });
+
+            if (user is null)
+                return null;
+
+            var isExistinInrolments = user.coursesInrollments.Any(c => c.Id == courseId);
+
+            if (!isExistinInrolments)
+                return null;
+
+            var Lecture = await _CourseLectureRepository.GetFirstOrDefault(c => c.Id == lectureId);
+
+            if (Lecture is null)
+                return null;
+
+            var path = Path.Combine(_Host.WebRootPath, "CoursesVideos", Lecture.VideoLectureUrl ?? "");
+
+            if (!Path.Exists(path))
+                return null;
+
+            return new CourseVideoData()
+            {
+                extension = Path.GetExtension(path),
+                path = path
+            };
+        }
     }
+}
+
+public class MyDataResult
+{
+    public string userName { get; set; }
+    public string userProfileImage { get; set; }
 }

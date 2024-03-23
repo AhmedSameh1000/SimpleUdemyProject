@@ -34,6 +34,7 @@ namespace UdemyProject.Infrastructure
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<ICartItemRepository, CartItemRepository>();
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.Configure<StripeSettings>(configuration.GetSection("Stripe"));

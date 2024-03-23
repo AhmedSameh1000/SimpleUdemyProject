@@ -5,13 +5,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '../material/material.module';
 import { CourseFilterComponent } from './course-filter/course-filter.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { VideoComponent } from './video/video.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { CourseStartComponent } from './course-start/course-start.component';
 import { LearningComponent } from './learning/learning.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,14 @@ import { LearningComponent } from './learning/learning.component';
     PaymentStatusComponent,
     CourseStartComponent,
     LearningComponent,
+    ReviewComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, MaterialModule, FormsModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HomeModule {}

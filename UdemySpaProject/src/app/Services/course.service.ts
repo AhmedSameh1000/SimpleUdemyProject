@@ -181,6 +181,24 @@ export class CourseService {
     );
   }
 
+  StartCourse(
+    courseId: any,
+    userId: any,
+    lectureId: any
+  ): Observable<ArrayBuffer> {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/StartCourse?userId=${userId}&courseId=${courseId}&lectureId=${lectureId}`,
+      {
+        responseType: 'arraybuffer',
+      }
+    );
+  }
+
+  LoadCourseContatnt(userId: any, courseId: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/CourseContant?userId=${userId}&courseId=${courseId}`
+    );
+  }
   SetFiredData(Data: MyData) {
     this.FiredData.next(Data);
   }

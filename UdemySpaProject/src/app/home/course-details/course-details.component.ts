@@ -59,7 +59,6 @@ export class CourseDetailsComponent implements OnInit {
     }
     return count;
   }
-  rate = 3;
 
   OpenVideoDilog() {
     this.MatDialog.open(VideoComponent, {

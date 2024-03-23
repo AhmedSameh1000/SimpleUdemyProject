@@ -34,6 +34,7 @@
         public string? WelcomeMessage { get; set; }
         public string? CongratulationsMessage { get; set; }
         public decimal? Price { get; set; }
+        public List<Review> reviews { get; set; }
 
         public double CountofNotNullValues()
         {

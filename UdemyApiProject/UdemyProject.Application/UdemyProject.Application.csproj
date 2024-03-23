@@ -30,6 +30,8 @@
     <Folder Include="Features\CourseSection\CourseSectionCommand\Validators\" />
     <Folder Include="Features\CourseSection\CourseSectionQuery\Validators\" />
     <Folder Include="Features\Course\CourseQueries\Validators\" />
+    <Folder Include="Features\Review\ReviewCommand\validator\" />
+    <Folder Include="Features\Review\ReviewQuery\" />
     <Folder Include="Features\UserProfile\UserProfileCommand\Validators\" />
     <Folder Include="Features\UserProfile\UserProfileQuery\Validators\" />
   </ItemGroup>

@@ -69,7 +69,7 @@
   <div class="d-flex gap-2">
     <div>4.6</div>
     <rating
-      [(ngModel)]="rate"
+      [(ngModel)]="CourseDetails.courseRating"
       [max]="5"
       class="fs-2"
       style="color: orange"
@@ -117,13 +117,18 @@
 
     <div class="d-flex w-100 justify-content-between gap-3">
       <div
+        [routerLink]="'/coursestart/' + CourseId"
         *ngIf="CourseDetails.isInMylearning"
         class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
       >
         <span>Go to course</span>
       </div>
       <div
-        *ngIf="!CourseDetails.isInCart && CourseDetails.coursePrice != 0"
+        *ngIf="
+          !CourseDetails.isInCart &&
+          CourseDetails.coursePrice != 0 &&
+          !CourseDetails.isInMylearning
+        "
         (click)="AddToCart()"
         class="d-flex justify-content-center align-items-center fs-2 fw-bold border border-2 w-100 p-3 pointer bbtn"
       >

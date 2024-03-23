@@ -1,0 +1,37 @@
+<div class="p-5 position-relative">
+  <form
+    class="d-flex flex-column justify-content-center gap-3"
+    [formGroup]="ReviewForm"
+  >
+    <h1 class="m-auto">Why did you leave this rating?</h1>
+    <rating
+      [(ngModel)]="Rate"
+      class="m-auto"
+      name="Rate"
+      [max]="5"
+      style="color: orange; font-size: 50px"
+      formControlName="stars"
+    ></rating>
+    <textarea
+      name=""
+      id=""
+      cols="20"
+      rows="7"
+      formControlName="text"
+    ></textarea>
+    <button
+      mat-button
+      mat-dialog-close
+      class="position-absolute"
+      style="top: 0; right: 0"
+    >
+      X
+    </button>
+
+    <div class="d-flex justify-content-end">
+      <button mat-raised-button color="primary" (click)="SaveReview()">
+        Save Review
+      </button>
+    </div>
+  </form>
+</div>

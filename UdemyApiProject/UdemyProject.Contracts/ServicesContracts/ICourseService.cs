@@ -40,6 +40,9 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<bool> InrollFreeCourse(int courseId, string userId);
 
         Task<List<MyLearningCourseForReturnDto>> GetMyLearnings(string userId);
-    
+
+        Task<ContantStartDToForReturn> LoadCourseContent(string userId, int courseId);
+
+        Task<CourseVideoData> CourseVideoData(string userId, int courseId, int lectureId);
     }
 }

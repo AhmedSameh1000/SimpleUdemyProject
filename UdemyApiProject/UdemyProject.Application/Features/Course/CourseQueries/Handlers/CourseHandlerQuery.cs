@@ -23,7 +23,9 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
         IRequestHandler<GetCoursePriceModelQuery, ResponseModel<CoursePriceForReturnDTO>>,
         IRequestHandler<GetCoursesPaginatedModelQuery, PaginatedResult<CourseForReturnDTO>>,
         IRequestHandler<GetCourseFullDetailsQuery, ResponseModel<Course_With_Instructor_Details>>,
-        IRequestHandler<GetMyLearningModelQuery, ResponseModel<List<MyLearningCourseForReturnDto>>>
+        IRequestHandler<GetMyLearningModelQuery, ResponseModel<List<MyLearningCourseForReturnDto>>>,
+        IRequestHandler<GetCourseContantModelQuery, ResponseModel<ContantStartDToForReturn>>,
+        IRequestHandler<GetCourseVideoDataModelQuery, ResponseModel<CourseVideoData>>
 
     {
         private readonly ICourseService _CourseService;
@@ -124,6 +126,26 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             {
                 return BadRequest<List<MyLearningCourseForReturnDto>>();
             }
+            return Success(Result);
+        }
+
+        public async Task<ResponseModel<ContantStartDToForReturn>> Handle(GetCourseContantModelQuery request, CancellationToken cancellationToken)
+        {
+            var Result = await _CourseService.LoadCourseContent(request.userId, request.courseId);
+
+            if (Result is null)
+                return BadRequest<ContantStartDToForReturn>();
+
+            return Success(Result);
+        }
+
+        public async Task<ResponseModel<CourseVideoData>> Handle(GetCourseVideoDataModelQuery request, CancellationToken cancellationToken)
+        {
+            var Result = await _CourseService.CourseVideoData(request.userId, request.courseId, request.lectureId);
+
+            if (Result is null)
+                return BadRequest<CourseVideoData>();
+
             return Success(Result);
         }
 

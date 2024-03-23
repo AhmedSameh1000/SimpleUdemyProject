@@ -41,6 +41,19 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
         public string biography { get; set; }
         public string instructorImage { get; set; }
         public int courseCount { get; set; }
+        public SocialAccount socialAccount { get; set; }
+    }
+
+    public class SocialAccount
+    {
+        public string userId { get; set; }
+
+        public string twiter {  get; set; }
+        public string facebook { get; set; }
+
+        public string youtube { get; set; }
+
+        public string linkedIn { get; set; }
     }
 
     public class courseContentSectionDto
@@ -54,11 +67,32 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
         public List<courseLectureContentDto> lectureContent { get; set; }
     }
 
+    public class ContantStartDToForReturn
+    {
+        public int rating { get; set; }
+        public int lectureCount { get; set; }
+        public int totalMinutes { get; set; }
+        public List<CourseReviewDtoForReturn> courseReviews { get; set; }
+        public List<courseContentSectionDto> courseContentSection { get; set; }
+   
+    
+        public AboutCourseDto aboutCourseDto { get; set; }
+    }
+
+
     public class courseLectureContentDto
     {
         public int lectureId { get; set; }
         public string Lecturetitle { get; set; }
 
         public int totalMinutes { get; set; }
+    }
+
+    public class CourseReviewDtoForReturn
+    {
+        public string userName { get; set; }
+        public string userImagePath { get; set; }
+        public int stars { get; set; }
+        public string text { get; set; }
     }
 }

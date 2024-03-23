@@ -21,7 +21,7 @@
   <div class="container mycontainer">
     <mat-card
       *ngFor="let Course of Courses"
-      class="pointer text-start example-card"
+      class="pointer text-start example-card m-auto"
       [routerLink]="'courseDetails/' + Course.id"
     >
       <img
@@ -40,7 +40,7 @@
       </p>
 
       <strong class="ms-2">{{
-        Course.price == 0 ? "free" : Course.price + " $"
+        Course.price == 0 ? "free" : Course.price + " EGP"
       }}</strong>
     </mat-card>
   </div>

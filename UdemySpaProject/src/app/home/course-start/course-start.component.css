@@ -1,0 +1,10 @@
+.lectures:hover {
+  background-color: red;
+}
+.ahmed:hover {
+  background-color: rgb(70, 66, 66) !important;
+  color: white !important;
+}
+.hov:hover {
+  background-color: black !important;
+}

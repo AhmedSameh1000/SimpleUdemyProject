@@ -56,8 +56,8 @@
               <p class="text-primary">
                 {{
                   Cartitem.totalMinutes < 60
-                    ? Cartitem.totalMinutes + " Minutes"
-                    : Cartitem.totalMinutes / 60 + " hours"
+                    ? Cartitem.totalMinutes.toFixed(1) + " Minutes"
+                    : Cartitem.totalMinutes.toFixed(1) / 60 + " hours"
                 }}
               </p>
               <i class="fa-solid fa-circle mb-2 text-secondary"></i>

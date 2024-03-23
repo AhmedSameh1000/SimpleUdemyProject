@@ -4,8 +4,7 @@
 <div class="container p-0 mycontainer position-relative">
   <mat-card
     *ngFor="let Course of Courses"
-    class="pointer text-start example-card cont m-auto"
-    [routerLink]="'courseDetails/' + Course.id"
+    class="m-auto pointer text-start example-card cont"
   >
     <div class="d-flex justify-content-center play">
       <div
@@ -18,7 +17,10 @@
           background-color: white;
         "
       >
-        <i class="fs-2 fa-solid fa-play"></i>
+        <i
+          class="fs-2 fa-solid fa-play"
+          [routerLink]="'/coursestart/' + Course.courseId"
+        ></i>
       </div>
     </div>
     <img
@@ -27,7 +29,7 @@
       [src]="Course.courseImage"
       alt="Course Image"
     />
-    <div class="overlay"></div>
+    <div class="overlay" [routerLink]="'/coursestart/' + Course.courseId"></div>
     <div>
       <h5 style="font-size: 13px" class="fw-bolder text-start ms-2">
         {{ Course.courseName }}
@@ -41,6 +43,7 @@
         <rating
           [(ngModel)]="Course.rating"
           [max]="5"
+          (click)="OpenReviewComponent(Course.courseId)"
           class="fs-5"
           style="color: orange"
         ></rating>

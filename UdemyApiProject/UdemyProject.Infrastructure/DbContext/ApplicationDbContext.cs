@@ -28,6 +28,7 @@ namespace UdemyProject.Infrastructure.DbContext
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<Cart> carts { get; set; }
         public DbSet<CartItem> cartItems { get; set; }
+        public DbSet<Review> reviews { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -438,6 +438,36 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.ToTable("Lectures");
                 });
 
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("courseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("stars")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("courseId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("reviews");
+                });
+
             modelBuilder.Entity("UdemyProject.Domain.Entities.Section", b =>
                 {
                     b.Property<int>("Id")
@@ -738,6 +768,25 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("Section");
                 });
 
+            modelBuilder.Entity("UdemyProject.Domain.Entities.Review", b =>
+                {
+                    b.HasOne("UdemyProject.Domain.Entities.Course", "course")
+                        .WithMany("reviews")
+                        .HasForeignKey("courseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UdemyProject.Domain.Entities.ApplicationUser", "user")
+                        .WithMany("reviews")
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("course");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("UdemyProject.Domain.Entities.Section", b =>
                 {
                     b.HasOne("UdemyProject.Domain.Entities.Course", "Course")
@@ -822,6 +871,8 @@ namespace UdemyProject.Infrastructure.Migrations
 
                     b.Navigation("carts");
 
+                    b.Navigation("reviews");
+
                     b.Navigation("userProfile")
                         .IsRequired();
                 });
@@ -836,6 +887,8 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Navigation("Requirments");
 
                     b.Navigation("Sections");
+
+                    b.Navigation("reviews");
 
                     b.Navigation("whatYouLearnFromCourse");
 

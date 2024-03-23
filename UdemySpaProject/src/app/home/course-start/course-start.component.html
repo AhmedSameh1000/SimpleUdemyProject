@@ -1,1 +1,241 @@
-<p>course-start works!</p>
+<div class="container">
+  <div class="d-flex justify-content-between bg-light p-3">
+    <div>
+      <i class="fa-solid fa-circle-left h2" routerLink="/learning"></i>
+    </div>
+    <div
+      class="d-flex align-items-center pointer"
+      (click)="OpenReviewComponent()"
+    >
+      <h1 class="mt-1">leave rating</h1>
+      <i class="fa-regular fa-star h2 me-2 p-1"></i>
+    </div>
+  </div>
+  <div style="height: 500px" class="myborder border-4">
+    <video width="100%" controls height="100%" [src]="videoUrl"></video>
+  </div>
+  <div>
+    <mat-tab-group
+      animationDuration="0ms"
+      [disableRipple]="true"
+      mat-align-tabs="start"
+      mat-stretch-tabs="false"
+    >
+      <mat-tab label="Course content">
+        <mat-accordion class="mt-3">
+          <mat-expansion-panel
+            *ngFor="
+              let Section of CourseContant?.courseContentSection;
+              let i = index
+            "
+          >
+            <mat-expansion-panel-header>
+              <div>
+                <mat-panel-title> Section {{ i + 1 }}: </mat-panel-title>
+              </div>
+              <div>
+                <mat-panel-description
+                  class="w-100 d-flex justify-content-between"
+                >
+                  <div
+                    class="w-100 d-flex justify-content-between align-items-center"
+                  >
+                    <div>{{ Section.sectionTitle }}</div>
+                    <div class="text-primary">
+                      {{ Section.totalMinutes }}
+                      minutes
+                    </div>
+                  </div>
+                </mat-panel-description>
+              </div>
+            </mat-expansion-panel-header>
+            <div
+              class="d-flex justify-content-between p-2 mb-2 pointer myborder ahmed"
+              *ngFor="let lecture of Section.lectureContent"
+              (click)="PlayCourse(lecture.lectureId)"
+            >
+              <div>
+                <i class="fa-solid fa-circle-play text-primary"></i>
+
+                {{ lecture.lecturetitle }}
+              </div>
+              <div class="text-primary">{{ lecture.totalMinutes }} min</div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-tab>
+      <mat-tab label="Overview" *ngIf="AboutCourse">
+        <div class="fw-bold">
+          <h1 class="fw-bold mt-3">About this course</h1>
+          <hr />
+          <div
+            class="d-flex flex-column flex-lg-row justify-content-start gap-lg-5"
+          >
+            <div>By the numbers</div>
+            <div>
+              <p>Students: {{ AboutCourse.studentsCount }}</p>
+              <p>Languages: {{ AboutCourse.languge }}</p>
+            </div>
+            <div>
+              <p>Lectures: {{ CourseContant.lectureCount }}</p>
+              <p>
+                Video:
+                {{
+                  CourseContant.totalMinutes < 60
+                    ? CourseContant.totalMinutes + " Minutes"
+                    : (CourseContant.totalMinutes / 60).toFixed(1) +
+                      " total hours"
+                }}
+              </p>
+            </div>
+          </div>
+          <hr />
+          <div class="d-flex gap-3">
+            <div>Description</div>
+            <div class="w-75">
+              {{ AboutCourse.discription }}
+            </div>
+          </div>
+          <hr />
+          <div>
+            <h3>What you’ll learn</h3>
+            <ul>
+              <li *ngFor="let text of AboutCourse.whatWillYouLearn">
+                {{ text }}
+              </li>
+            </ul>
+          </div>
+          <hr />
+          <div class="d-flex gap-5">
+            <div>Instructor</div>
+            <div class="w-75">
+              <div
+                class="d-flex justify-content-start align-items-center gap-3"
+              >
+                <img
+                  style="border-radius: 50%; width: 100px; height: 100px"
+                  [src]="
+                    InstructiorDetails.instructorImage == null
+                      ? '../../../assets/profileimagedefault/download.png'
+                      : InstructiorDetails.instructorImage
+                  "
+                  alt=""
+                />
+                <div>
+                  <div>Ahmed Sameh</div>
+                  <div>{{ InstructiorDetails.name }}</div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-start gap-2">
+                <a
+                  href="{{ sicialMeadia.twiter }}"
+                  *ngIf="sicialMeadia.twiter"
+                  style="width: 40px; height: 40px; color: white"
+                  class="text-decoration-none hov bg-secondary d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="h3 fa-brands fa-twitter"
+                    style="margin-top: 10px"
+                  ></i>
+                </a>
+                <a
+                  href="{{ sicialMeadia.facebook }}"
+                  *ngIf="sicialMeadia.facebook"
+                  style="width: 40px; height: 40px; color: white"
+                  class="text-decoration-none hov bg-secondary d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="h3 fa-brands fa-facebook"
+                    style="margin-top: 10px"
+                  ></i>
+                </a>
+                <a
+                  href="{{ sicialMeadia.youtube }}"
+                  *ngIf="sicialMeadia.youtube"
+                  style="width: 40px; height: 40px; color: white"
+                  class="text-decoration-none hov bg-secondary d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="h3 fa-brands fa-youtube"
+                    style="margin-top: 10px"
+                  ></i>
+                </a>
+                <a
+                  href="{{ sicialMeadia.linkedIn }}"
+                  *ngIf="sicialMeadia.linkedIn"
+                  style="width: 40px; height: 40px; color: white"
+                  class="text-decoration-none hov bg-secondary d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="h3 fa-brands fa-linkedin"
+                    style="margin-top: 10px"
+                  ></i>
+                </a>
+              </div>
+              <div class="mt-3">
+                {{ InstructiorDetails.biography }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Reviews">
+        <div class="container mt-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center">
+              <h1 style="font-size: 30px; font-weight: bolder">4</h1>
+              <h1 style="font-size: 30px; font-weight: bolder">
+                Course rating
+              </h1>
+            </div>
+            <div>
+              <rating
+                *ngIf="CourseContant?.rating"
+                [(ngModel)]="CourseContant.rating"
+                [max]="5"
+                class="h1"
+                style="color: orange"
+                [readonly]="true"
+              ></rating>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <h1 class="ms-2" style="font-size: 30px; font-weight: bolder">
+          Reviews
+        </h1>
+        <hr />
+        <div *ngFor="let review of CourseContant?.courseReviews">
+          <div class="d-flex gap-3">
+            <div>
+              <img
+                width="40"
+                height="40"
+                class="rounded rounded-5"
+                [src]="
+                  review?.userImagePath == null ||
+                  review?.userImagePath == undefined
+                    ? '../../../assets/profileimagedefault/download.png'
+                    : review?.userImagePath
+                "
+                alt=""
+              />
+            </div>
+            <div>
+              <h2>{{ review.userName }}</h2>
+              <rating
+                [(ngModel)]="review.stars"
+                [max]="5"
+                class="h1"
+                style="color: orange"
+                [readonly]="true"
+              ></rating>
+              <p>{{ review.text }}</p>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
