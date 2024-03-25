@@ -18,8 +18,10 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
 
         public int? CategoryId { get; set; }
 
+        [AllowedExtensionsAttributes(".jpg,.jpeg,.png")]
         public IFormFile? Image { get; set; }
 
+        [AllowedExtensionsAttributes(".mp4,.webm")]
         public IFormFile? PromotionVideo { get; set; }
     }
 }

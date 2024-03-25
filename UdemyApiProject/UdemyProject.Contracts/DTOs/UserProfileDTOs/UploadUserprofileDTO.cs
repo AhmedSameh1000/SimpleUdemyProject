@@ -11,6 +11,7 @@ namespace UdemyProject.Contracts.DTOs.UserProfileDTOs
     {
         public string userId { get; set; }
 
+        [AllowedExtensionsAttributes(".jpg,.jpeg,.png")]
         public IFormFile Image { get; set; }
     }
 }

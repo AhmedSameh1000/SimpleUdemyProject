@@ -12,6 +12,8 @@ namespace UdemyProject.Contracts.DTOs.LectureDTOs
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
+
+        [AllowedExtensionsAttributes(".mp4,.webm")]
         public IFormFile? Video { get; set; }
     }
 }

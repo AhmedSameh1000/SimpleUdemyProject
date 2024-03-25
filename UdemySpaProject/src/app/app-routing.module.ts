@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CanActivate } from './Guards/AuthGuard';
 
 const routes: Routes = [
   {
@@ -11,11 +12,13 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
+    canActivate: [CanActivate],
     path: 'instructor',
     loadChildren: () =>
       import('./instructor/instructor.module').then((m) => m.InstructorModule),
   },
   {
+    canActivate: [CanActivate],
     path: 'user',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
