@@ -17,7 +17,8 @@ namespace UdemyProject.Application.Features.Course.CourseCommands.Handlers
         IRequestHandler<UpdateCourseMessagesModelCommand, ResponseModel<bool>>,
         IRequestHandler<UpdateCoursePriceModelCommand, ResponseModel<bool>>,
         IRequestHandler<DeleteCourseModelCommand, ResponseModel<bool>>,
-        IRequestHandler<InrollFreeCourseModelCommand, ResponseModel<bool>>
+        IRequestHandler<InrollFreeCourseModelCommand, ResponseModel<bool>>,
+        IRequestHandler<TryPublishValidCourseModelCommand, ResponseModel<bool>>
     {
         private readonly ICourseService _CourseService;
         private readonly IValidator<CourseBasicDataDTO> _BasicCoursevalidation;
@@ -118,6 +119,16 @@ namespace UdemyProject.Application.Features.Course.CourseCommands.Handlers
             }
 
             return Success(Result);
+        }
+
+        public async Task<ResponseModel<bool>> Handle(TryPublishValidCourseModelCommand request, CancellationToken cancellationToken)
+        {
+            var isPublished = await _CourseService.TryPublishCourse(request.userId, request.courseId);
+
+            if (!isPublished)
+                return BadRequest<bool>();
+
+            return Success(isPublished);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace UdemyProject.Domain.Entities
 {
@@ -20,5 +21,13 @@ namespace UdemyProject.Domain.Entities
         public string? TwitterUrl { get; set; }
         public string? LinkedInUrl { get; set; }
         public string? YoutubeUrl { get; set; }
+
+        public bool isValidProfile()
+        {
+            if (FullName is null || Headline is null || Biography is null || ImageUrl is null || LinkedInUrl is null)
+                return false;
+
+            return true;
+        }
     }
 }

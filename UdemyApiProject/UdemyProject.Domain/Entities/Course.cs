@@ -11,7 +11,6 @@
 
         public int CategoryId { get; set; }
         public int? langugeId { get; set; }
-        public int? totalHours { get; set; }
 
         public string? Image { get; set; }
         public string? CoursePromotionalVideo { get; set; }
@@ -35,6 +34,14 @@
         public string? CongratulationsMessage { get; set; }
         public decimal? Price { get; set; }
         public List<Review> reviews { get; set; }
+
+        public bool isValidCourseForPublish()
+        {
+            if (CoursePromotionalVideo is null || Title is null || SubTitle is null || Description is null || Image is null)
+                return false;
+
+            return true;
+        }
 
         public double CountofNotNullValues()
         {

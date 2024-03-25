@@ -18,6 +18,9 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
         public DateTime lastUpdated { get; set; }
 
         public bool isInMylearning { get; set; }
+        public int studentInThisCourseCount { get; set; }
+
+
 
         public int duration { get; set; }
         public string languge { get; set; }
@@ -41,8 +44,13 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
         public string biography { get; set; }
         public string instructorImage { get; set; }
         public int courseCount { get; set; }
+        public string headline { get; set; }
         public SocialAccount socialAccount { get; set; }
+
+        public int totalStudents {  get; set; }
+        public int totalReviews {  get; set; }
     }
+
 
     public class SocialAccount
     {

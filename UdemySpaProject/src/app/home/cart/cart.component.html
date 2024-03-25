@@ -38,7 +38,6 @@
               {{ Cartitem.cartItemTitle }}
             </h3>
             <div class="d-flex gap-2">
-              <div>4.6</div>
               <rating
                 [(ngModel)]="Cartitem.cartItemRating"
                 [max]="5"
@@ -46,18 +45,13 @@
                 style="color: orange"
                 [readonly]="true"
               ></rating>
-              <div
-                class="newhide text-primary text-decoration-underline pointer"
-              >
-                (4450 rating)
-              </div>
             </div>
             <div class="d-flex gap-2 align-items-center mt-lg-3">
               <p class="text-primary">
                 {{
                   Cartitem.totalMinutes < 60
-                    ? Cartitem.totalMinutes.toFixed(1) + " Minutes"
-                    : Cartitem.totalMinutes.toFixed(1) / 60 + " hours"
+                    ? Cartitem.totalMinutes + " Minutes"
+                    : (Cartitem.totalMinutes / 60).toFixed(2) + " hours"
                 }}
               </p>
               <i class="fa-solid fa-circle mb-2 text-secondary"></i>
@@ -80,7 +74,6 @@
           >
             Remove
           </p>
-          <p class="pointer col-6 col-lg-12">Move to wichlist</p>
         </div>
         <hr />
       </div>

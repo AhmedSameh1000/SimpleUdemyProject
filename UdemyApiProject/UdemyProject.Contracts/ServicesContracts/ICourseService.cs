@@ -44,5 +44,8 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<ContantStartDToForReturn> LoadCourseContent(string userId, int courseId);
 
         Task<CourseVideoData> CourseVideoData(string userId, int courseId, int lectureId);
+
+
+        Task<bool> TryPublishCourse(string userId,int courseId);
     }
 }

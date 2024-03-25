@@ -72,9 +72,9 @@ export class LandingpageComponent implements OnInit, OnDestroy {
 
   CreateLandingForm() {
     this.landingForm = new FormGroup({
-      Title: new FormControl(null, [Validators.required]),
-      Subtitle: new FormControl(null, [Validators.required]),
-      Decribtion: new FormControl(null, [Validators.required]),
+      Title: new FormControl('', [Validators.required]),
+      Subtitle: new FormControl('', [Validators.required]),
+      Decribtion: new FormControl('', [Validators.required]),
       Languge: new FormControl(null, [Validators.required]),
       Category: new FormControl(null, [Validators.required]),
       Image: new FormControl(null),

@@ -62,9 +62,13 @@ export class CourseStartComponent {
           res.data.courseContentSection[0].lectureContent[0].lectureId
         );
       },
+      error: (err) => {
+        this.notFound = true;
+      },
     });
   }
 
+  notFound: any = false;
   videoUrl: any;
 
   PlayCourse(lecturId: any) {

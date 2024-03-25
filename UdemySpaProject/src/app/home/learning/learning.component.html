@@ -1,10 +1,15 @@
 <!-- <div class="bg-dark fw-bolder text-light p-5 fs-1 h1 container">
   My learning
 </div> -->
-<div class="container p-0 mycontainer position-relative">
+
+<div class="container p-0 mycontainer position-relative" *ngIf="Courses">
+  <div class="alert alert-warning" *ngIf="Courses.length == 0" role="alert">
+    <i class="fa-solid fa-triangle-exclamation"></i> your learning is empty
+  </div>
+
   <mat-card
     *ngFor="let Course of Courses"
-    class="m-auto pointer text-start example-card cont"
+    class="center pointer text-start example-card cont"
   >
     <div class="d-flex justify-content-center play">
       <div

@@ -338,9 +338,6 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<DateTime>("lastUpdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("totalHours")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");

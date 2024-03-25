@@ -194,6 +194,11 @@ export class CourseService {
     );
   }
 
+  TrypublishCoure(userId, courseId) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/TryPublishCoure?userId=${userId}&courseId=${courseId}`
+    );
+  }
   LoadCourseContatnt(userId: any, courseId: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/CourseContant?userId=${userId}&courseId=${courseId}`

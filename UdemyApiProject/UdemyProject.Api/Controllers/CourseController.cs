@@ -45,6 +45,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpGet("TryPublishCoure")]
+        public async Task<IActionResult> TrypublishCoure(string userId, int courseId)
+        {
+            var Response = await _Mediator.Send(new TryPublishValidCourseModelCommand(userId, courseId));
+            return NewResult(Response);
+        }
+
         [HttpPost("CreateRequirmentCourse")]
         public async Task<IActionResult> CreateRequirmentCourse(CoursePrerequisiteDTO prerequisiteDTO)
         {

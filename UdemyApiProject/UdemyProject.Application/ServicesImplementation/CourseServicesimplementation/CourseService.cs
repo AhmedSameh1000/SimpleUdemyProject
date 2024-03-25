@@ -11,6 +11,7 @@ using UdemyProject.Contracts.Helpers;
 using UdemyProject.Contracts.RepositoryContracts;
 using UdemyProject.Contracts.ServicesContracts;
 using UdemyProject.Domain.Entities;
+using static System.Collections.Specialized.BitVector32;
 
 namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplementation
 {
@@ -236,7 +237,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 Name = c.Title,
                 SubTitle = c.SubTitle,
                 Image = c.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", c.Image),
-                Progress = (int)(100 * (c.CountofNotNullValues() / 19))
+                Progress = (int)(100 * (c.CountofNotNullValues() / 20))
             }).ToList();
 
             return CourseToReturn;
@@ -335,7 +336,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
              e.Sections.SelectMany(s => s.Lecture).Sum(l => l.VideoMinuteLength.HasValue ? l.VideoMinuteLength.Value : 0)
             );
 
-            var Query = _CourseRepository.GetAllQuerableAsNoTracking(new[] { "Instructor" }).AsQueryable();
+            var Query = _CourseRepository.GetAllQuerableAsNoTracking(new[] { "Instructor" }).Where(c => c.isPublished).AsQueryable();
 
             if (paginationQuery.search != null)
             {
@@ -370,7 +371,6 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         public async Task<Course_With_Instructor_Details> GetFullCourseDetails(int CourseId, string userId)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == CourseId, new[] { "languge", "category", "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Students", });
-
             if (Course is null)
             {
                 return null;
@@ -378,6 +378,13 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
 
             var UdemyAccount = await _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == Course.InstructorId);
             var Instructor = await _UserRepository.GetFirstOrDefault(c => c.Id == Course.InstructorId, new[] { "CoursesICreated" });
+
+            var CoursesThisInstractorCreate = await _CourseRepository.GetAllAsNoTracking(c => c.InstructorId == Instructor.Id, new[] { "Students", "reviews" });
+
+            var totalReviewsCount = CoursesThisInstractorCreate
+                .SelectMany(course => course.reviews)
+                .Count();
+
             var Sections = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == CourseId, new[] { "Lecture" });
             var isInCart = await _CartItemRepository.GetFirstOrDefault(c => c.courseId == CourseId && c.ApplicationUserId == userId);
 
@@ -390,6 +397,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 courseSubTitle = Course.SubTitle,
                 courseTitle = Course.Title,
                 description = Course.Description,
+                studentInThisCourseCount = Course.Students.Count(),
                 languge = Course.languge.Name,
                 lastUpdated = Course.lastUpdate,
                 coursePrice = Course.Price.HasValue ? Course.Price.Value : 0,
@@ -398,6 +406,8 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 {
                     instructorId = Instructor.Id,
                     biography = UdemyAccount.Biography,
+                    totalReviews = totalReviewsCount,
+                    headline = UdemyAccount.Headline,
                     courseCount = Instructor.CoursesICreated.Count(),
                     name = Instructor.Name,
                     instructorImage = UdemyAccount.ImageUrl == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "UsersImagesProfile", UdemyAccount.ImageUrl),
@@ -604,6 +614,76 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 extension = Path.GetExtension(path),
                 path = path
             };
+        }
+
+        public async Task<bool> TryPublishCourse(string userId, int courseId)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseId && c.InstructorId == userId, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse" });
+
+            if (Course is null)
+                return false;
+
+            if (Course.isPublished)
+                return true;
+
+            if (!Course.isValidCourseForPublish())
+                return false;
+
+            if (!ChecklistOfStringsisNotNull(Course.Requirments.Select(c => c.Text).ToList()))
+                return false;
+
+            if (!ChecklistOfStringsisNotNull(Course.whatYouLearnFromCourse.Select(c => c.Text).ToList()))
+                return false;
+
+            if (!ChecklistOfStringsisNotNull(Course.whoIsthisCoursefors.Select(c => c.Text).ToList()))
+                return false;
+
+            var Instructor = await _UserProfileRepository.GetFirstOrDefault(c => c.applicationUserId == userId);
+
+            if (!Instructor.isValidProfile())
+                return false;
+
+            var AllSection = await _CourseSectionRepository.GetAllAsNoTracking(c => c.CourseId == courseId, new[] { "Lecture" });
+
+            if (AllSection.Any(c => c.Title is null))
+                return false;
+
+            if (AllSection.SelectMany(s => s.Lecture).Count() <= 10)
+            {
+                return false;
+            }
+            foreach (var Section in AllSection)
+            {
+                foreach (var Lecture in Section.Lecture)
+                {
+                    if (Lecture.VideoLectureUrl is null)
+                        return false;
+                }
+            }
+
+            if (AllSection.SelectMany(section => section.Lecture).Sum(lecture => lecture.VideoMinuteLength.HasValue ? lecture.VideoMinuteLength.Value : 0) <= 60)
+            {
+                return false;
+            }
+
+            Course.isPublished = true;
+            _CourseRepository.Update(Course);
+
+            return await _CourseRepository.SaveChanges();
+        }
+
+        private bool ChecklistOfStringsisNotNull(List<string> texts)
+        {
+            if (texts.Count() == 0)
+                return false;
+
+            foreach (var text in texts)
+            {
+                if (string.IsNullOrWhiteSpace(text))
+                    return false;
+            }
+
+            return true;
         }
     }
 }
