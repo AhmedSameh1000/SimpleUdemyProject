@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj": {}
+    "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj": {
+    "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
         "projectName": "UdemyProject.Domain",
-        "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
+        "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
         "packagesPath": "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ahmed Sameh\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,11 +1,11 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffmpeg.exe"
     },
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
       "PackagePath": "staticwebassets\\FFPEG\\ffprobe.exe"
     },
     {

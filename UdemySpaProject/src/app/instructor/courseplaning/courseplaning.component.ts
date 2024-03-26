@@ -1,8 +1,10 @@
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from './../../Services/course.service';
 import { Component, OnInit } from '@angular/core';
+import { CanSubmitComponent } from '../can-submit/can-submit.component';
 
 @Component({
   selector: 'app-courseplaning',
@@ -14,7 +16,8 @@ export class CourseplaningComponent implements OnInit {
     private CourseService: CourseService,
     private ActivatedRoute: ActivatedRoute,
     private AuthService: AuthService,
-    private ToastrService: ToastrService
+    private ToastrService: ToastrService,
+    private MatDialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.LoadCourseId();
@@ -42,6 +45,9 @@ export class CourseplaningComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.MatDialog.open(CanSubmitComponent, {
+          minWidth: '60%',
+        });
       },
     });
   }

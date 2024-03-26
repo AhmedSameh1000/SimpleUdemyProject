@@ -648,7 +648,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             if (AllSection.Any(c => c.Title is null))
                 return false;
 
-            if (AllSection.SelectMany(s => s.Lecture).Count() <= 10)
+            if (AllSection.SelectMany(s => s.Lecture).Count() < 5)
             {
                 return false;
             }
@@ -661,7 +661,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 }
             }
 
-            if (AllSection.SelectMany(section => section.Lecture).Sum(lecture => lecture.VideoMinuteLength.HasValue ? lecture.VideoMinuteLength.Value : 0) <= 60)
+            if (AllSection.SelectMany(section => section.Lecture).Sum(lecture => lecture.VideoMinuteLength.HasValue ? lecture.VideoMinuteLength.Value : 0) < 30)
             {
                 return false;
             }

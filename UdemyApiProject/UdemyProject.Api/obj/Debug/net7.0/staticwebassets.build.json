@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M99TL7XSPPl1mrIa2Vqh5dW4rj/vQTE5eOiM+LsXByI=",
+  "Hash": "1UWETJToKS+2vQ4sc2OLNbUWft69fzG/9znGIw+AKR8=",
   "Source": "UdemyProject.Api",
   "BasePath": "_content/UdemyProject.Api",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "UdemyProject.Api\\wwwroot",
       "Source": "UdemyProject.Api",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffmpeg.exe",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
       "RelativePath": "FFPEG/ffmpeg.exe",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\FFPEG\\ffmpeg.exe"
     },
     {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\FFPEG\\ffprobe.exe",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
       "RelativePath": "FFPEG/ffprobe.exe",
       "AssetKind": "All",

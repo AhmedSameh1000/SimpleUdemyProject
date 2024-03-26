@@ -4093,11 +4093,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
       "projectName": "UdemyProject.Api",
-      "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
+      "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
       "packagesPath": "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\obj\\",
+      "outputPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ahmed Sameh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4114,14 +4114,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj": {
-              "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj"
+            "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj": {
+              "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj"
             },
-            "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj": {
-              "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj"
+            "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj": {
+              "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj"
             },
-            "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Infrastructure\\UdemyProject.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Infrastructure\\UdemyProject.Infrastructure.csproj"
+            "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Infrastructure\\UdemyProject.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Infrastructure\\UdemyProject.Infrastructure.csproj"
             }
           }
         }

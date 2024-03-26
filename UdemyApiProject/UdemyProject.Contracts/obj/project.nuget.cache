@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+uzXF3HU1WvqrIGXDqtfP0Z9ydhw4hH3lVxz5gXCEiysTUxvd/iHzyFA/YCKkUxvYnIQsKYDMQoJT2H0WTu10Q==",
+  "dgSpecHash": "Gtx/xWQkCasxSPwj6LvUkJ1HPl2XM47j84H4hDhamqIGGIXsrvHA65mxH2M4hRf6q1dkh1GssoUv8R6BSJ6FrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj",
+  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.14\\microsoft.aspnetcore.cryptography.internal.7.0.14.nupkg.sha512",

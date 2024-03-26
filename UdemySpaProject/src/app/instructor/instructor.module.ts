@@ -15,6 +15,7 @@ import { CurriculmComponent } from './curriculm/curriculm.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { CourseMessageComponent } from './course-message/course-message.component';
+import { CanSubmitComponent } from './can-submit/can-submit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CourseMessageComponent } from './course-message/course-message.componen
     LandingpageComponent,
     PricingComponent,
     CourseMessageComponent,
+    CanSubmitComponent,
   ],
   imports: [
     CommonModule,

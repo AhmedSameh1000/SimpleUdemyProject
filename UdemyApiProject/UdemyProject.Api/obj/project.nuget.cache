@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iSJmLQu+k07HU0te3TlDKPqNGc3Ri8/Lo8Tktx5jXvu6pYPZLsGyy3WbL9UY2etmVFrFbxCQ2NaC4P3AhFZA0g==",
+  "dgSpecHash": "3cgpmpX0wWQxzScPdSywt/Ch3wALHOpgORQTwiNikgF/chOObxcljand2PtJuuZR5MbgNPCKGCda3b0M7GTHeA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\new\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
+  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\UdemyProject.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
