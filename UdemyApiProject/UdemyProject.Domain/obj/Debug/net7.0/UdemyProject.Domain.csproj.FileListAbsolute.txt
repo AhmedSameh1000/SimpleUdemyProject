@@ -75,3 +75,16 @@ C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\U
 C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\refint\UdemyProject.Domain.dll
 C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.pdb
 C:\Users\Ahmed Sameh\Desktop\MyUdemyProject\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\ref\UdemyProject.Domain.dll
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\bin\Debug\net7.0\UdemyProject.Domain.deps.json
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\bin\Debug\net7.0\UdemyProject.Domain.dll
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\bin\Debug\net7.0\UdemyProject.Domain.pdb
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.csproj.AssemblyReference.cache
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.AssemblyInfoInputs.cache
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.AssemblyInfo.cs
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.sourcelink.json
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.dll
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\refint\UdemyProject.Domain.dll
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\UdemyProject.Domain.pdb
+C:\Users\Ahmed Sameh\Desktop\new\SimpleUdemyProject\UdemyApiProject\UdemyProject.Domain\obj\Debug\net7.0\ref\UdemyProject.Domain.dll
