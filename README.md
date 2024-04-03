@@ -56,3 +56,10 @@ Before you begin, ensure you have met the following requirements:
 ## Contributing
 We welcome contributions from the community. If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
+## Important Notice
+Attention: Due to the large size of certain files (GetFile and Duration), they have not been included in this repository. If you require access to these files for running the project, please reach out to me directly.
+## Contact Information:
+- Email:ahmeds141000@gmail.com
+
+Please note that these files are essential for the proper functioning of the project, and I'll be happy to assist you with any inquiries regarding them.
+
