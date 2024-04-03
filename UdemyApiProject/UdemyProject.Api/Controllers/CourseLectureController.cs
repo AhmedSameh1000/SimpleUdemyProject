@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UdemyProject.Application.Features.CourseLecture.CourseLectureCommand.Models;
@@ -6,6 +7,7 @@ using UdemyProject.Contracts.DTOs.LectureDTOs;
 
 namespace UdemyProject.Api.Controllers
 {
+    [Authorize]
     public class CourseLectureController : AppBaseController
     {
         private readonly IMediator _Mediator;

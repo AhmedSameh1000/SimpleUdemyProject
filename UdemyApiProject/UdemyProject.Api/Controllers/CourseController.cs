@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UdemyProject.Application.Features.Course.CourseCommands.Models;
 using UdemyProject.Application.Features.Course.CourseQueries.Models;
@@ -8,6 +9,7 @@ using UdemyProject.Contracts.Helpers;
 
 namespace UdemyProject.Api.Controllers
 {
+    [Authorize]
     public class CourseController : AppBaseController
     {
         private readonly IMediator _Mediator;
@@ -95,6 +97,7 @@ namespace UdemyProject.Api.Controllers
         }
 
         [HttpGet("GetCoursePaginated")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCoursePaginated([FromQuery] PaginationQuery paginationQuery)
         {
             var Response = await _Mediator.Send(new GetCoursesPaginatedModelQuery(paginationQuery));

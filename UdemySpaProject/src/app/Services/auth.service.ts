@@ -15,6 +15,7 @@ export class AuthService {
       logInModel
     );
   }
+  // http://localhost:5227/api/Auth/LogIn
 
   JWTHealper = new JwtHelperService();
   GetUserId() {

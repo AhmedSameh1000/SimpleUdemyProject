@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UdemyProject.Application.Features.UserProfile.UserProfileCommand.Models;
@@ -7,6 +8,7 @@ using UdemyProject.Contracts.DTOs.UserProfileDTOs;
 
 namespace UdemyProject.Api.Controllers
 {
+    [Authorize]
     public class UserProfileController : AppBaseController
     {
         private readonly IMediator _Mediator;

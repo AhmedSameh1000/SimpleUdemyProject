@@ -7,6 +7,7 @@ using UdemyProject.Application.Features.CourseCategory.CourseCategoryQuries.Mode
 
 namespace UdemyProject.Api.Controllers
 {
+    [Authorize]
     public class CourseCategoryController : AppBaseController
     {
         private readonly IMediator _Mediator;

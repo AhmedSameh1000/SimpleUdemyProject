@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UdemyProject.Application.Features.Cart.CartCommand.Models;
@@ -6,6 +7,7 @@ using UdemyProject.Contracts.DTOs.CartItem;
 
 namespace UdemyProject.Api.Controllers
 {
+    [Authorize]
     public class CartItemController : AppBaseController
     {
         private readonly IMediator _Mediator;
