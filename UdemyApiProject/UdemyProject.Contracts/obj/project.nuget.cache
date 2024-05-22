@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Gtx/xWQkCasxSPwj6LvUkJ1HPl2XM47j84H4hDhamqIGGIXsrvHA65mxH2M4hRf6q1dkh1GssoUv8R6BSJ6FrA==",
+  "dgSpecHash": "y4h36pJ4vb0kYARoHJf2P5lyMGkWDKXqVvNr2ibbvMhyvYQ8JC7SWJ7M13fTMgVS+wuh8xWjpg83xEMa3cw3/w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Contracts\\UdemyProject.Contracts.csproj",
   "expectedPackageFiles": [
@@ -34,10 +34,7 @@
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\system.security.cryptography.protecteddata\\6.0.0\\system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512"
   ],
   "logs": []
 }

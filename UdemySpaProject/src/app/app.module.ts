@@ -24,7 +24,6 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     CoreModule,
     ReactiveFormsModule,
     HttpClientModule,
-    InstructorModule,
     ToastrModule.forRoot({
       progressBar: true,
       closeButton: true,

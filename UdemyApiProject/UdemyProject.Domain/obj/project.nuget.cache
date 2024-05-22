@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "trD/gyHYI5OpE9ET3s5K8I9ZhQJEPD4uI2ETj8AXSmN0Z+5qI9WpKi6+58fz74biZthDOOUFhwGDD0zRjS9ayA==",
+  "dgSpecHash": "Z5bj9sLNnPQjXG7NHo3PkPR6+p5uwP97DwQBPAzbJ+0GCsY4fdtnhA/4jLmqfXeW8b4vvrho5+XPMfv1e4zPCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
   "expectedPackageFiles": [
@@ -21,10 +21,7 @@
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

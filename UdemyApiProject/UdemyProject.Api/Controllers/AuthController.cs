@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using UdemyProject.Application.Features.Authentication.AuthenticationCommands.Models;
 using UdemyProject.Application.Features.Authentication.AuthenticationQueries.Models;
 using UdemyProject.Contracts.DTOs.AuthDTOs;

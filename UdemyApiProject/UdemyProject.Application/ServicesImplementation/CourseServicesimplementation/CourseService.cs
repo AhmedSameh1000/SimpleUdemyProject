@@ -474,7 +474,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 return Enumerable.Empty<MyLearningCourseForReturnDto>().ToList();
             }
-            var Result = user.coursesInrollments.Select(c => new MyLearningCourseForReturnDto()
+            var Result = user.coursesInrollments.Where(c => c.isPublished).Select(c => new MyLearningCourseForReturnDto()
             {
                 courseId = c.Id,
                 instructorId = c.InstructorId,

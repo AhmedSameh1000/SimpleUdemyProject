@@ -72,6 +72,7 @@ export class CourseStartComponent {
   videoUrl: any;
 
   PlayCourse(lecturId: any) {
+    if (lecturId == null || lecturId == undefined) return;
     this.CourseService.StartCourse(
       this.courseId,
       this.AuthService.GetUserId(),

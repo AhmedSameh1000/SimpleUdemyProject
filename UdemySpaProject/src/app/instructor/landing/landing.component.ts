@@ -29,6 +29,6 @@ export class LandingComponent implements OnInit {
     });
   }
   GoToCourseCreation(CourseId: any, title: any) {
-    this.Router.navigate([`/coursecreation/${CourseId}`]);
+    this.Router.navigate([`/instructor/coursecreation/${CourseId}`]);
   }
 }
