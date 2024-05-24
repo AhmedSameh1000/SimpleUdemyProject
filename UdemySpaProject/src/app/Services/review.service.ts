@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class ReviewService {
 
   CreateReview(review: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Review/CreateReview',
+      environment.BaseUrl + 'Review/CreateReview',
       review
     );
   }

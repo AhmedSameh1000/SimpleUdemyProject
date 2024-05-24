@@ -162,8 +162,10 @@ C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProje
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Contracts.sourcelink.json
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\ar\UdemyProject.Contracts.resources.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\en\UdemyProject.Contracts.resources.dll
-C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Contracts.csproj.CopyComplete
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Contracts.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\refint\UdemyProject.Contracts.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Contracts.pdb
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\ref\UdemyProject.Contracts.dll
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\ar\UdemyProject.Contracts.resources.cs
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\en\UdemyProject.Contracts.resources.cs
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyPro.92FA58F9.Up2Date

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,7 @@ export class AuthService {
   constructor(private httpclient: HttpClient) {}
 
   LogIn(logInModel: any) {
-    return this.httpclient.post(
-      'http://localhost:5227/api/Auth/LogIn',
-      logInModel
-    );
+    return this.httpclient.post(environment.BaseUrl + 'Auth/LogIn', logInModel);
   }
   // http://localhost:5227/api/Auth/LogIn
 
@@ -35,7 +33,7 @@ export class AuthService {
   }
   Signup(SignupModel: any) {
     return this.httpclient.post(
-      'http://localhost:5227/api/Auth/Register',
+      environment.BaseUrl + 'Auth/Register',
       SignupModel
     );
   }
@@ -70,7 +68,7 @@ export class AuthService {
   }
   RefreshToken(userId: any) {
     return this.httpclient.post(
-      `http://localhost:5227/api/Auth/RefreshToken?userId=${userId}`,
+      environment.BaseUrl + `Auth/RefreshToken?userId=${userId}`,
       {}
     );
   }

@@ -163,9 +163,9 @@ C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProje
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.AssemblyInfo.cs
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.sourcelink.json
-C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.csproj.CopyComplete
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\refint\UdemyProject.Infrastructure.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.pdb
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyProject.Infrastructure.genruntimeconfig.cache
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\ref\UdemyProject.Infrastructure.dll
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Infrastructure\obj\Debug\net7.0\UdemyPro.09BCF851.Up2Date

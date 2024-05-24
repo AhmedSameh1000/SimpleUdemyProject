@@ -847,9 +847,9 @@ C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProje
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.UdemyProject.Api.props
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\scopedcss\bundle\UdemyProject.Api.styles.css
-C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.csproj.CopyComplete
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\refint\UdemyProject.Api.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.pdb
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.genruntimeconfig.cache
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\ref\UdemyProject.Api.dll
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyPro.D99807DF.Up2Date

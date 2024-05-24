@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -8,25 +9,26 @@ export class CourseSectionService {
   constructor(private HttpClient: HttpClient) {}
   CreateSection(CourseId: any) {
     return this.HttpClient.post(
-      `http://localhost:5227/api/CourseSection/CreateSection?CourseId=${CourseId}`,
+      environment.BaseUrl + `CourseSection/CreateSection?CourseId=${CourseId}`,
       {}
     );
   }
   DeleteSection(SectionId: any) {
     return this.HttpClient.delete(
-      `http://localhost:5227/api/CourseSection/DeletedSection?SectionId=${SectionId}`
+      environment.BaseUrl +
+        `CourseSection/DeletedSection?SectionId=${SectionId}`
     );
   }
 
   UpdateSection(Section: any) {
     return this.HttpClient.put(
-      `http://localhost:5227/api/CourseSection/UpdateSection`,
+      environment.BaseUrl + `CourseSection/UpdateSection`,
       Section
     );
   }
   GetSections(CourseId: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/CourseSection/GetSections?CourseId=${CourseId}`
+      environment.BaseUrl + `CourseSection/GetSections?CourseId=${CourseId}`
     );
   }
 }

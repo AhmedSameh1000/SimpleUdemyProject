@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "B+d1jRUMU+5rKMbPGokXrPh2pCN/fNBneNXQrZSiV2Y=",
+  "Hash": "YufIG0s/nogyUDZdwoBDNXiqQaEC208TAVVXPiN1wR4=",
   "Source": "UdemyProject.Api",
   "BasePath": "_content/UdemyProject.Api",
   "Mode": "Default",
@@ -1119,6 +1119,25 @@
       "OriginalItemSpec": "wwwroot\\PromotionalVideo\\f517caf2-8309-4d37-8cc3-45556f96d182.mp4"
     },
     {
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\0f40a99e-598b-41e7-b357-c80bac4664cb.jpg",
+      "SourceId": "UdemyProject.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "BasePath": "_content/UdemyProject.Api",
+      "RelativePath": "UsersImagesProfile/0f40a99e-598b-41e7-b357-c80bac4664cb.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UsersImagesProfile\\0f40a99e-598b-41e7-b357-c80bac4664cb.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\1bfa8218-d7f6-44b7-914a-71b2308b0b33.jpg",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
@@ -1212,25 +1231,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UsersImagesProfile\\2fc32f73-07b9-481e-93d4-e0a2ccf87db9.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\3bf45dfc-47a0-4ddc-8d02-cc4b874dbd6f.jpg",
-      "SourceId": "UdemyProject.Api",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
-      "BasePath": "_content/UdemyProject.Api",
-      "RelativePath": "UsersImagesProfile/3bf45dfc-47a0-4ddc-8d02-cc4b874dbd6f.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UsersImagesProfile\\3bf45dfc-47a0-4ddc-8d02-cc4b874dbd6f.jpg"
     },
     {
       "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\UsersImagesProfile\\40c3f448-b0a7-42c5-bae0-e524fba50c15.jpg",

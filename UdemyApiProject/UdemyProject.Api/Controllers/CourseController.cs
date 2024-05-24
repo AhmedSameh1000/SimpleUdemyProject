@@ -160,3 +160,4 @@ namespace UdemyProject.Api.Controllers
         }
     }
 }
+//https://localhost:7220/api/Course/GetCoursePaginated || //localhost:7220/api/Course/GetCoursePaginated

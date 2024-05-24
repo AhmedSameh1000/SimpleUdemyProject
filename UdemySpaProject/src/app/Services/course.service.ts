@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -32,83 +33,86 @@ export class CourseService {
 
   CreateBasicCourse(BasicCourse: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Course/CreateBasicCourse',
+      environment.BaseUrl + 'Course/CreateBasicCourse',
       BasicCourse
     );
   }
   UpdateCourseMessages(CourseMessages: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Course/UpdateCourseMessage',
+      environment.BaseUrl + 'Course/UpdateCourseMessage',
       CourseMessages
     );
   }
 
   GetInstructorCourses(userId: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/InstructorCourss?InstructorId=${userId}`
+      environment.BaseUrl + `Course/InstructorCourss?InstructorId=${userId}`
     );
   }
   GetCourseFullDetails(courseId: any, userId: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/GetCourseFullDetails?CourseId=${courseId}&userId=${userId}`
+      environment.BaseUrl +
+        `Course/GetCourseFullDetails?CourseId=${courseId}&userId=${userId}`
     );
   }
   InrollFreeCourse(courseId: any, userId: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/InrollFreeCourse?CourseId=${courseId}&userId=${userId}`
+      environment.BaseUrl +
+        `Course/InrollFreeCourse?CourseId=${courseId}&userId=${userId}`
     );
   }
   SaveCourseLandingPage(CourseLandingPage: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Course/SaveCourseLanding',
+      environment.BaseUrl + 'Course/SaveCourseLanding',
       CourseLandingPage
     );
   }
   UpdateCoursePrice(CourseForUpdate: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Course/UpdateCoursePrice',
+      environment.BaseUrl + 'Course/UpdateCoursePrice',
       CourseForUpdate
     );
   }
 
   CreateCourseRequirments(Requirments: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Course/CreateRequirmentCourse',
+      environment.BaseUrl + 'Course/CreateRequirmentCourse',
       Requirments
     );
   }
 
   GetCourseDetails(Id: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/GetCourseDetails?Id=${Id}`
+      environment.BaseUrl + `Course/GetCourseDetails?Id=${Id}`
     );
   }
 
   GetCourseMessages(Id: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/CourseMessages?Id=${Id}`
+      environment.BaseUrl + `Course/CourseMessages?Id=${Id}`
     );
   }
   GetCourseLandingPage(Id: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/CourseLandingPage?Id=${Id}`
+      environment.BaseUrl + `Course/CourseLandingPage?Id=${Id}`
     );
   }
   GetMyLearning(Id: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/GetMyLearning?userId=${Id}`
+      environment.BaseUrl + `Course/GetMyLearning?userId=${Id}`
     );
   }
 
   DeleteCourse(CourseId: any, InstructorId: any) {
     return this.HttpClient.delete(
-      `http://localhost:5227/api/Course/DeleteCourse?CourseId=${CourseId}&InstructorId=${InstructorId}`
+      environment.BaseUrl +
+        `Course/DeleteCourse?CourseId=${CourseId}&InstructorId=${InstructorId}`
     );
   }
 
   GetCoursPrice(Id: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/GetCoursePrice?CourseId=${Id}`
+      environment.BaseUrl + `Course/GetCoursePrice?CourseId=${Id}`
     );
   }
   GetCoursePaginated(QueryPaginateion: any) {
@@ -167,14 +171,14 @@ export class CourseService {
     }
 
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/GetCoursePaginated`,
+      environment.BaseUrl + `Course/GetCoursePaginated`,
       { params: paginationQuery }
     );
   }
 
   GetStreamVideoPromotion(Id: any): Observable<ArrayBuffer> {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/StreamVideoPromotion?Id=${Id}`,
+      environment.BaseUrl + `Course/StreamVideoPromotion?Id=${Id}`,
       {
         responseType: 'arraybuffer',
       }
@@ -187,7 +191,8 @@ export class CourseService {
     lectureId: any
   ): Observable<ArrayBuffer> {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/StartCourse?userId=${userId}&courseId=${courseId}&lectureId=${lectureId}`,
+      environment.BaseUrl +
+        `Course/StartCourse?userId=${userId}&courseId=${courseId}&lectureId=${lectureId}`,
       {
         responseType: 'arraybuffer',
       }
@@ -196,12 +201,14 @@ export class CourseService {
 
   TrypublishCoure(userId, courseId) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/TryPublishCoure?userId=${userId}&courseId=${courseId}`
+      environment.BaseUrl +
+        `Course/TryPublishCoure?userId=${userId}&courseId=${courseId}`
     );
   }
   LoadCourseContatnt(userId: any, courseId: any) {
     return this.HttpClient.get(
-      `http://localhost:5227/api/Course/CourseContant?userId=${userId}&courseId=${courseId}`
+      environment.BaseUrl +
+        `Course/CourseContant?userId=${userId}&courseId=${courseId}`
     );
   }
   SetFiredData(Data: MyData) {

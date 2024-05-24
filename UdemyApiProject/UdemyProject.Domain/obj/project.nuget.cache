@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Z5bj9sLNnPQjXG7NHo3PkPR6+p5uwP97DwQBPAzbJ+0GCsY4fdtnhA/4jLmqfXeW8b4vvrho5+XPMfv1e4zPCw==",
+  "dgSpecHash": "ea8d3u/sD+4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Udemy\\SimpleUdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
   "expectedPackageFiles": [
@@ -23,5 +23,12 @@
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

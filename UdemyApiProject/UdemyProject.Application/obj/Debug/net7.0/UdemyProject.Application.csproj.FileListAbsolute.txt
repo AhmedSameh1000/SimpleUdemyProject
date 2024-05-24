@@ -220,8 +220,10 @@ C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProje
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\UdemyProject.Application.sourcelink.json
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\ar\UdemyProject.Application.resources.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\en\UdemyProject.Application.resources.dll
-C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\UdemyProject.Application.csproj.CopyComplete
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\UdemyProject.Application.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\refint\UdemyProject.Application.dll
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\UdemyProject.Application.pdb
 C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\ref\UdemyProject.Application.dll
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\ar\UdemyProject.Application.resources.cs
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\en\UdemyProject.Application.resources.cs
+C:\Users\Ahmed Sameh\Desktop\Udemy\SimpleUdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\UdemyPro.CA283F83.Up2Date
